@@ -71,13 +71,13 @@ def train(input_dir, ground_truth_dir, model_file):
     train_df = pd.concat(all_dfs, ignore_index=True)
 
     lm_x = LinearRegression()
-    lm_x.fit(train_df[['x_in','y_in','z_in','dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
+    lm_x.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
     lm_y = LinearRegression()
-    lm_y.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
+    lm_y.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
     lm_z = LinearRegression()
-    lm_z.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
+    lm_z.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
     lm_s = LinearRegression()
-    lm_s.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']],
+    lm_s.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']],
              train_df['max_stress_out'])
 
     joblib.dump(lm_x, model_file+'.x')
