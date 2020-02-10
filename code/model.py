@@ -73,26 +73,25 @@ def train(input_dir, ground_truth_dir, model_file):
 
     start=time.time()
     lm_x = LinearRegression()
-    lm_x.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
+    lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
     end=time.time()
     print('train 1st model {}'.format(end-start))
 
     start=time.time()
     lm_y = LinearRegression()
-    lm_y.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
+    lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
     end=time.time()
     print('train 2nd model {}'.format(end - start))
 
     start = time.time()
     lm_z = LinearRegression()
-    lm_z.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
+    lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
     end=time.time()
     print('train 3rd model {}'.format(end - start))
 
     start = time.time()
     lm_s = LinearRegression()
-    lm_s.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']],
-             train_df['max_stress'])
+    lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
     end=time.time()
     print('train 4rd model {}'.format(end - start))
 
@@ -107,7 +106,7 @@ def _predict(models, input_file, output_file):
     input_df = read_input_df(input_file)
     dz_preds=[]
     for i in range(len(models)):
-        dz_pred = models[i].predict(input_df[['x','y','z','dx', 'dy', 'dz', 'thickness']])
+        dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
