@@ -6,6 +6,7 @@ import joblib
 import json
 import os
 import pandas as pd
+import time
 
 from sklearn.linear_model import LinearRegression
 
@@ -70,15 +71,30 @@ def train(input_dir, ground_truth_dir, model_file):
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
+    start=time.time()
     lm_x = LinearRegression()
     lm_x.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
+    end=time.time()
+    print('train 1st model {}'.format(end-start))
+
+    start=time.time()
     lm_y = LinearRegression()
     lm_y.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
+    end=time.time()
+    print('train 2nd model {}'.format(end - start))
+
+    start = time.time()
     lm_z = LinearRegression()
     lm_z.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
+    end=time.time()
+    print('train 3rd model {}'.format(end - start))
+
+    start = time.time()
     lm_s = LinearRegression()
     lm_s.fit(train_df[['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness']],
              train_df['max_stress'])
+    end=time.time()
+    print('train 4rd model {}'.format(end - start))
 
     joblib.dump(lm_x, model_file+'.x')
     joblib.dump(lm_y, model_file+'.y')
