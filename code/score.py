@@ -111,7 +111,39 @@ def score(soln_file, truth_file, verbose):
     score = (1 / (1 + overall_wtd_rmse)) * 100
     print(score)
 
-    return score
+def _score(soln_file, truth_file, verbose=False):
+    soln = pd.read_csv(soln_file)
+    truth = pd.read_csv(truth_file)
+    if set(soln.columns) != set(truth.columns):
+        raise ValueError('columns do not match')
+
+    if len(soln) != soln['node_id'].nunique():
+        raise ValueError('solution contains duplicate nodes')
+
+    merged = soln.merge(truth, on='node_id', suffixes=['_soln', '_truth'])
+    if len(merged) != len(soln) or len(merged) != len(truth):
+        raise ValueError('merge was not perfect')
+
+    dx = merged['dx_soln'] - merged['dx_truth']
+    dy = merged['dy_soln'] - merged['dy_truth']
+    dz = merged['dz_soln'] - merged['dz_truth']
+    d_stress = merged['max_stress_soln'] - merged['max_stress_truth']
+
+    disp2 = dx*dx + dy*dy + dz*dz
+    stress2 = d_stress * d_stress
+    disp_rmse = disp2.mean()**(1/2)
+    stress_rmse = stress2.mean()**(1/2)
+    if verbose:
+        print(f'RMSE for displacement={disp_rmse}')
+        print(f'RMSE for stress={stress_rmse}')
+
+    # Weight stress so that it is on a similar scale to displacement.
+    overall_wtd_rmse = disp_rmse + STRESS_WEIGHT * stress_rmse
+
+    # Transform so that lower scores are better and scores are between 0 and 1.
+    score = (1 / (1 + overall_wtd_rmse)) * 100
+    print(score)
+    return  score
 
 
 @cli.command()
@@ -121,7 +153,7 @@ def score_all(soln_dir,truth_dir):
     files=os.listdir(soln_dir)
     sum_score=0
     for file in files:
-        one_score=score(os.path.join(soln_dir,file),
+        one_score=_score(os.path.join(soln_dir,file),
                         os.path.join(truth_dir,file),
                         False)
         sum_score+=one_score
