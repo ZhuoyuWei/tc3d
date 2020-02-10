@@ -8,7 +8,7 @@
    PRED_DATA=/data/zhuoyu/3d/cv_data/${k}/dev/model
    PRED_ANS=/data/zhuoyu/3d/cv_data/${k}/dev/gt
    PRED_OUT=/data/zhuoyu/3d/output/out/${k}/
-   mkdir $RRED_OUT
+   mkdir $PRED_OUT
    mkdir /data/zhuoyu/3d/output/model/${k}
    MODEL_FILE=/data/zhuoyu/3d/output/model/${k}/model.bin
 
