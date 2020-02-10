@@ -20,10 +20,22 @@ def extract_case_id(fname):
     case_id, _ = os.path.splitext(fname)
     return case_id
 
+def elements_2_nodes(elements,nodes):
+    node2count={}
+    for i,ele in enumerate(elements):
+        if not ele['node_id'] in node2count:
+            node2count[ele['node_id']]=0
+        node2count[ele['node_id']]+=1
+    counts=[]
+    #for node in nodes:
+
+
 
 def read_input_df(fname):
     with open(fname) as inf:
         input_obj = json.load(inf)
+
+    node_size=len(input_obj['nodes'])
 
     thickness = float(input_obj['config']['thickness'])
     df = pd.DataFrame(input_obj['nodes']).astype({'node_id': int, 'x': float, 'y': float, 'z': float})
@@ -34,6 +46,12 @@ def read_input_df(fname):
     dx = df['x'] - move_node['x']
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
+
+
+    #push_element
+    #push_elments=[]
+    #for
+
     return df.assign(dx=dx, dy=dy, dz=dz, thickness=thickness)
 
 
@@ -52,18 +70,32 @@ def train(input_dir, ground_truth_dir, model_file):
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
-    lm = LinearRegression()
-    lm.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
-    joblib.dump(lm, model_file)
+    lm_x = LinearRegression()
+    lm_x.fit(train_df[['x_in','y_in','z_in','dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
+    lm_y = LinearRegression()
+    lm_y.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
+    lm_z = LinearRegression()
+    lm_z.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
+    lm_s = LinearRegression()
+    lm_s.fit(train_df[['x_in', 'y_in', 'z_in', 'dx_in', 'dy_in', 'dz_in', 'thickness']],
+             train_df['max_stress_out'])
+
+    joblib.dump(lm_x, model_file+'.x')
+    joblib.dump(lm_y, model_file+'.y')
+    joblib.dump(lm_z, model_file+'.z')
+    joblib.dump(lm_s, model_file+'.s')
 
 
-def _predict(model, input_file, output_file):
+
+def _predict(models, input_file, output_file):
     input_df = read_input_df(input_file)
-
-    dz_pred = model.predict(input_df[['dx', 'dy', 'dz', 'thickness']])
+    dz_preds=[]
+    for i in range(len(models)):
+        dz_pred = models[i].predict(input_df[['x','y','z','dx', 'dy', 'dz', 'thickness']])
+        dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': 0, 'dy': 0, 'dz': o, 'max_stress': 0}
-        for i, o in zip(input_df['node_id'], dz_pred)
+        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
+        for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
     pred_df.to_csv(output_file, index=False)
 
@@ -82,10 +114,14 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('input-dir')
 @click.argument('output-dir')
 def predict_all(model_file, input_dir, output_dir):
-    model = joblib.load(model_file)
+    models=[joblib.load(model_file+'.x'),
+            joblib.load(model_file + '.y'),
+            joblib.load(model_file + '.z'),
+            joblib.load(model_file + '.s')]
+    #model = joblib.load(model_file)
     for input_file in glob.glob(f'{input_dir}/*.json'):
         case_id = extract_case_id(input_file)
-        _predict(model,input_file, f'{output_dir}/{case_id}.csv')
+        _predict(models,input_file, f'{output_dir}/{case_id}.csv')
 
 
 if __name__ == '__main__':
