@@ -2,14 +2,14 @@
 
 for k in $( seq 0 4 )
 do
-   TRAIN_DATA='/data/zhuoyu/3d/cv_data/$k/train/model'
-   TRAIN_GT='/data/zhuoyu/3d/cv_data/$k/train/gt'
-   PRED_DATA='/data/zhuoyu/3d/cv_data/$k/dev/model'
-   PRED_ANS='/data/zhuoyu/3d/cv_data/$k/dev/gt'
-   PRED_OUT='/data/zhuoyu/3d/output/out/$k/'
+   TRAIN_DATA=/data/zhuoyu/3d/cv_data/${k}/train/model
+   TRAIN_GT=/data/zhuoyu/3d/cv_data/${k}/train/gt
+   PRED_DATA=/data/zhuoyu/3d/cv_data/${k}/dev/model
+   PRED_ANS=/data/zhuoyu/3d/cv_data/${k}/dev/gt
+   PRED_OUT=/data/zhuoyu/3d/output/out/${k}/
    mkdir $RRED_OUT
-   mkdir '/data/zhuoyu/3d/output/model/$k'
-   MODEL_FILE='/data/zhuoyu/3d/output/model/$k/model.bin'
+   mkdir /data/zhuoyu/3d/output/model/${k}
+   MODEL_FILE=/data/zhuoyu/3d/output/model/${k}/model.bin
 
    python model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE}
 
