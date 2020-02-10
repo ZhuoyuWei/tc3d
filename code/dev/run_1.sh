@@ -1,9 +1,8 @@
 #/bin/sh
 
-ROOT
 
-for k in $( seq 0 4 )
-do
+   k=$1
+
    TRAIN_DATA=/data/zhuoyu/3d/cv_data/${k}/train/model
    TRAIN_GT=/data/zhuoyu/3d/cv_data/${k}/train/gt
    PRED_DATA=/data/zhuoyu/3d/cv_data/${k}/dev/model
@@ -19,4 +18,3 @@ do
 
    python score.py score-all  ${PRED_OUT} ${PRED_ANS}
 
-done
