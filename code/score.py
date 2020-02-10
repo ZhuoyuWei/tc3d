@@ -111,7 +111,7 @@ def score(soln_file, truth_file, verbose):
     score = (1 / (1 + overall_wtd_rmse)) * 100
     print(score)
 
-def _score(soln_file, truth_file, verbose=False):
+def _score(soln_file, truth_file):
     soln = pd.read_csv(soln_file)
     truth = pd.read_csv(truth_file)
     if set(soln.columns) != set(truth.columns):
@@ -133,9 +133,7 @@ def _score(soln_file, truth_file, verbose=False):
     stress2 = d_stress * d_stress
     disp_rmse = disp2.mean()**(1/2)
     stress_rmse = stress2.mean()**(1/2)
-    if verbose:
-        print(f'RMSE for displacement={disp_rmse}')
-        print(f'RMSE for stress={stress_rmse}')
+
 
     # Weight stress so that it is on a similar scale to displacement.
     overall_wtd_rmse = disp_rmse + STRESS_WEIGHT * stress_rmse
@@ -154,8 +152,7 @@ def score_all(soln_dir,truth_dir):
     sum_score=0
     for file in files:
         one_score=_score(os.path.join(soln_dir,file),
-                        os.path.join(truth_dir,file),
-                        False)
+                        os.path.join(truth_dir,file))
         sum_score+=one_score
     sum_score/=len(files)
     print('total score is {}'.format(sum_score))
