@@ -172,11 +172,11 @@ def _predict(models, input_file, output_file):
         dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': 0}
+        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
     #pred_df=post_procssing(pred_df,input_obj)
-    #post_procssing_debug(pred_df,input_obj)
+    post_procssing_debug(pred_df,input_obj)
 
     pred_df.to_csv(output_file, index=False)
 
@@ -198,7 +198,7 @@ def predict_all(model_file, input_dir, output_dir):
     models=[joblib.load(model_file+'.x'),
             joblib.load(model_file + '.y'),
             joblib.load(model_file + '.z'),
-            joblib.load(model_file + '.z')]
+            joblib.load(model_file + '.s')]
     #model = joblib.load(model_file)
     for input_file in glob.glob(f'{input_dir}/*.json'):
         case_id = extract_case_id(input_file)
