@@ -62,7 +62,7 @@ def read_input_df(fname):
 class fit_thread(threading.Thread):
 
     def __init__(self,lm,train_df,target):
-        threading.Thread.__init__()
+        threading.Thread.__init__(self)
         self.lm=lm
         self.train_df=train_df
         self.target=target
