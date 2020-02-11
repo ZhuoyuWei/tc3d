@@ -93,25 +93,25 @@ def train(input_dir, ground_truth_dir, model_file):
 
     fitting_threads=[]
     #lm_x = LinearRegression()
-    lm_x = MLPRegressor(hidden_layer_sizes=(20,20))
+    lm_x = MLPRegressor(hidden_layer_sizes=(50,50))
     #lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
     fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
 
 
     #lm_y = LinearRegression()
-    lm_y = MLPRegressor(hidden_layer_sizes=(20,20))
+    lm_y = MLPRegressor(hidden_layer_sizes=(50,50))
     #lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
     fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
 
 
     #lm_z = LinearRegression()
-    lm_z = MLPRegressor(hidden_layer_sizes=(20,20))
+    lm_z = MLPRegressor(hidden_layer_sizes=(50,50))
     #lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
     fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
 
 
     #lm_s = LinearRegression()
-    lm_s = MLPRegressor(hidden_layer_sizes=(20, 20))
+    lm_s = MLPRegressor(hidden_layer_sizes=(50, 50))
     #lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
     fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
 
