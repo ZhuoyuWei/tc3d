@@ -118,6 +118,7 @@ def post_procssing(pred_df,input_obj):
             row['dy']=0
             row['dz']=0
             fix_count+=1
+            print(str(row).replace('\n','\t'))
         total_count+=1
     print('Debug Fix count {} == fix set {} in total {}'.format(fix_count,len(fix_nodes),total_count))
 
@@ -151,7 +152,7 @@ def _predict(models, input_file, output_file):
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
     pred_df=post_procssing(pred_df,input_obj)
-    post_procssing_debug(pred_df,input_obj)
+    #post_procssing_debug(pred_df,input_obj)
 
     pred_df.to_csv(output_file, index=False)
 
