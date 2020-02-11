@@ -70,7 +70,7 @@ class fit_thread(threading.Thread):
     def run(self):
         print('train {} starts'.format(self.target))
         start = time.time()
-        self.lm_x.fit(self.train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],
+        self.lm.fit(self.train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],
                       self.train_df[self.target])
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
