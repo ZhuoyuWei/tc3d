@@ -7,6 +7,7 @@ import json
 import os
 import pandas as pd
 import time
+import threading
 
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
@@ -58,6 +59,20 @@ def read_input_df(fname):
 
     return df.assign(dx=dx, dy=dy, dz=dz, thickness=thickness),input_obj
 
+class fit_thread(threading.Thread):
+
+    def __init__(self,lm,train_df,target):
+        self.lm=lm
+        self.train_df=train_df
+        self.target=target
+
+    def run(self):
+        print('train {} starts'.format(self.target))
+        start = time.time()
+        self.lm_x.fit(self.train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],
+                      self.train_df[self.target])
+        end = time.time()
+        print('train {} model {}'.format(self.target,end - start))
 
 
 @cli.command()
@@ -75,33 +90,36 @@ def train(input_dir, ground_truth_dir, model_file):
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
-    start=time.time()
+    fitting_threads=[]
     #lm_x = LinearRegression()
-    lm_x = MLPRegressor(hidden_layer_sizes=(100,50,20))
-    lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
-    end=time.time()
-    print('train 1st model {}'.format(end-start))
+    lm_x = MLPRegressor(hidden_layer_sizes=(20,20))
+    #lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
+    fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
 
-    start=time.time()
+
     #lm_y = LinearRegression()
-    lm_y = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
-    lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
-    end=time.time()
-    print('train 2nd model {}'.format(end - start))
+    lm_y = MLPRegressor(hidden_layer_sizes=(20,20))
+    #lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
+    fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
 
-    start = time.time()
+
     #lm_z = LinearRegression()
-    lm_z = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
-    lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
-    end=time.time()
-    print('train 3rd model {}'.format(end - start))
+    lm_z = MLPRegressor(hidden_layer_sizes=(20,20))
+    #lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
+    fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
 
-    start = time.time()
+
     #lm_s = LinearRegression()
-    lm_s = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
-    lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
-    end=time.time()
-    print('train 4rd model {}'.format(end - start))
+    lm_s = MLPRegressor(hidden_layer_sizes=(20, 20))
+    #lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
+    fitting_threads.append(fit_thread(lm_s, train_df, 'ds_out'))
+
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].start()
+
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].join()
+
 
     joblib.dump(lm_x, model_file+'.x')
     joblib.dump(lm_y, model_file+'.y')
