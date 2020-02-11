@@ -36,15 +36,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="py" value="5525" />
+          <entry key="py" value="5528" />
           <entry key="sh" value="247" />
-          <entry key="txt" value="345" />
+          <entry key="txt" value="348" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="603" />
-          <entry key="Python" value="5525" />
+          <entry key="PLAIN_TEXT" value="606" />
+          <entry key="Python" value="5528" />
         </counts>
       </usages-collector>
     </session>
@@ -54,13 +54,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+            <state relative-caret-position="723">
+              <caret line="174" column="64" selection-start-line="174" selection-start-column="64" selection-end-line="174" selection-end-column="64" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1581415596198" expanded="true" signature="1361:1847" ph="..." />
-                <marker date="1581415596198" expanded="true" signature="3731:4844" ph="..." />
-                <marker date="1581415596198" expanded="true" signature="4890:4895" ph="..." />
+                <marker date="1581427633417" expanded="true" signature="1361:1845" ph="..." />
+                <marker date="1581427633417" expanded="true" signature="3733:4846" ph="..." />
+                <marker date="1581427633417" expanded="true" signature="4892:4897" ph="..." />
               </folding>
             </state>
           </provider>
@@ -410,11 +410,26 @@
       <option name="project" value="LOCAL" />
       <updated>1581415123275</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="multi threadings|fix bug 2">
+      <created>1581415602639</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1581415602639</updated>
+    </task>
+    <task id="LOCAL-00032" summary="multi threadings|fix bug 3">
+      <created>1581416135507</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1581416135507</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -439,8 +454,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modify at 2 10 at 3" />
-    <MESSAGE value="modify at 2 10 at 4" />
     <MESSAGE value="proposed" />
     <MESSAGE value="proposeddebug 0211" />
     <MESSAGE value="fix bug at 0211" />
@@ -464,7 +477,9 @@
     <MESSAGE value="MLP regression 2" />
     <MESSAGE value="multi threadings" />
     <MESSAGE value="multi threadings|fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="multi threadings|fix bug" />
+    <MESSAGE value="multi threadings|fix bug 2" />
+    <MESSAGE value="multi threadings|fix bug 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="multi threadings|fix bug 3" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/train.sh">
@@ -546,13 +561,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+        <state relative-caret-position="723">
+          <caret line="174" column="64" selection-start-line="174" selection-start-column="64" selection-end-line="174" selection-end-column="64" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1581415596198" expanded="true" signature="1361:1847" ph="..." />
-            <marker date="1581415596198" expanded="true" signature="3731:4844" ph="..." />
-            <marker date="1581415596198" expanded="true" signature="4890:4895" ph="..." />
+            <marker date="1581427633417" expanded="true" signature="1361:1845" ph="..." />
+            <marker date="1581427633417" expanded="true" signature="3733:4846" ph="..." />
+            <marker date="1581427633417" expanded="true" signature="4892:4897" ph="..." />
           </folding>
         </state>
       </provider>
