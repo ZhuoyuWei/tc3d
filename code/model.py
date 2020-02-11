@@ -53,7 +53,10 @@ def read_input_df(fname):
     #push_elments=[]
     #for
 
-    return df.assign(dx=dx, dy=dy, dz=dz, thickness=thickness)
+    #during training, can remove fix nodes
+
+    return df.assign(dx=dx, dy=dy, dz=dz, thickness=thickness),input_obj
+
 
 
 @cli.command()
@@ -63,7 +66,7 @@ def read_input_df(fname):
 def train(input_dir, ground_truth_dir, model_file):
     all_dfs = []
     for fname in glob.glob(f'{input_dir}/*.json'):
-        input_df = read_input_df(fname)
+        input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
         merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
@@ -100,10 +103,28 @@ def train(input_dir, ground_truth_dir, model_file):
     joblib.dump(lm_z, model_file+'.z')
     joblib.dump(lm_s, model_file+'.s')
 
+def post_procssing(pred_df,input_obj):
+    fix_nodes=set()
+    for item in input_obj["nset_fix"]:
+        fix_nodes.add(item['node_id'])
+
+    fix_count=0
+    for index, row in pred_df.iterrows():
+        if row['node_id'] in fix_nodes:
+            row['dx']=0
+            row['dy']=0
+            row['dz']=0
+            fix_count+=1
+
+    print('Debug Fix count {} == fix set {}'.format(fix_count,len(fix_nodes)))
+
+
+
+
 
 
 def _predict(models, input_file, output_file):
-    input_df = read_input_df(input_file)
+    input_df,input_obj = read_input_df(input_file)
     dz_preds=[]
     for i in range(len(models)):
         dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
@@ -112,6 +133,7 @@ def _predict(models, input_file, output_file):
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
+    post_procssing(pred_df,input_obj)
     pred_df.to_csv(output_file, index=False)
 
 
