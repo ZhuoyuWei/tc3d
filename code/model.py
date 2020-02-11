@@ -107,15 +107,18 @@ def post_procssing(pred_df,input_obj):
     fix_nodes=set()
     for item in input_obj["nset_fix"]:
         fix_nodes.add(item['node_id'])
+        print('fixnodeset:\t'.format(item['node_id']))
 
     fix_count=0
+    total_count=0
     for index, row in pred_df.iterrows():
+        print('preds:\t{}'.format(row['node_id']))
         if row['node_id'] in fix_nodes:
             row['dx']=0
             row['dy']=0
             row['dz']=0
             fix_count+=1
-
+        total_count+=1
     print('Debug Fix count {} == fix set {}'.format(fix_count,len(fix_nodes)))
 
 
