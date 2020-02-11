@@ -106,7 +106,7 @@ def score(soln_file, truth_file, verbose):
 
     # Weight stress so that it is on a similar scale to displacement.
     overall_wtd_rmse = disp_rmse + STRESS_WEIGHT * stress_rmse
-
+    print('split score: {}\t{}'.format(disp_rmse, STRESS_WEIGHT * stress_rmse))
     # Transform so that lower scores are better and scores are between 0 and 1.
     score = (1 / (1 + overall_wtd_rmse)) * 100
     print(score)
