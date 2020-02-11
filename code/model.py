@@ -76,25 +76,29 @@ def train(input_dir, ground_truth_dir, model_file):
     train_df = pd.concat(all_dfs, ignore_index=True)
 
     start=time.time()
-    lm_x = LinearRegression()
+    #lm_x = LinearRegression()
+    lm_x = MLPRegressor(hidden_layer_sizes=(100,50,20))
     lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
     end=time.time()
     print('train 1st model {}'.format(end-start))
 
     start=time.time()
-    lm_y = LinearRegression()
+    #lm_y = LinearRegression()
+    lm_y = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
     lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
     end=time.time()
     print('train 2nd model {}'.format(end - start))
 
     start = time.time()
-    lm_z = LinearRegression()
+    #lm_z = LinearRegression()
+    lm_z = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
     lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
     end=time.time()
     print('train 3rd model {}'.format(end - start))
 
     start = time.time()
-    lm_s = LinearRegression()
+    #lm_s = LinearRegression()
+    lm_s = MLPRegressor(hidden_layer_sizes=(100, 50, 20))
     lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
     end=time.time()
     print('train 4rd model {}'.format(end - start))
@@ -149,10 +153,10 @@ def _predict(models, input_file, output_file):
         dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': 0}
+        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
-    #pred_df=post_procssing(pred_df,input_obj)
+    pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
 
     pred_df.to_csv(output_file, index=False)
