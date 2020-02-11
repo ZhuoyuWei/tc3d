@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/score.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,30 +36,30 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="py" value="5055" />
+          <entry key="py" value="5092" />
           <entry key="sh" value="247" />
-          <entry key="txt" value="231" />
+          <entry key="txt" value="265" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="489" />
-          <entry key="Python" value="5055" />
+          <entry key="PLAIN_TEXT" value="523" />
+          <entry key="Python" value="5092" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
+            <state relative-caret-position="313">
+              <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1581404375828" expanded="true" signature="2867:3980" ph="..." />
-                <marker date="1581404375828" expanded="true" signature="4026:4031" ph="..." />
+                <marker date="1581405923055" expanded="true" signature="2867:3980" ph="..." />
+                <marker date="1581405923055" expanded="true" signature="4026:4031" ph="..." />
               </folding>
             </state>
           </provider>
@@ -77,14 +77,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/score.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1132">
-              <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+            <state relative-caret-position="628">
+              <caret line="140" column="76" selection-start-line="140" selection-start-column="76" selection-end-line="140" selection-end-column="76" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1581345807259" expanded="true" signature="4671:4957" ph="..." />
+                <marker date="1581406194479" expanded="true" signature="4751:5037" ph="..." />
               </folding>
             </state>
           </provider>
@@ -117,13 +117,13 @@
         <option value="$PROJECT_DIR$/code/dev/train.sh.py" />
         <option value="$PROJECT_DIR$/code/dev/cv5.sh" />
         <option value="$PROJECT_DIR$/code/dev/run_1.sh.py" />
-        <option value="$PROJECT_DIR$/code/score.py" />
         <option value="$PROJECT_DIR$/code/pre/read_example.py" />
         <option value="$PROJECT_DIR$/code/dev/run_1.sh" />
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh.py" />
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/score.py" />
       </list>
     </option>
   </component>
@@ -338,7 +338,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581404273037</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="remove debug info">
+      <created>1581404391042</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1581404391042</updated>
+    </task>
+    <task id="LOCAL-00022" summary="tmp remove post">
+      <created>1581405936160</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1581405936160</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -389,7 +403,9 @@
     <MESSAGE value="debug 4 at 0211" />
     <MESSAGE value="debug 5 at 0211" />
     <MESSAGE value="debug 6 at 0211" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug 6 at 0211" />
+    <MESSAGE value="remove debug info" />
+    <MESSAGE value="tmp remove post" />
+    <option name="LAST_COMMIT_MESSAGE" value="tmp remove post" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/train.sh">
@@ -448,17 +464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1132">
-          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-            <marker date="1581345807259" expanded="true" signature="4671:4957" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/tt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -471,12 +476,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
+        <state relative-caret-position="313">
+          <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1581404375828" expanded="true" signature="2867:3980" ph="..." />
-            <marker date="1581404375828" expanded="true" signature="4026:4031" ph="..." />
+            <marker date="1581405923055" expanded="true" signature="2867:3980" ph="..." />
+            <marker date="1581405923055" expanded="true" signature="4026:4031" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="140" column="76" selection-start-line="140" selection-start-column="76" selection-end-line="140" selection-end-column="76" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+            <marker date="1581406194479" expanded="true" signature="4751:5037" ph="..." />
           </folding>
         </state>
       </provider>
