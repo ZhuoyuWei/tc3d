@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/score.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,43 +23,56 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="11" />
+          <entry key="py" value="12" />
           <entry key="sh" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="11" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="py" value="5092" />
+          <entry key="py" value="5093" />
           <entry key="sh" value="247" />
-          <entry key="txt" value="265" />
+          <entry key="txt" value="281" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="523" />
-          <entry key="Python" value="5092" />
+          <entry key="PLAIN_TEXT" value="539" />
+          <entry key="Python" value="5093" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+            <state relative-caret-position="250">
+              <caret line="150" column="65" selection-start-line="150" selection-start-column="65" selection-end-line="150" selection-end-column="65" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1581405923055" expanded="true" signature="2867:3980" ph="..." />
-                <marker date="1581405923055" expanded="true" signature="4026:4031" ph="..." />
+                <marker date="1581407004487" expanded="true" signature="2867:3980" ph="..." />
+                <marker date="1581407004487" expanded="true" signature="4026:4031" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/score.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="110" column="46" lean-forward="true" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
+              <folding>
+                <element signature="e#23#35#0" expanded="true" />
+                <marker date="1581406551036" expanded="true" signature="4830:5116" ph="..." />
               </folding>
             </state>
           </provider>
@@ -72,19 +85,6 @@
               <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/code/score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="628">
-              <caret line="140" column="76" selection-start-line="140" selection-start-column="76" selection-end-line="140" selection-end-column="76" />
-              <folding>
-                <element signature="e#23#35#0" expanded="true" />
-                <marker date="1581406194479" expanded="true" signature="4751:5037" ph="..." />
               </folding>
             </state>
           </provider>
@@ -122,8 +122,8 @@
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh.py" />
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/score.py" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
@@ -352,7 +352,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581405936160</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="update scoring">
+      <created>1581406215257</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1581406215257</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update scoring|2">
+      <created>1581406626460</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1581406626460</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -405,7 +419,9 @@
     <MESSAGE value="debug 6 at 0211" />
     <MESSAGE value="remove debug info" />
     <MESSAGE value="tmp remove post" />
-    <option name="LAST_COMMIT_MESSAGE" value="tmp remove post" />
+    <MESSAGE value="update scoring" />
+    <MESSAGE value="update scoring|2" />
+    <option name="LAST_COMMIT_MESSAGE" value="update scoring|2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/train.sh">
@@ -474,25 +490,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
+    <entry file="file://$PROJECT_DIR$/code/score.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="153" column="5" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+        <state relative-caret-position="628">
+          <caret line="110" column="46" lean-forward="true" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1581405923055" expanded="true" signature="2867:3980" ph="..." />
-            <marker date="1581405923055" expanded="true" signature="4026:4031" ph="..." />
+            <marker date="1581406551036" expanded="true" signature="4830:5116" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/score.py">
+    <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="140" column="76" selection-start-line="140" selection-start-column="76" selection-end-line="140" selection-end-column="76" />
+        <state relative-caret-position="250">
+          <caret line="150" column="65" selection-start-line="150" selection-start-column="65" selection-end-line="150" selection-end-column="65" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1581406194479" expanded="true" signature="4751:5037" ph="..." />
+            <marker date="1581407004487" expanded="true" signature="2867:3980" ph="..." />
+            <marker date="1581407004487" expanded="true" signature="4026:4031" ph="..." />
           </folding>
         </state>
       </provider>

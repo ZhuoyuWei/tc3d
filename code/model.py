@@ -148,7 +148,7 @@ def _predict(models, input_file, output_file):
         dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
+        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': 0}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
     #pred_df=post_procssing(pred_df,input_obj)
