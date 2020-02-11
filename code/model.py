@@ -121,6 +121,8 @@ def post_procssing(pred_df,input_obj):
         total_count+=1
     print('Debug Fix count {} == fix set {} in total {}'.format(fix_count,len(fix_nodes),total_count))
 
+    return pred_df
+
 
 
 
@@ -136,7 +138,7 @@ def _predict(models, input_file, output_file):
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
-    post_procssing(pred_df,input_obj)
+    pred_df=post_procssing(pred_df,input_obj)
     pred_df.to_csv(output_file, index=False)
 
 
