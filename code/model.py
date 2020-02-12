@@ -95,7 +95,7 @@ def train(input_dir, ground_truth_dir, model_file):
     fitting_threads=[]
     #lm_x = LinearRegression()
     #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_x=xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
+    lm_x=xgboost.XGBRegressor(n_estimators=150,max_depth=6,n_jobs=8,random_state=42,
                               tree_method='hist')
     #lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
     fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
@@ -103,7 +103,7 @@ def train(input_dir, ground_truth_dir, model_file):
 
     #lm_y = LinearRegression()
     #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_y = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
+    lm_y = xgboost.XGBRegressor(n_estimators=150,max_depth=6,n_jobs=8,random_state=42,
                               tree_method='hist')
     #lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
     fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
@@ -111,7 +111,7 @@ def train(input_dir, ground_truth_dir, model_file):
 
     #lm_z = LinearRegression()
     #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_z = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
+    lm_z = xgboost.XGBRegressor(n_estimators=150,max_depth=6,n_jobs=8,random_state=42,
                               tree_method='hist')
     #lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
     fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
@@ -119,7 +119,7 @@ def train(input_dir, ground_truth_dir, model_file):
 
     #lm_s = LinearRegression()
     #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_s = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
+    lm_s = xgboost.XGBRegressor(n_estimators=150,max_depth=6,n_jobs=8,random_state=42,
                               tree_method='hist')
     #lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
     fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
