@@ -176,9 +176,12 @@ def post_procssing_debug(pred_df, input_obj):
 
 def _predict(models, input_file, output_file):
     input_df,input_obj = read_input_df(input_file)
+    input_df.rename(columns={'dx':'dx_in'}, inplace=True)
+    input_df.rename(columns={'dy':'dy_in'}, inplace=True)
+    input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[]
     for i in range(len(models)):
-        dz_pred = models[i].predict(input_df[['dx', 'dy', 'dz', 'thickness']])
+        dz_pred = models[i].predict(input_df[['dx_in', 'dy_in', 'dz_in', 'thickness']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
