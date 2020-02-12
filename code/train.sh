@@ -6,4 +6,6 @@ PRED_DATA='/data/input/pred'
 PRED_OUT='/data/output/pred'
 MODEL_FILE='/tmp/model.bin'
 
+sudo pip install xgboost
+
 /code/model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE}
