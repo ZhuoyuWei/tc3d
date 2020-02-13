@@ -54,10 +54,15 @@ def read_input_df(fname):
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
 
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
-    print('nodes push_elements: {}'.format(push_counts))
-    print('nodes surf_elements: {}'.format(surf_counts))
-    print('nodes nset_fix: {}'.format(nset_fix_counts))
-    print('nodes nset_osibou: {}'.format(nset_osibou_counts))
+    print('nodes push_elements: {}'.format(len(push_counts)))
+    print('nodes surf_elements: {}'.format(len(surf_counts)))
+    print('nodes nset_fix: {}'.format(len(nset_fix_counts)))
+    print('nodes nset_osibou: {}'.format(len(nset_osibou_counts)))
+
+    push_counts=DataFrame(data=push_counts,dtype=int)
+    surf_counts=DataFrame(data=surf_counts,dtype=int)
+    nset_fix_counts=DataFrame(data=nset_fix_counts,dtype=int)
+    nset_osibou_counts=DataFrame(data=nset_osibou_counts,dtype=int)
 
     thickness = float(input_obj['config']['thickness'])
     df = pd.DataFrame(input_obj['nodes']).astype({'node_id': int, 'x': float, 'y': float, 'z': float})
