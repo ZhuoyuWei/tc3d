@@ -53,11 +53,13 @@ def read_input_df(fname):
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
 
+    '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
     print('nodes push_elements: {}'.format(len(push_counts)))
     print('nodes surf_elements: {}'.format(len(surf_counts)))
     print('nodes nset_fix: {}'.format(len(nset_fix_counts)))
     print('nodes nset_osibou: {}'.format(len(nset_osibou_counts)))
+    '''
 
     push_counts=pd.DataFrame(data=push_counts,dtype=int)
     surf_counts=pd.DataFrame(data=surf_counts,dtype=int)
@@ -108,48 +110,78 @@ class fit_thread(threading.Thread):
 @click.argument('input-dir')
 @click.argument('ground-truth-dir')
 @click.argument('model-file')
-def train(input_dir, ground_truth_dir, model_file):
+def train(input_dir, ground_truth_dir, model_file,model_config=None):
     all_dfs = []
+    start=time.time()
     for fname in glob.glob(f'{input_dir}/*.json'):
         input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
         merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
         all_dfs.append(merged_df)
+    end=time.time()
+    print('reading training data cost {} s'.format(end-start))
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
     fitting_threads=[]
+    feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']
+    model_config={'n_estimators':200,'max_depth':7,
+                  'n_jobs': 16, 'tree_method':'hist'}
     #lm_x = LinearRegression()
     #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_x=xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
-                              tree_method='hist')
-    #lm_x.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dx_out'])
-    fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
+    lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'])
+    start = time.time()
+    lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
+    end = time.time()
+    print('train {} model {}'.format('dx_out', end - start))
+    #fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
 
 
     #lm_y = LinearRegression()
     #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_y = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
-                              tree_method='hist')
-    #lm_y.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dy_out'])
-    fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
+    lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'])
+    start = time.time()
+    lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
+    end = time.time()
+    print('train {} model {}'.format('dy_out', end - start))
+    #fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
 
 
     #lm_z = LinearRegression()
     #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_z = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
-                              tree_method='hist')
-    #lm_z.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']], train_df['dz_out'])
-    fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
-
+    lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'])
+    #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
+    start = time.time()
+    lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
+    end = time.time()
+    print('train {} model {}'.format('dz_out', end - start))
 
     #lm_s = LinearRegression()
     #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_s = xgboost.XGBRegressor(n_estimators=100,max_depth=5,n_jobs=8,random_state=42,
-                              tree_method='hist')
-    #lm_s.fit(train_df[['dx_in', 'dy_in', 'dz_in', 'thickness']],train_df['max_stress'])
-    fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
+    lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'])
+    start = time.time()
+    lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    end = time.time()
+    print('train {} model {}'.format('ds_out', end - start))
+    #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
 
     for i in range(len(fitting_threads)):
         fitting_threads[i].start()
@@ -240,9 +272,12 @@ def predict_all(model_file, input_dir, output_dir):
             joblib.load(model_file + '.z'),
             joblib.load(model_file + '.s')]
     #model = joblib.load(model_file)
+    start=time.time()
     for input_file in glob.glob(f'{input_dir}/*.json'):
         case_id = extract_case_id(input_file)
         _predict(models,input_file, f'{output_dir}/{case_id}.csv')
+    end=time.time()
+    print('Predict is finished in {} s'.format(end-start))
 
 
 if __name__ == '__main__':
