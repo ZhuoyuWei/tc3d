@@ -6,6 +6,6 @@ PRED_DATA='/data/input/pred'
 PRED_OUT='/data/output/pred'
 MODEL_FILE='/tmp/model.bin'
 
-sudo pip install xgboost
+#pip install xgboost
 
-/code/model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT}
+python /code/model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT}

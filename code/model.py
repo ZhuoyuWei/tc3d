@@ -30,8 +30,15 @@ def elements_2_nodes(elements,nodes):
         if not ele['node_id'] in node2count:
             node2count[ele['node_id']]=0
         node2count[ele['node_id']]+=1
-    counts=[]
+    counts=[0]*nodes
     #for node in nodes:
+    for i,node in enumerate(nodes):
+        if node['node_id'] in node2count:
+            counts[i]=1
+
+    return counts
+
+
 
 
 
@@ -40,6 +47,17 @@ def read_input_df(fname):
         input_obj = json.load(inf)
 
     node_size=len(input_obj['nodes'])
+
+    push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'])
+    surf_counts=elements_2_nodes(input_obj['surf_elements'],input_obj['nodes'])
+    nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
+    nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
+
+    print('nodes origin: {}'.format(len(input_obj['nodes'])))
+    print('nodes push_elements: {}'.format(push_counts))
+    print('nodes surf_elements: {}'.format(surf_counts))
+    print('nodes nset_fix: {}'.format(nset_fix_counts))
+    print('nodes nset_osibou: {}'.format(nset_osibou_counts))
 
     thickness = float(input_obj['config']['thickness'])
     df = pd.DataFrame(input_obj['nodes']).astype({'node_id': int, 'x': float, 'y': float, 'z': float})
@@ -58,7 +76,10 @@ def read_input_df(fname):
 
     #during training, can remove fix nodes
 
-    return df.assign(dx=dx, dy=dy, dz=dz, thickness=thickness),input_obj
+    return df.assign(dx=dx, dy=dy, dz=dz,
+                     pcounts=push_counts, scounts=surf_counts,
+                     nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
+                     thickness=thickness),input_obj
 
 class fit_thread(threading.Thread):
 
@@ -71,7 +92,8 @@ class fit_thread(threading.Thread):
     def run(self):
         print('train {} starts'.format(self.target))
         start = time.time()
-        self.lm.fit(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness']],
+        self.lm.fit(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']],
                       self.train_df[self.target])
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
@@ -181,7 +203,8 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[]
     for i in range(len(models)):
-        dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness']])
+        dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']])
         dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
