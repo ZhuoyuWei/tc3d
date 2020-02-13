@@ -30,7 +30,7 @@ def elements_2_nodes(elements,nodes):
         if not ele['node_id'] in node2count:
             node2count[ele['node_id']]=0
         node2count[ele['node_id']]+=1
-    counts=[0]*nodes
+    counts=[0]*len(nodes)
     #for node in nodes:
     for i,node in enumerate(nodes):
         if node['node_id'] in node2count:
@@ -175,7 +175,7 @@ def post_procssing(pred_df,input_obj):
             fix_count+=1
             #print(str(row).replace('\n','\t'))
         total_count+=1
-    print('Debug Fix count {} == fix set {} in total {}'.format(fix_count,len(fix_nodes),total_count))
+    #print('Debug Fix count {} == fix set {} in total {}'.format(fix_count,len(fix_nodes),total_count))
 
 
     return pred_df
