@@ -157,7 +157,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('train {} model {}'.format('dx_out', end - start))
     #fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
     joblib.dump(lm_x, model_file + '.x')
-    lm_x.get_booster().set_attr(scikit_learn=None)
+    #lm_x.get_booster().set_attr(scikit_learn=None)
     lm_x=None
 
     #lm_y = LinearRegression()
@@ -173,7 +173,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('train {} model {}'.format('dy_out', end - start))
     #fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
     joblib.dump(lm_y, model_file + '.y')
-    lm_y.get_booster().set_attr(scikit_learn=None)
+    #lm_y.get_booster().set_attr(scikit_learn=None)
     lm_y=None
 
     #lm_z = LinearRegression()
@@ -189,7 +189,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     end = time.time()
     print('train {} model {}'.format('dz_out', end - start))
     joblib.dump(lm_z, model_file + '.z')
-    lm_z.get_booster().set_attr(scikit_learn=None)
+    #lm_z.get_booster().set_attr(scikit_learn=None)
     lm_z=None
     #lm_s = LinearRegression()
     #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
@@ -199,7 +199,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'])
     start = time.time()
-    lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
     end = time.time()
     print('train {} model {}'.format('ds_out', end - start))
     #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
@@ -210,7 +210,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     #for i in range(len(fitting_threads)):
     #    fitting_threads[i].join()
     joblib.dump(lm_s, model_file + '.s')
-    lm_s.get_booster().set_attr(scikit_learn=None)
+    #lm_s.get_booster().set_attr(scikit_learn=None)
     lm_s=None
 
 
