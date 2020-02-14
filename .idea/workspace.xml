@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/dlts.sh" beforeDir="false" afterPath="$PROJECT_DIR$/code/dlts.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,12 +29,12 @@
           <entry key="Dockerfile_bak" value="2" />
           <entry key="Dockerfile_origin" value="1" />
           <entry key="py" value="20" />
-          <entry key="sh" value="9" />
+          <entry key="sh" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="PLAIN_TEXT" value="15" />
           <entry key="Python" value="20" />
         </counts>
       </usages-collector>
@@ -42,26 +42,26 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="11" />
-          <entry key="py" value="6827" />
-          <entry key="sh" value="563" />
-          <entry key="txt" value="636" />
+          <entry key="py" value="6905" />
+          <entry key="sh" value="592" />
+          <entry key="txt" value="682" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1327" />
-          <entry key="Python" value="6827" />
+          <entry key="PLAIN_TEXT" value="1402" />
+          <entry key="Python" value="6905" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/dlts.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="53" column="85" lean-forward="true" selection-start-line="53" selection-start-column="85" selection-end-line="53" selection-end-column="85" />
+            <state relative-caret-position="637">
+              <caret line="53" column="126" selection-start-line="53" selection-start-column="126" selection-end-line="53" selection-end-column="126" />
             </state>
           </provider>
         </entry>
@@ -75,11 +75,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/dev/run_1.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2220">
-              <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+            <state relative-caret-position="498">
+              <caret line="141" column="22" lean-forward="true" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -91,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/code/train.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="10" column="85" selection-start-line="10" selection-start-column="85" selection-end-line="10" selection-end-column="85" />
+              <caret line="10" column="68" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -159,7 +168,6 @@
         <option value="$PROJECT_DIR$/code/dev/cv5.sh" />
         <option value="$PROJECT_DIR$/code/dev/run_1.sh.py" />
         <option value="$PROJECT_DIR$/code/pre/read_example.py" />
-        <option value="$PROJECT_DIR$/code/dev/run_1.sh" />
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh.py" />
         <option value="$PROJECT_DIR$/code/dev/predict_1.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
@@ -171,8 +179,9 @@
         <option value="$PROJECT_DIR$/code/test_docker.py" />
         <option value="$PROJECT_DIR$/code/Dockerfile" />
         <option value="$PROJECT_DIR$/code/train.sh" />
-        <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/dev/run_1.sh" />
+        <option value="$PROJECT_DIR$/code/dlts.sh" />
       </list>
     </option>
   </component>
@@ -268,20 +277,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00016" summary="fix bug int at 0211">
-      <created>1581390591652</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1581390591652</updated>
-    </task>
-    <task id="LOCAL-00017" summary="fix bug int at 0211 3">
-      <created>1581402847092</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1581402847092</updated>
     </task>
     <task id="LOCAL-00018" summary="debug 4 at 0211">
       <created>1581403566453</created>
@@ -612,7 +607,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581668691124</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="add n_job | release boost">
+      <created>1581669357790</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1581669357790</updated>
+    </task>
+    <task id="LOCAL-00066" summary="add n_job | release boost | add sample training data">
+      <created>1581671551398</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1581671551398</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -641,8 +650,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more larger model" />
-    <MESSAGE value="add x,y,z into xgboost" />
     <MESSAGE value="without post" />
     <MESSAGE value="add nodes counts" />
     <MESSAGE value="add nodes counts|fix" />
@@ -666,7 +673,9 @@
     <MESSAGE value="test gpu docker 3" />
     <MESSAGE value="test gpu docker 4" />
     <MESSAGE value="add n_job" />
-    <option name="LAST_COMMIT_MESSAGE" value="add n_job" />
+    <MESSAGE value="add n_job | release boost" />
+    <MESSAGE value="add n_job | release boost | add sample training data" />
+    <option name="LAST_COMMIT_MESSAGE" value="add n_job | release boost | add sample training data" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -715,13 +724,6 @@
     <entry file="file://$PROJECT_DIR$/code/dev/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/dev/run_1.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="14" selection-start-line="4" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dev/cv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -760,27 +762,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="141" column="22" lean-forward="true" selection-start-line="141" selection-start-column="22" selection-end-line="141" selection-end-column="22" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="10" column="85" selection-start-line="10" selection-start-column="85" selection-end-line="10" selection-end-column="85" />
+          <caret line="10" column="68" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dev/run_1.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="53" column="85" lean-forward="true" selection-start-line="53" selection-start-column="85" selection-end-line="53" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2220">
-          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="637">
+          <caret line="53" column="126" selection-start-line="53" selection-start-column="126" selection-end-line="53" selection-end-column="126" />
         </state>
       </provider>
     </entry>
