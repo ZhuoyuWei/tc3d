@@ -5,6 +5,8 @@ FROM nvidia/cuda:10.0-base-ubuntu16.04
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
+RUN apt-get update -y
+RUN apt-get upgrade -y
 RUN apt-get install -y libgomp1
 
 RUN pip install pip --upgrade
