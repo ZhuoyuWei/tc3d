@@ -12,9 +12,14 @@ mkdir $OUTPUT_DIR
 
 
 sudo apt-get install zip -y
+sudo apt-get install -y libgomp1
 
 sudo mkdir /zhuoyu_exp/
 sudo chmod 777 /zhuoyu_exp
+
+sudo pip install pip --upgrade
+sudo pip install pandas click joblib sklearn
+sudo pip install --pre xgboost
 
 EXP_ROOT_DIR=/zhuoyu_exp/work
 mkdir $EXP_ROOT_DIR
