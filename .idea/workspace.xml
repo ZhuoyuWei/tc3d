@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/dlts.sh" beforeDir="false" afterPath="$PROJECT_DIR$/code/dlts.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,26 +41,26 @@
         <counts>
           <entry key="Dockerfile" value="41" />
           <entry key="dummy" value="11" />
-          <entry key="py" value="6680" />
+          <entry key="py" value="6709" />
           <entry key="sh" value="514" />
-          <entry key="txt" value="602" />
+          <entry key="txt" value="604" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1168" />
-          <entry key="Python" value="6680" />
+          <entry key="PLAIN_TEXT" value="1170" />
+          <entry key="Python" value="6709" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+            <state relative-caret-position="522">
+              <caret line="44" column="21" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="130" column="57" selection-start-line="130" selection-start-column="57" selection-end-line="130" selection-end-column="57" />
+            <state relative-caret-position="544">
+              <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -144,6 +144,7 @@
       <find>max</find>
       <find>debug</find>
       <find>model_c</find>
+      <find>PRED_OUT_MODEL</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,8 +170,8 @@
         <option value="$PROJECT_DIR$/code/dlts.sh.py" />
         <option value="$PROJECT_DIR$/code/test_docker.py" />
         <option value="$PROJECT_DIR$/code/Dockerfile" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
@@ -266,20 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00006" summary="modify at 2 10 at 4">
-      <created>1581345994727</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1581345994727</updated>
-    </task>
-    <task id="LOCAL-00007" summary="proposed">
-      <created>1581352073517</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1581352073517</updated>
     </task>
     <task id="LOCAL-00008" summary="proposeddebug 0211">
       <created>1581352504124</created>
@@ -610,7 +597,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581646627236</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="dlts try 4">
+      <created>1581646961146</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1581646961146</updated>
+    </task>
+    <task id="LOCAL-00056" summary="dlts try 5">
+      <created>1581647634803</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1581647634803</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -640,8 +641,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="multi threadings|fix bug" />
-    <MESSAGE value="multi threadings|fix bug 2" />
     <MESSAGE value="multi threadings|fix bug 3" />
     <MESSAGE value="test mlp reg eval" />
     <MESSAGE value="fix the training process" />
@@ -665,7 +664,9 @@
     <MESSAGE value="dlts try" />
     <MESSAGE value="dlts try 2" />
     <MESSAGE value="dlts try 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="dlts try 3" />
+    <MESSAGE value="dlts try 4" />
+    <MESSAGE value="dlts try 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="dlts try 5" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -746,16 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="130" column="57" selection-start-line="130" selection-start-column="57" selection-end-line="130" selection-end-column="57" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dev/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -775,8 +766,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+        <state relative-caret-position="522">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
