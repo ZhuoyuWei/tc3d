@@ -199,7 +199,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'])
     start = time.time()
-    #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
     end = time.time()
     print('train {} model {}'.format('ds_out', end - start))
     #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
