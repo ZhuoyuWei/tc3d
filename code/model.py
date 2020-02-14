@@ -127,8 +127,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators=300, max_depth=8
     fitting_threads=[]
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']
-    model_config={'n_estimators':300,'max_depth':8,
-                  'n_jobs': 16, 'tree_method':'hist'}
+    model_config={'n_estimators':n_estimators,'max_depth':max_depth,
+                  'n_jobs': 16, 'tree_method':tree_method}
     #lm_x = LinearRegression()
     #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
     lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
