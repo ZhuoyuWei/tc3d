@@ -110,7 +110,10 @@ class fit_thread(threading.Thread):
 @click.argument('input-dir')
 @click.argument('ground-truth-dir')
 @click.argument('model-file')
-def train(input_dir, ground_truth_dir, model_file, n_estimators=300, max_depth=8,tree_method='hist'):
+@click.argument('n_estimators')
+@click.argument('max_depth')
+@click.argument('tree_method')
+def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method):
     all_dfs = []
     start=time.time()
     for fname in glob.glob(f'{input_dir}/*.json'):
