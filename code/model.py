@@ -150,7 +150,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     end = time.time()
     print('train {} model {}'.format('dx_out', end - start))
     #fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
-
+    joblib.dump(lm_x, model_file + '.x')
+    lm_x.get_booster().set_attr(scikit_learn=None)
+    lm_x=None
 
     #lm_y = LinearRegression()
     #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
@@ -164,7 +166,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     end = time.time()
     print('train {} model {}'.format('dy_out', end - start))
     #fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
-
+    joblib.dump(lm_y, model_file + '.y')
+    lm_y.get_booster().set_attr(scikit_learn=None)
+    lm_y=None
 
     #lm_z = LinearRegression()
     #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
@@ -178,7 +182,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
     end = time.time()
     print('train {} model {}'.format('dz_out', end - start))
-
+    joblib.dump(lm_z, model_file + '.z')
+    lm_z.get_booster().set_attr(scikit_learn=None)
+    lm_z=None
     #lm_s = LinearRegression()
     #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
     lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
@@ -192,17 +198,18 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('train {} model {}'.format('ds_out', end - start))
     #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].start()
+    #for i in range(len(fitting_threads)):
+    #    fitting_threads[i].start()
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].join()
+    #for i in range(len(fitting_threads)):
+    #    fitting_threads[i].join()
+    joblib.dump(lm_s, model_file + '.s')
+    lm_s.get_booster().set_attr(scikit_learn=None)
+    lm_s=None
 
 
-    joblib.dump(lm_x, model_file+'.x')
-    joblib.dump(lm_y, model_file+'.y')
-    joblib.dump(lm_z, model_file+'.z')
-    joblib.dump(lm_s, model_file+'.s')
+
+
 
 def post_procssing(pred_df,input_obj):
     fix_nodes=set()
