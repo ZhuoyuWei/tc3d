@@ -127,7 +127,7 @@ def train(input_dir, ground_truth_dir, model_file,model_config=None):
     fitting_threads=[]
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']
-    model_config={'n_estimators':200,'max_depth':7,
+    model_config={'n_estimators':300,'max_depth':8,
                   'n_jobs': 16, 'tree_method':'hist'}
     #lm_x = LinearRegression()
     #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
