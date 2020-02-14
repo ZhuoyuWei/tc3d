@@ -1,12 +1,9 @@
-FROM nvidia/cuda:10.0-base-ubuntu16.04
-
+FROM pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime
 
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
 RUN apt-get install -y libgomp1
 
 RUN pip install pip --upgrade
@@ -20,6 +17,6 @@ RUN pip install --pre xgboost
 
 
 
-RUN cd /usr/bin && ln -s python3.6 python && cd ~
 COPY ./* /code/
-RUN chmod +x /code/* 
+RUN chmod +x /code/*
+RUN ls -l /code/

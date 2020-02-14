@@ -113,10 +113,12 @@ class fit_thread(threading.Thread):
 @click.argument('n_estimators')
 @click.argument('max_depth')
 @click.argument('tree_method')
-def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method):
+@click.argument('n_jobs')
+def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method,n_jobs):
 
     n_estimators=int(n_estimators)
     max_depth=int(max_depth)
+    n_jobs=int(n_jobs)
 
     all_dfs = []
     start=time.time()
@@ -135,7 +137,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']
     model_config={'n_estimators':n_estimators,'max_depth':max_depth,
-                  'n_jobs': 16, 'tree_method':tree_method}
+                  'n_jobs': n_jobs, 'tree_method':tree_method}
     #lm_x = LinearRegression()
     #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
     lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],

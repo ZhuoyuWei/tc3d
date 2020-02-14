@@ -8,4 +8,4 @@ MODEL_FILE='/tmp/model.bin'
 
 #pip install xgboost
 
-python /code/model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE}
+python /code/model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} 300 10 gpu_hist 8

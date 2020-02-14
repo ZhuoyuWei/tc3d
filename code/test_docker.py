@@ -91,10 +91,10 @@ print('XGboost is successful on gpu')
 
 all_dfs = []
 start = time.time()
-for fname in glob.glob(f'/data/zhuoyu/tc3d/model/*.json'):
+for fname in glob.glob(f'/code/model/*.json'):
     input_df, input_obj = read_input_df(fname)
     case_id = extract_case_id(fname)
-    output_df = pd.read_csv(f'/data/zhuoyu/tc3d/gt/{case_id}.csv')
+    output_df = pd.read_csv(f'/code/gt/{case_id}.csv')
     merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
     all_dfs.append(merged_df)
 end = time.time()
