@@ -11,6 +11,8 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
+RUN apt-get install -y libgomp1
+
 RUN pip install pip --upgrade
 RUN pip install pandas click joblib sklearn
 RUN pip install numpy==1.13.1
