@@ -10,10 +10,9 @@ WDATA_DIR=/data/zhuoyu/tc3d/wdata
 OUTPUT_DIR=$WDATA_DIR/$EXP_ID
 mkdir $OUTPUT_DIR
 
-sudo echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8
 
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
 
 sudo apt-get install zip -y
 sudo apt-get install -y libgomp1
