@@ -1,4 +1,4 @@
-FROM nvidia/cuda:latest
+FROM nvidia/cuda:10.0-base-ubuntu16.04
 
 RUN  apt update -y &&\
     apt install -y python3.6 curl wget openssl python3-distutils lsb-release gnupg locales && \
