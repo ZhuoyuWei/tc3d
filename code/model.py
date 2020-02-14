@@ -114,11 +114,14 @@ class fit_thread(threading.Thread):
 @click.argument('max_depth')
 @click.argument('tree_method')
 @click.argument('n_jobs')
-def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method,n_jobs):
+@click.argument('sample_rate')
+def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method,n_jobs,
+          sample_rate):
 
     n_estimators=int(n_estimators)
     max_depth=int(max_depth)
     n_jobs=int(n_jobs)
+    sample_rate=float(sample_rate)
 
     all_dfs = []
     start=time.time()
@@ -132,6 +135,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('reading training data cost {} s'.format(end-start))
 
     train_df = pd.concat(all_dfs, ignore_index=True)
+
+    if sample_rate < 1:
+        train_df = train_df.sample(frac=sample_rate, random_state=42)
 
     fitting_threads=[]
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
