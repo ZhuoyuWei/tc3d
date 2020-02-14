@@ -20,10 +20,7 @@ RUN pip install seaborn
 RUN pip install matplotlib
 RUN pip install --pre xgboost
 
-RUN update-alternatives --set libblas.so.3 \
-      /usr/lib/atlas-base/atlas/libblas.so.3; \
-    update-alternatives --set liblapack.so.3 \
-     /usr/lib/atlas-base/atlas/liblapack.so.3
+
 
 RUN cd /usr/bin && ln -s python3.6 python && cd ~
 COPY ./* /code/
