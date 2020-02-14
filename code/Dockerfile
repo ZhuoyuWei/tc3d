@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM nvidia/cuda:latest
 
 RUN  apt update -y &&\
     apt install -y python3.6 curl wget openssl python3-distutils lsb-release gnupg locales && \
