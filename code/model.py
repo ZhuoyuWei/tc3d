@@ -150,7 +150,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     start = time.time()
     lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
     end = time.time()
@@ -166,7 +166,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     start = time.time()
     lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
     end = time.time()
@@ -182,7 +182,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
     lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -197,7 +197,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     start = time.time()
     lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
     end = time.time()
