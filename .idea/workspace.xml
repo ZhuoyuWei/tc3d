@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/code/train.sh" afterDir="false" />
-    </list>
+    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +12,7 @@
     <session id="-1525906652">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="7" />
           <entry key="project.open.time.6" value="1" />
@@ -44,12 +41,12 @@
           <entry key="dummy" value="11" />
           <entry key="py" value="6911" />
           <entry key="sh" value="599" />
-          <entry key="txt" value="708" />
+          <entry key="txt" value="727" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1435" />
+          <entry key="PLAIN_TEXT" value="1454" />
           <entry key="Python" value="6911" />
         </counts>
       </usages-collector>
@@ -66,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="441">
@@ -96,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/train.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -277,13 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00021" summary="remove debug info">
-      <created>1581404391042</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1581404391042</updated>
     </task>
     <task id="LOCAL-00022" summary="tmp remove post">
       <created>1581405936160</created>
@@ -621,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581691577449</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="submission_13">
+      <created>1581696725236</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1581696725236</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -650,7 +647,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add nodes counts|fix 2" />
     <MESSAGE value="add nodes counts|fix 3" />
     <MESSAGE value="larger and single model training" />
     <MESSAGE value="81 la" />
@@ -675,7 +671,8 @@
     <MESSAGE value="add n_job | release boost | add sample training data 2" />
     <MESSAGE value="remove delete" />
     <MESSAGE value="remove delete|fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove delete|fix bug" />
+    <MESSAGE value="submission_13" />
+    <option name="LAST_COMMIT_MESSAGE" value="submission_13" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -738,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dev/run_1.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -789,7 +779,14 @@
     <entry file="file://$PROJECT_DIR$/code/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
         </state>
       </provider>
     </entry>
