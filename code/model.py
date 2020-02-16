@@ -117,7 +117,7 @@ class predict_thread(threading.Thread):
     def run(self):
         print('predict start')
         start = time.time()
-        self._return=self.lm.predict(self.input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+        self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']])
         end = time.time()
         print('predict model end {}'.format(end - start))
