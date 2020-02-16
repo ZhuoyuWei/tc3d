@@ -161,7 +161,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=0)
     start = time.time()
     #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
-    fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
+    fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
     end = time.time()
     print('train {} model {}'.format('dx_out', end - start))
     #joblib.dump(lm_x, model_file + '.x')
@@ -176,13 +176,25 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1)
     start = time.time()
-    lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
+    #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
+    fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
     end = time.time()
     print('train {} model {}'.format('dy_out', end - start))
-    #fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
-    joblib.dump(lm_y, model_file + '.y')
+    #joblib.dump(lm_y, model_file + '.y')
     #lm_y.get_booster().set_attr(scikit_learn=None)
+    #lm_y=None
+
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].start()
+
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].join()
+
+    joblib.dump(lm_x, model_file + '.x')
+    joblib.dump(lm_y, model_file + '.y')
+    lm_x=None
     lm_y=None
+    fitting_threads=[]
 
     #lm_z = LinearRegression()
     #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
@@ -190,36 +202,44 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
-    lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
+    #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
+    fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
     end = time.time()
     print('train {} model {}'.format('dz_out', end - start))
-    joblib.dump(lm_z, model_file + '.z')
+    #joblib.dump(lm_z, model_file + '.z')
     #lm_z.get_booster().set_attr(scikit_learn=None)
-    lm_z=None
+    #lm_z=None
+
+
     #lm_s = LinearRegression()
     #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
     lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=1)
     start = time.time()
-    lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
     end = time.time()
     print('train {} model {}'.format('ds_out', end - start))
-    #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
 
-    #for i in range(len(fitting_threads)):
-    #    fitting_threads[i].start()
 
-    #for i in range(len(fitting_threads)):
-    #    fitting_threads[i].join()
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].start()
+
+    for i in range(len(fitting_threads)):
+        fitting_threads[i].join()
+
+    joblib.dump(lm_z, model_file + '.z')
     joblib.dump(lm_s, model_file + '.s')
     #lm_s.get_booster().set_attr(scikit_learn=None)
+    lm_z=None
     lm_s=None
+    fitting_threads=[]
 
 
 
@@ -260,6 +280,7 @@ def post_procssing_debug(pred_df, input_obj):
         # print('preds:\t{}'.format(row['node_id']))
         if row['node_id'] in fix_nodes:
             print('debug = {}'.format(str(row).replace('\n','\t')))
+
 
 
 
