@@ -178,7 +178,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'])
     start = time.time()
     lm_y.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','dx_out']]
+                                   'pcounts','scounts','nf_counts','no_counts']]
              ,train_df['dy_out'])
     end = time.time()
     print('train {} model {}'.format('dy_out', end - start))
@@ -197,7 +197,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
     lm_z.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','dx_out','dy_out']]
+                                   'pcounts','scounts','nf_counts','no_counts']]
              ,train_df['dz_out'])
     end = time.time()
     print('train {} model {}'.format('dz_out', end - start))
@@ -279,14 +279,16 @@ def _predict(models, input_file, output_file):
     featurelist=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                           'pcounts','scounts','nf_counts','no_counts']
     added_featue=['dx_out','dy_out','dz_out','nouse']
-    for i in range(len(models)):
+    for i in range(3):
         dz_pred = models[i].predict(input_df[featurelist])
         dz_preds.append(dz_pred)
-        if len(models)-1 == i:
-            continue
-        input_df[added_featue[i]]=dz_pred
-        featurelist.append(added_featue[i])
-
+        #if len(models)-1 == i:
+        #    continue
+        #input_df[added_featue[i]]=dz_pred
+        #featurelist.append(added_featue[i])
+    featurelist+=['dx_out','dy_out','dz_out']
+    dz_pred = models[3].predict(input_df[featurelist])
+    dz_preds.append(dz_pred)
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
