@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,15 +42,20 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="11" />
-          <entry key="py" value="7125" />
+          <entry key="py" value="7214" />
           <entry key="sh" value="608" />
-          <entry key="txt" value="764" />
+          <entry key="txt" value="782" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1500" />
-          <entry key="Python" value="7125" />
+          <entry key="PLAIN_TEXT" value="1518" />
+          <entry key="Python" value="7214" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.create.new" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -86,8 +92,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-252">
-              <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
+            <state relative-caret-position="372">
+              <caret line="176" column="78" selection-start-line="176" selection-start-column="78" selection-end-line="176" selection-end-column="78" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -163,13 +169,14 @@
       <find>PRED_OUT_MODEL</find>
       <find>pip</find>
       <find>train(</find>
+      <find>set_p</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -194,8 +201,8 @@
         <option value="$PROJECT_DIR$/code/dev/run_1.sh" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/train.sh" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
@@ -319,13 +326,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00027" summary="MLP regression">
-      <created>1581408814740</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1581408814740</updated>
     </task>
     <task id="LOCAL-00028" summary="MLP regression 2">
       <created>1581408943323</created>
@@ -663,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581815524460</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="inference gpu hist">
+      <created>1581839334389</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1581839334389</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -693,7 +700,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test docker|3" />
     <MESSAGE value="dlts try" />
     <MESSAGE value="dlts try 2" />
     <MESSAGE value="dlts try 3" />
@@ -718,7 +724,8 @@
     <MESSAGE value="submission_16: gpu_id=0" />
     <MESSAGE value="file level random" />
     <MESSAGE value="file level random is not good" />
-    <option name="LAST_COMMIT_MESSAGE" value="file level random is not good" />
+    <MESSAGE value="inference gpu hist" />
+    <option name="LAST_COMMIT_MESSAGE" value="inference gpu hist" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -828,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
+        <state relative-caret-position="372">
+          <caret line="176" column="78" selection-start-line="176" selection-start-column="78" selection-end-line="176" selection-end-column="78" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>

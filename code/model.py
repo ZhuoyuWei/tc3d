@@ -91,17 +91,17 @@ def read_input_df(fname):
 
 class fit_thread(threading.Thread):
 
-    def __init__(self,lm,train_df,target):
+    def __init__(self,lm,train_df,featurelist,target):
         threading.Thread.__init__(self)
         self.lm=lm
         self.train_df=train_df
         self.target=target
+        self.featurelist=featurelist
 
     def run(self):
         print('train {} starts'.format(self.target))
         start = time.time()
-        self.lm.fit(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']],
+        self.lm.fit(self.train_df[self.featurelist],
                       self.train_df[self.target])
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
@@ -158,15 +158,15 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=0)
     start = time.time()
-    lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
+    #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
+    fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
     end = time.time()
     print('train {} model {}'.format('dx_out', end - start))
-    #fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
-    joblib.dump(lm_x, model_file + '.x')
+    #joblib.dump(lm_x, model_file + '.x')
     #lm_x.get_booster().set_attr(scikit_learn=None)
-    lm_x=None
+    #lm_x=None
 
     #lm_y = LinearRegression()
     #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
@@ -174,7 +174,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],gpu_id=1)
     start = time.time()
     lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
     end = time.time()
