@@ -9,6 +9,7 @@ import pandas as pd
 import time
 import threading
 import xgboost
+import random
 
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
@@ -125,7 +126,12 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     all_dfs = []
     start=time.time()
+    random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
+        if sample_rate < 1:
+            rand_v=random.random()
+            if rand_v > sample_rate:
+                continue
         input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
@@ -136,8 +142,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
-    if sample_rate < 1:
-        train_df = train_df.sample(frac=sample_rate, random_state=42)
+    #if sample_rate < 1:
+    #    train_df = train_df.sample(frac=sample_rate, random_state=42)
 
     fitting_threads=[]
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
@@ -150,7 +156,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'])
     start = time.time()
     lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
     end = time.time()
@@ -166,7 +172,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'])
     start = time.time()
     lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
     end = time.time()
@@ -182,7 +188,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'])
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
     lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -197,7 +203,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'])
     start = time.time()
     lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
     end = time.time()

@@ -1,15 +1,6 @@
-import pandas as pd
-import numpy as np
+import random
 
-data1=np.random.rand(10)
-data2=np.random.rand(10)
-df=pd.DataFrame({'a':data1,'b':data2})
-print(df)
 
-count=0
-for i,row in df.iterrows():
-    if count==5:
-        row['a']=0
-    count+=1
+nums=[random.random() for x in range(10)]
 
-print(df)
+print(nums)
