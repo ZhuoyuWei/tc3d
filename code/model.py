@@ -270,6 +270,7 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[]
     for i in range(len(models)):
+        models[i].set_params(tree_method='gpu_hist')
         dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']])
         dz_preds.append(dz_pred)
