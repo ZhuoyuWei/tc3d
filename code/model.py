@@ -128,10 +128,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     start=time.time()
     random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
-        if sample_rate < 1:
-            rand_v=random.random()
-            if rand_v > sample_rate:
-                continue
+        #if sample_rate < 1:
+        #    rand_v=random.random()
+        #    if rand_v > sample_rate:
+        #        continue
         input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
@@ -144,8 +144,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     train_df = pd.concat(all_dfs, ignore_index=True)
 
-    #if sample_rate < 1:
-    #    train_df = train_df.sample(frac=sample_rate, random_state=42)
+    if sample_rate < 1:
+        train_df = train_df.sample(frac=sample_rate, random_state=42)
 
     fitting_threads=[]
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
@@ -160,7 +160,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'])
     start = time.time()
-    lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
+    lm_x.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']],train_df['dx_out'])
     end = time.time()
     print('train {} model {}'.format('dx_out', end - start))
     #fitting_threads.append(fit_thread(lm_x,train_df,'dx_out'))
@@ -176,7 +177,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'])
     start = time.time()
-    lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
+    lm_y.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts','dx_out']]
+             ,train_df['dy_out'])
     end = time.time()
     print('train {} model {}'.format('dy_out', end - start))
     #fitting_threads.append(fit_thread(lm_y, train_df, 'dy_out'))
@@ -193,7 +196,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'])
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
-    lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
+    lm_z.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts','dx_out','dy_out']]
+             ,train_df['dz_out'])
     end = time.time()
     print('train {} model {}'.format('dz_out', end - start))
     joblib.dump(lm_z, model_file + '.z')
@@ -207,7 +212,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               random_state=42,
                               tree_method=model_config['tree_method'])
     start = time.time()
-    lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+    lm_s.fit(train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts','dx_out','dy_out','dz_out']],
+             train_df['max_stress'])
     end = time.time()
     print('train {} model {}'.format('ds_out', end - start))
     #fitting_threads.append(fit_thread(lm_s, train_df, 'max_stress'))
@@ -269,10 +276,17 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[]
+    featurelist=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                          'pcounts','scounts','nf_counts','no_counts']
+    added_featue=['dx_out','dy_out','dz_out','nouse']
     for i in range(len(models)):
-        dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']])
+        dz_pred = models[i].predict(input_df[featurelist])
         dz_preds.append(dz_pred)
+        if len(models)-1 == i:
+            continue
+        input_df[added_featue[i]]=dz_pred
+        featurelist.append(added_featue[i])
+
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
         for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
