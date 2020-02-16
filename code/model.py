@@ -128,16 +128,16 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     start=time.time()
     random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
-        #if sample_rate < 1:
-        #    rand_v=random.random()
-        #    if rand_v > sample_rate:
-        #        continue
+        if sample_rate < 1:
+            rand_v=random.random()
+            if rand_v > sample_rate:
+                continue
         input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
         merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
-        if sample_rate < 1:
-            merged_df=merged_df.sample(frac=sample_rate, random_state=42)
+        #if sample_rate < 1:
+        #    merged_df=merged_df.sample(frac=sample_rate, random_state=42)
         all_dfs.append(merged_df)
     end=time.time()
     print('reading training data cost {} s'.format(end-start))
