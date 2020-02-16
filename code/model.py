@@ -158,7 +158,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],n_gpu=2)
     start = time.time()
     lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
     end = time.time()
@@ -174,7 +174,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],n_gpu=2)
     start = time.time()
     lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
     end = time.time()
@@ -190,7 +190,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],n_gpu=2)
     #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
     start = time.time()
     lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -205,7 +205,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'])
+                              tree_method=model_config['tree_method'],n_gpu=2)
     start = time.time()
     lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
     end = time.time()
@@ -271,6 +271,7 @@ def _predict(models, input_file, output_file):
     dz_preds=[]
     for i in range(len(models)):
         models[i].set_params(tree_method='gpu_hist')
+        models[i].set_params(n_gpu=2)
         dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']])
         dz_preds.append(dz_pred)
