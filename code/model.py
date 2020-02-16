@@ -106,7 +106,38 @@ class fit_thread(threading.Thread):
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
 
+class predict_thread(threading.Thread):
 
+    def __init__(self,lm,train_df):
+        threading.Thread.__init__(self)
+        self.lm=lm
+        self.train_df=train_df
+        self._return=None
+
+    def run(self):
+        print('predict start')
+        start = time.time()
+        self._return=self.lm.predict(self.input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']])
+        end = time.time()
+        print('predict model end {}'.format(end - start))
+
+    def join(self, *args):
+        threading.Thread.join(self, *args)
+        return self._return
+
+'''
+class train_thread(threading.Thread):
+    def __init__(self,gpu_id,sample_rate,random_seed):
+        threading.Thread.__init__(self)
+        self.gpu_id=gpu_id
+        self.sample_rate=sample_rate
+        self.random_seed=random_seed
+    
+    def run(self):
+        if sample_rate < 1:
+            train_df = train_df.sample(frac=sample_rate, random_state=42)
+'''
 @cli.command()
 @click.argument('input-dir')
 @click.argument('ground-truth-dir')
@@ -128,10 +159,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     start=time.time()
     random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
-        if sample_rate < 1:
-            rand_v=random.random()
-            if rand_v > sample_rate:
-                continue
+        #if sample_rate < 1:
+        #    rand_v=random.random()
+        #    if rand_v > sample_rate:
+        #        continue
         input_df,input_obj = read_input_df(fname)
         case_id = extract_case_id(fname)
         output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
@@ -141,105 +172,107 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         all_dfs.append(merged_df)
     end=time.time()
     print('reading training data cost {} s'.format(end-start))
-
     train_df = pd.concat(all_dfs, ignore_index=True)
 
-    #if sample_rate < 1:
-    #    train_df = train_df.sample(frac=sample_rate, random_state=42)
+    random_states=[42,2020]
+    for MM in range(2):
 
-    fitting_threads=[]
-    feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+        if sample_rate < 1:
+            train_df = train_df.sample(frac=sample_rate, random_state=random_states[MM])
+
+        fitting_threads=[]
+        feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']
-    model_config={'n_estimators':n_estimators,'max_depth':max_depth,
-                  'n_jobs': n_jobs, 'tree_method':tree_method}
-    #lm_x = LinearRegression()
-    #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        model_config={'n_estimators':n_estimators,'max_depth':max_depth,
+                    'n_jobs': n_jobs, 'tree_method':tree_method}
+        #lm_x = LinearRegression()
+        #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
+        lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0)
-    start = time.time()
-    #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
-    fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
-    end = time.time()
-    print('train {} model {}'.format('dx_out', end - start))
-    #joblib.dump(lm_x, model_file + '.x')
-    #lm_x.get_booster().set_attr(scikit_learn=None)
-    #lm_x=None
+        start = time.time()
+        #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
+        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
+        end = time.time()
+        print('train {} model {}'.format('dx_out', end - start))
+        #joblib.dump(lm_x, model_file + '.x')
+        #lm_x.get_booster().set_attr(scikit_learn=None)
+        #lm_x=None
 
-    #lm_y = LinearRegression()
-    #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        #lm_y = LinearRegression()
+        #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
+        lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1)
-    start = time.time()
-    #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
-    fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
-    end = time.time()
-    print('train {} model {}'.format('dy_out', end - start))
-    #joblib.dump(lm_y, model_file + '.y')
-    #lm_y.get_booster().set_attr(scikit_learn=None)
-    #lm_y=None
+        start = time.time()
+        #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
+        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
+        end = time.time()
+        print('train {} model {}'.format('dy_out', end - start))
+        #joblib.dump(lm_y, model_file + '.y')
+        #lm_y.get_booster().set_attr(scikit_learn=None)
+        #lm_y=None
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].start()
+        for i in range(len(fitting_threads)):
+            fitting_threads[i].start()
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].join()
+        for i in range(len(fitting_threads)):
+            fitting_threads[i].join()
 
-    joblib.dump(lm_x, model_file + '.x')
-    joblib.dump(lm_y, model_file + '.y')
-    lm_x=None
-    lm_y=None
-    fitting_threads=[]
+        joblib.dump(lm_x, model_file + '.x.'+str(MM))
+        joblib.dump(lm_y, model_file + '.y.'+str(MM))
+        lm_x=None
+        lm_y=None
+        fitting_threads=[]
 
-    #lm_z = LinearRegression()
-    #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        #lm_z = LinearRegression()
+        #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
+        lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0)
-    #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
-    start = time.time()
-    #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
-    fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
-    end = time.time()
-    print('train {} model {}'.format('dz_out', end - start))
-    #joblib.dump(lm_z, model_file + '.z')
-    #lm_z.get_booster().set_attr(scikit_learn=None)
-    #lm_z=None
+        #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
+        start = time.time()
+        #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
+        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
+        end = time.time()
+        print('train {} model {}'.format('dz_out', end - start))
+        #joblib.dump(lm_z, model_file + '.z')
+        #lm_z.get_booster().set_attr(scikit_learn=None)
+        #lm_z=None
 
 
-    #lm_s = LinearRegression()
-    #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-    lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        #lm_s = LinearRegression()
+        #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
+        lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1)
-    start = time.time()
-    #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
-    fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
-    end = time.time()
-    print('train {} model {}'.format('ds_out', end - start))
+        start = time.time()
+        #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
+        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
+        end = time.time()
+        print('train {} model {}'.format('ds_out', end - start))
 
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].start()
+        for i in range(len(fitting_threads)):
+            fitting_threads[i].start()
 
-    for i in range(len(fitting_threads)):
-        fitting_threads[i].join()
+        for i in range(len(fitting_threads)):
+            fitting_threads[i].join()
 
-    joblib.dump(lm_z, model_file + '.z')
-    joblib.dump(lm_s, model_file + '.s')
-    #lm_s.get_booster().set_attr(scikit_learn=None)
-    lm_z=None
-    lm_s=None
-    fitting_threads=[]
+        joblib.dump(lm_z, model_file + '.z.'+str(MM))
+        joblib.dump(lm_s, model_file + '.s.'+str(MM))
+        #lm_s.get_booster().set_attr(scikit_learn=None)
+        lm_z=None
+        lm_s=None
+        fitting_threads=[]
 
 
 
@@ -289,15 +322,45 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dx':'dx_in'}, inplace=True)
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
-    dz_preds=[]
-    for i in range(len(models)):
-        models[i].set_params(tree_method='gpu_hist')
-        dz_pred = models[i].predict(input_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']])
-        dz_preds.append(dz_pred)
+    dz_preds=[[None,None,None,None],[None,None,None,None]]
+    for MM in range(len(models)):
+
+        models[MM][0].set_params(tree_method='gpu_hist')
+        models[MM][0].set_params(gpu_id=0)
+        models[MM][1].set_params(tree_method='gpu_hist')
+        models[MM][1].set_params(gpu_id=1)
+        thread_0=predict_thread(lm=models[MM][0],train_df=input_df)
+        thread_1=predict_thread(lm=models[MM][1],train_df=input_df)
+        predictThreads=[thread_0,thread_1]
+
+        for i in range(len(predictThreads)):
+            predictThreads[i].start()
+
+        for i in range(len(predictThreads)):
+            dz_preds[MM][i]=predictThreads[i].join()
+
+
+
+        models[MM][2].set_params(tree_method='gpu_hist')
+        models[MM][2].set_params(gpu_id=0)
+        models[MM][3].set_params(tree_method='gpu_hist')
+        models[MM][1].set_params(gpu_id=1)
+        thread_2=predict_thread(lm=models[MM][2],train_df=input_df)
+        thread_3=predict_thread(lm=models[MM][3],train_df=input_df)
+        predictThreads=[thread_2,thread_3]
+
+        for i in range(len(predictThreads)):
+            predictThreads[i].start()
+
+        for i in range(len(predictThreads)):
+            dz_preds[MM][i+2]=predictThreads[i].join()
+
+
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
-        for i, x,y,z,s in zip(input_df['node_id'], dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
+        {'node_id': i, 'dx': (x1+x2)/2, 'dy': (y1+y2)/2, 'dz': (z1+z2)/2, 'max_stress': (s1+s2)/2}
+        for i, x1,y1,z1,s1,x2,y2,z2,s2 in zip(input_df['node_id'],
+                              dz_preds[0][0],dz_preds[0][1],dz_preds[0][2],dz_preds[0][3],
+                              dz_preds[1][0], dz_preds[1][1], dz_preds[1][2], dz_preds[1][3])
     ])
     #pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
@@ -319,10 +382,16 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('input-dir')
 @click.argument('output-dir')
 def predict_all(model_file, input_dir, output_dir):
-    models=[joblib.load(model_file+'.x'),
-            joblib.load(model_file + '.y'),
-            joblib.load(model_file + '.z'),
-            joblib.load(model_file + '.s')]
+    models=[[],[]]
+    models[0]=[joblib.load(model_file+'.x.0'),
+            joblib.load(model_file + '.y.0'),
+            joblib.load(model_file + '.z.0'),
+            joblib.load(model_file + '.s.0')]
+    models[1]=[joblib.load(model_file+'.x.1'),
+            joblib.load(model_file + '.y.1'),
+            joblib.load(model_file + '.z.1'),
+            joblib.load(model_file + '.s.1')]
+
     #model = joblib.load(model_file)
     start=time.time()
     for input_file in glob.glob(f'{input_dir}/*.json'):
