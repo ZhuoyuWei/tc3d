@@ -174,7 +174,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('reading training data cost {} s'.format(end-start))
     all_df = pd.concat(all_dfs, ignore_index=True)
 
-    random_states=[42,2020]
+    random_states=[42,2020,377]
     for MM in range(3):
 
         if sample_rate < 1:
