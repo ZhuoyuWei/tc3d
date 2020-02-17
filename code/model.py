@@ -157,7 +157,6 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     all_dfs = []
     start=time.time()
-    random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
         #if sample_rate < 1:
         #    rand_v=random.random()
@@ -172,13 +171,16 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         all_dfs.append(merged_df)
     end=time.time()
     print('reading training data cost {} s'.format(end-start))
-    train_df = pd.concat(all_dfs, ignore_index=True)
+    all_df = pd.concat(all_dfs, ignore_index=True)
+
 
     random_states=[42,2020]
     for MM in range(2):
 
         if sample_rate < 1:
-            train_df = train_df.sample(frac=sample_rate, random_state=random_states[MM])
+            train_df = all_df.sample(frac=sample_rate, random_state=random_states[MM])
+        else:
+            train_df=all_df
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
