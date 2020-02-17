@@ -187,11 +187,20 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
         #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        if MM==0:
+            lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0)
+        else:
+            lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'],gpu_id=0,
+                              xgb_model=(model_file + '.x.'+str(MM-1)))
+
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
         fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
@@ -203,11 +212,19 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_y = LinearRegression()
         #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        if MM==0:
+            lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1)
+        else:
+            lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'],gpu_id=1,
+                              xgb_model=(model_file + '.y.' + str(MM-1)))
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
         fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
@@ -231,11 +248,19 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_z = LinearRegression()
         #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        if MM==0:
+            lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0)
+        else:
+            lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'],gpu_id=0,
+                              xgb_model=(model_file + '.z.' + str(MM-1)))
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -249,11 +274,19 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_s = LinearRegression()
         #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        if MM==0:
+            lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1)
+        else:
+            lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+                              max_depth=model_config['max_depth'],
+                              n_jobs=model_config['n_jobs'],
+                              random_state=42,
+                              tree_method=model_config['tree_method'],gpu_id=1,
+                              xgb_model=(model_file + '.s.' + str(MM-1)))
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
         fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
@@ -322,45 +355,26 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dx':'dx_in'}, inplace=True)
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
-    dz_preds=[[None,None,None,None],[None,None,None,None]]
-    for MM in range(len(models)):
+    dz_preds=[None,None,None,None]
+    #for MM in range(len(models)):
 
-        models[MM][0].set_params(tree_method='gpu_hist')
-        models[MM][0].set_params(gpu_id=0)
-        models[MM][1].set_params(tree_method='gpu_hist')
-        models[MM][1].set_params(gpu_id=1)
-        thread_0=predict_thread(lm=models[MM][0],train_df=input_df)
-        thread_1=predict_thread(lm=models[MM][1],train_df=input_df)
-        predictThreads=[thread_0,thread_1]
+    thread_0=predict_thread(lm=models[0],train_df=input_df)
+    thread_1=predict_thread(lm=models[1],train_df=input_df)
+    thread_2=predict_thread(lm=models[2],train_df=input_df)
+    thread_3=predict_thread(lm=models[3],train_df=input_df)
+    predictThreads=[thread_0,thread_1,thread_2,thread_3]
 
-        for i in range(len(predictThreads)):
-            predictThreads[i].start()
+    for i in range(len(predictThreads)):
+        predictThreads[i].start()
 
-        for i in range(len(predictThreads)):
-            dz_preds[MM][i]=predictThreads[i].join()
-
-
-
-        models[MM][2].set_params(tree_method='gpu_hist')
-        models[MM][2].set_params(gpu_id=0)
-        models[MM][3].set_params(tree_method='gpu_hist')
-        models[MM][1].set_params(gpu_id=1)
-        thread_2=predict_thread(lm=models[MM][2],train_df=input_df)
-        thread_3=predict_thread(lm=models[MM][3],train_df=input_df)
-        predictThreads=[thread_2,thread_3]
-
-        for i in range(len(predictThreads)):
-            predictThreads[i].start()
-
-        for i in range(len(predictThreads)):
-            dz_preds[MM][i+2]=predictThreads[i].join()
+    for i in range(len(predictThreads)):
+        dz_preds[i]=predictThreads[i].join()
 
 
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': (x1+x2)/2, 'dy': (y1+y2)/2, 'dz': (z1+z2)/2, 'max_stress': (s1+s2)/2}
-        for i, x1,y1,z1,s1,x2,y2,z2,s2 in zip(input_df['node_id'],
-                              dz_preds[0][0],dz_preds[0][1],dz_preds[0][2],dz_preds[0][3],
-                              dz_preds[1][0], dz_preds[1][1], dz_preds[1][2], dz_preds[1][3])
+        {'node_id': i, 'dx': x, 'dy': y, 'dz': z, 'max_stress': s}
+        for i, x,y,z,s in zip(input_df['node_id'],
+                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3])
     ])
     #pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
@@ -382,15 +396,25 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('input-dir')
 @click.argument('output-dir')
 def predict_all(model_file, input_dir, output_dir):
-    models=[[],[]]
-    models[0]=[joblib.load(model_file+'.x.0'),
-            joblib.load(model_file + '.y.0'),
-            joblib.load(model_file + '.z.0'),
-            joblib.load(model_file + '.s.0')]
-    models[1]=[joblib.load(model_file+'.x.1'),
+    #models=[[],[]]
+    models=[joblib.load(model_file+'.x.1'),
             joblib.load(model_file + '.y.1'),
             joblib.load(model_file + '.z.1'),
             joblib.load(model_file + '.s.1')]
+    #models[1]=[joblib.load(model_file+'.x.1'),
+    #        joblib.load(model_file + '.y.1'),
+    #        joblib.load(model_file + '.z.1'),
+    #        joblib.load(model_file + '.s.1')]
+    #for i in range(2):
+    models[0].set_params(tree_method='gpu_hist')
+    models[0].set_params(gpu_id=0)
+    models[1].set_params(tree_method='gpu_hist')
+    models[1].set_params(gpu_id=1)
+    models[2].set_params(tree_method='gpu_hist')
+    models[2].set_params(gpu_id=0)
+    models[3].set_params(tree_method='gpu_hist')
+    models[3].set_params(gpu_id=1)
+
 
     #model = joblib.load(model_file)
     start=time.time()
