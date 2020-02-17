@@ -175,7 +175,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     all_df = pd.concat(all_dfs, ignore_index=True)
 
     random_states=[42,2020]
-    for MM in range(2):
+    for MM in range(3):
 
         if sample_rate < 1:
             train_df = all_df.sample(frac=sample_rate, random_state=random_states[MM])
@@ -324,7 +324,8 @@ def _predict(models, input_file, output_file):
     input_df.rename(columns={'dx':'dx_in'}, inplace=True)
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
-    dz_preds=[[None,None,None,None],[None,None,None,None]]
+    dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
+    predictThreads = []
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
@@ -333,36 +334,26 @@ def _predict(models, input_file, output_file):
         #models[MM][1].set_params(gpu_id=1)
         thread_0=predict_thread(lm=models[MM][0],train_df=input_df)
         thread_1=predict_thread(lm=models[MM][1],train_df=input_df)
-        predictThreads=[thread_0,thread_1]
-
-        for i in range(len(predictThreads)):
-            predictThreads[i].start()
-
-        for i in range(len(predictThreads)):
-            dz_preds[MM][i]=predictThreads[i].join()
-
-
-
-        #models[MM][2].set_params(tree_method='gpu_hist')
-        #models[MM][2].set_params(gpu_id=0)
-        #models[MM][3].set_params(tree_method='gpu_hist')
-        #models[MM][3].set_params(gpu_id=1)
         thread_2=predict_thread(lm=models[MM][2],train_df=input_df)
         thread_3=predict_thread(lm=models[MM][3],train_df=input_df)
-        predictThreads=[thread_2,thread_3]
+        predictThreads+=[thread_0,thread_1,thread_2,thread_3]
 
-        for i in range(len(predictThreads)):
-            predictThreads[i].start()
 
-        for i in range(len(predictThreads)):
-            dz_preds[MM][i+2]=predictThreads[i].join()
+
+
+    for i in range(len(predictThreads)):
+        predictThreads[i].start()
+
+    for i in range(len(predictThreads)):
+        dz_preds[i]=predictThreads[i].join()
 
 
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': (x1+x2)/2, 'dy': (y1+y2)/2, 'dz': (z1+z2)/2, 'max_stress': (s1+s2)/2}
-        for i, x1,y1,z1,s1,x2,y2,z2,s2 in zip(input_df['node_id'],
-                              dz_preds[0][0],dz_preds[0][1],dz_preds[0][2],dz_preds[0][3],
-                              dz_preds[1][0], dz_preds[1][1], dz_preds[1][2], dz_preds[1][3])
+        {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
+        for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_df['node_id'],
+                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3],
+                              dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
+                              dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
     ])
     #pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
@@ -384,7 +375,7 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('input-dir')
 @click.argument('output-dir')
 def predict_all(model_file, input_dir, output_dir):
-    models=[[],[]]
+    models=[[],[],[]]
     models[0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
@@ -393,7 +384,11 @@ def predict_all(model_file, input_dir, output_dir):
             joblib.load(model_file + '.y.1'),
             joblib.load(model_file + '.z.1'),
             joblib.load(model_file + '.s.1')]
-    for i in range(2):
+    models[2]=[joblib.load(model_file+'.x.2'),
+            joblib.load(model_file + '.y.2'),
+            joblib.load(model_file + '.z.2'),
+            joblib.load(model_file + '.s.2')]
+    for i in range(3):
         models[i][0].set_params(tree_method='gpu_hist')
         models[i][0].set_params(gpu_id=0)
         models[i][1].set_params(tree_method='gpu_hist')
