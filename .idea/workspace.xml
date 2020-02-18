@@ -30,35 +30,35 @@
           <entry key="Dockerfile" value="4" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="37" />
-          <entry key="sh" value="26" />
+          <entry key="py" value="38" />
+          <entry key="sh" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Python" value="37" />
+          <entry key="PLAIN_TEXT" value="40" />
+          <entry key="Python" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="8887" />
-          <entry key="sh" value="639" />
-          <entry key="txt" value="986" />
+          <entry key="py" value="8891" />
+          <entry key="sh" value="651" />
+          <entry key="txt" value="999" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1755" />
-          <entry key="Python" value="8887" />
+          <entry key="PLAIN_TEXT" value="1780" />
+          <entry key="Python" value="8891" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
           <entry key="git.branch.checkout.revision" value="1" />
-          <entry key="git.branch.create.new" value="4" />
+          <entry key="git.branch.create.new" value="5" />
         </counts>
       </usages-collector>
     </session>
@@ -68,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="318" column="50" selection-start-line="318" selection-start-column="50" selection-end-line="318" selection-end-column="50" />
+            <state relative-caret-position="-299">
+              <caret line="302" column="30" selection-start-line="302" selection-start-column="30" selection-end-line="302" selection-end-column="30" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -80,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
+            <state relative-caret-position="819">
               <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
             </state>
           </provider>
@@ -89,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts_test_ntree.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
+            <state relative-caret-position="1134">
               <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
             </state>
           </provider>
@@ -99,7 +99,25 @@
         <entry file="file://$PROJECT_DIR$/code/train.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="10" column="114" selection-start-line="10" selection-start-column="114" selection-end-line="10" selection-end-column="114" />
+              <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/pred.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" column="76" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/dlts.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1155">
+              <caret line="55" column="151" selection-start-line="55" selection-start-column="151" selection-end-line="55" selection-end-column="151" />
             </state>
           </provider>
         </entry>
@@ -128,13 +146,14 @@
       <find>xgb</find>
       <find>predict_thread</find>
       <find>PRED_OUT</find>
+      <find>train</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature" />
+        <entry key="$PROJECT_DIR$" value="feature2" />
       </map>
     </option>
   </component>
@@ -158,11 +177,11 @@
         <option value="$PROJECT_DIR$/code/dev/run_1.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
         <option value="$PROJECT_DIR$/code/dlts_test.sh.py" />
-        <option value="$PROJECT_DIR$/code/pred.sh" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/dlts_test.sh" />
         <option value="$PROJECT_DIR$/code/dlts_test_ntree.py" />
         <option value="$PROJECT_DIR$/code/dlts_test_ntree.sh" />
+        <option value="$PROJECT_DIR$/code/pred.sh" />
         <option value="$PROJECT_DIR$/code/train.sh" />
         <option value="$PROJECT_DIR$/code/model.py" />
       </list>
@@ -283,20 +302,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00039" summary="dx =&gt; dx_in">
-      <created>1581518001131</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1581518001131</updated>
-    </task>
-    <task id="LOCAL-00040" summary="more larger model">
-      <created>1581520393160</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1581520393160</updated>
     </task>
     <task id="LOCAL-00041" summary="add x,y,z into xgboost">
       <created>1581522896449</created>
@@ -627,12 +632,25 @@
       <option name="project" value="LOCAL" />
       <updated>1581999145342</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="submission 26">
+      <created>1582004766407</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1582004766407</updated>
+    </task>
+    <task id="LOCAL-00089" summary="submission 26">
+      <created>1582004786987</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1582004786987</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -657,7 +675,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test gpu docker 4" />
     <MESSAGE value="add n_job" />
     <MESSAGE value="add n_job | release boost" />
     <MESSAGE value="add n_job | release boost | add sample training data" />
@@ -682,7 +699,8 @@
     <MESSAGE value="add spos feature" />
     <MESSAGE value="ntree_limit" />
     <MESSAGE value="diff res dir and diff log" />
-    <option name="LAST_COMMIT_MESSAGE" value="diff res dir and diff log" />
+    <MESSAGE value="submission 26" />
+    <option name="LAST_COMMIT_MESSAGE" value="submission 26" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -766,45 +784,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_test_ntree.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
+        <state relative-caret-position="1155">
+          <caret line="55" column="151" selection-start-line="55" selection-start-column="151" selection-end-line="55" selection-end-column="151" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/pred.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts_test_ntree.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
+          <caret line="10" column="76" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="10" column="114" selection-start-line="10" selection-start-column="114" selection-end-line="10" selection-end-column="114" />
+          <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="318" column="50" selection-start-line="318" selection-start-column="50" selection-end-line="318" selection-end-column="50" />
+        <state relative-caret-position="-299">
+          <caret line="302" column="30" selection-start-line="302" selection-start-column="30" selection-end-line="302" selection-end-column="30" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
