@@ -25,17 +25,29 @@ def extract_case_id(fname):
     case_id, _ = os.path.splitext(fname)
     return case_id
 
-def elements_2_nodes(elements,nodes):
+def read_SPOS(spos):
+    element_set=set()
+    for sp in spos:
+        element_set.add(sp['element_id'])
+    return element_set
+
+def elements_2_nodes(elements,nodes,element_set=None):
     node2count={}
     for i,ele in enumerate(elements):
-        if not ele['node_id'] in node2count:
-            node2count[ele['node_id']]=0
-        node2count[ele['node_id']]+=1
+        if element_set is None:
+            node2count[ele['node_id']] = 1
+        else:
+            count=node2count.get(ele['node_id'],0)
+            if ele['element_id'] in element_set:
+                node2count[ele['node_id']] = 2
+            elif count!=2:
+                node2count[ele['node_id']] = 1
+
     counts=[0]*len(nodes)
     #for node in nodes:
     for i,node in enumerate(nodes):
         if node['node_id'] in node2count:
-            counts[i]=1
+            counts[i]=node2count.get(node['node_id'],0)
 
     return counts
 
@@ -49,8 +61,10 @@ def read_input_df(fname):
 
     node_size=len(input_obj['nodes'])
 
-    push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'])
-    surf_counts=elements_2_nodes(input_obj['surf_elements'],input_obj['nodes'])
+    spos=read_SPOS(input_obj['surf_plate'])
+
+    push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'],spos)
+    surf_counts=elements_2_nodes(input_obj['surf_elements'],input_obj['nodes'],spos)
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
 
