@@ -453,6 +453,7 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
             joblib.load(model_file + '.s.2')]
 
     for i in range(3):
+        '''
         models[i][0]=models[i][0].set_params(tree_method='gpu_hist')
         models[i][0]=models[i][0].set_params(predictor='gpu_predictor')
         models[i][0]=models[i][0].set_params(gpu_id=0)
@@ -468,6 +469,11 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
         models[i][3]=models[i][3].set_params(tree_method='gpu_hist')
         models[i][3]=models[i][3].set_params(predictor='gpu_predictor')
         models[i][3]=models[i][3].set_params(gpu_id=1)
+        '''
+        models[i][0].set_params(predictor='cpu_predictor')
+        models[i][1].set_params(predictor='cpu_predictor')
+        models[i][2].set_params(predictor='cpu_predictor')
+        models[i][3].set_params(predictor='cpu_predictor')
 
 
     #model = joblib.load(model_file)
