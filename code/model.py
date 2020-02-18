@@ -66,7 +66,7 @@ def elements_2_nodes_mid(elements,nodes,element_set=None):
                     node2count[ele['node_id']] = 2
                 else:
                     node2count[ele['node_id']] = 4
-            elif count!=2:
+            elif count!=2 and count!=4:
                 if int(ele['idx']) < 3:
                     node2count[ele['node_id']] = 1
                 else:
