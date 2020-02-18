@@ -437,6 +437,7 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('output-dir')
 @click.argument('ntree_limit')
 def predict_all(model_file, input_dir, output_dir,ntree_limit):
+    ntree_limit=int(ntree_limit)
     models=[[],[],[]]
     models[0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
