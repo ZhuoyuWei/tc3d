@@ -149,17 +149,23 @@ class fit_thread(threading.Thread):
 
 class predict_thread(threading.Thread):
 
-    def __init__(self,lm,train_df):
+    def __init__(self,lm,train_df,ntree_limit=0):
         threading.Thread.__init__(self)
         self.lm=lm
         self.train_df=train_df
         self._return=None
+        self.ntree_limit=ntree_limit
 
     def run(self):
         print('predict start')
         start = time.time()
-        self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+        if self.ntree_limit == 0:
+            self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts']])
+        else:
+            self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts']],
+                                   ntree_limit=self.ntree_limit)
         end = time.time()
         print('predict model end {}'.format(end - start))
 
@@ -232,9 +238,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
         lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
-                              n_jobs=model_config['n_jobs'],
+                              #n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'],gpu_id=0,
+                                    predictor='gpu_predictor')
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
         fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
@@ -248,9 +255,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
         lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
-                              n_jobs=model_config['n_jobs'],
+                              #n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=1)
+                              tree_method=model_config['tree_method'],gpu_id=1,
+                                    predictor='gpu_predictor')
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
         fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
@@ -276,9 +284,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
         lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
-                              n_jobs=model_config['n_jobs'],
+                              #n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=0)
+                              tree_method=model_config['tree_method'],gpu_id=0,
+                                    predictor='gpu_predictor')
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -294,9 +303,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
         lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
-                              n_jobs=model_config['n_jobs'],
+                              #n_jobs=model_config['n_jobs'],
                               random_state=42,
-                              tree_method=model_config['tree_method'],gpu_id=1)
+                              tree_method=model_config['tree_method'],gpu_id=1,
+                                    predictor='gpu_predictor')
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
         fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
@@ -360,7 +370,7 @@ def post_procssing_debug(pred_df, input_obj):
 
 
 
-def _predict(models, input_file, output_file):
+def _predict(models, input_file, output_file,ntree_limit=0):
     input_df,input_obj = read_input_df(input_file)
     input_df.rename(columns={'dx':'dx_in'}, inplace=True)
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
@@ -373,10 +383,10 @@ def _predict(models, input_file, output_file):
         #models[MM][0].set_params(gpu_id=0)
         #models[MM][1].set_params(tree_method='gpu_hist')
         #models[MM][1].set_params(gpu_id=1)
-        thread_0=predict_thread(lm=models[MM][0],train_df=input_df)
-        thread_1=predict_thread(lm=models[MM][1],train_df=input_df)
-        thread_2=predict_thread(lm=models[MM][2],train_df=input_df)
-        thread_3=predict_thread(lm=models[MM][3],train_df=input_df)
+        thread_0=predict_thread(lm=models[MM][0],train_df=input_df,ntree_limit=ntree_limit)
+        thread_1=predict_thread(lm=models[MM][1],train_df=input_df,ntree_limit=ntree_limit)
+        thread_2=predict_thread(lm=models[MM][2],train_df=input_df,ntree_limit=ntree_limit)
+        thread_3=predict_thread(lm=models[MM][3],train_df=input_df,ntree_limit=ntree_limit)
         predictThreads+=[thread_0,thread_1,thread_2,thread_3]
 
 
@@ -415,7 +425,8 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('model-file')
 @click.argument('input-dir')
 @click.argument('output-dir')
-def predict_all(model_file, input_dir, output_dir):
+@click.argument('ntree_limit')
+def predict_all(model_file, input_dir, output_dir,ntree_limit):
     models=[[],[],[]]
     models[0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
@@ -431,28 +442,28 @@ def predict_all(model_file, input_dir, output_dir):
             joblib.load(model_file + '.s.2')]
 
     for i in range(3):
-        models[i][0].set_params(tree_method='gpu_hist')
-        models[i][0].set_params(predictor='gpu_predictor')
-        models[i][0].set_params(gpu_id=0)
+        models[i][0]=models[i][0].set_params(tree_method='gpu_hist')
+        models[i][0]=models[i][0].set_params(predictor='gpu_predictor')
+        models[i][0]=models[i][0].set_params(gpu_id=0)
 
-        models[i][1].set_params(tree_method='gpu_hist')
-        models[i][1].set_params(predictor='gpu_predictor')
-        models[i][1].set_params(gpu_id=1)
+        models[i][1]=models[i][1].set_params(tree_method='gpu_hist')
+        models[i][1]=models[i][1].set_params(predictor='gpu_predictor')
+        models[i][1]=models[i][1].set_params(gpu_id=1)
 
-        models[i][2].set_params(tree_method='gpu_hist')
-        models[i][2].set_params(predictor='gpu_predictor')
-        models[i][2].set_params(gpu_id=0)
+        models[i][2]=models[i][2].set_params(tree_method='gpu_hist')
+        models[i][2]=models[i][2].set_params(predictor='gpu_predictor')
+        models[i][2]=models[i][2].set_params(gpu_id=0)
 
-        models[i][3].set_params(tree_method='gpu_hist')
-        models[i][3].set_params(predictor='gpu_predictor')
-        models[i][3].set_params(gpu_id=1)
+        models[i][3]=models[i][3].set_params(tree_method='gpu_hist')
+        models[i][3]=models[i][3].set_params(predictor='gpu_predictor')
+        models[i][3]=models[i][3].set_params(gpu_id=1)
 
 
     #model = joblib.load(model_file)
     start=time.time()
     for input_file in glob.glob(f'{input_dir}/*.json'):
         case_id = extract_case_id(input_file)
-        _predict(models,input_file, f'{output_dir}/{case_id}.csv')
+        _predict(models,input_file, f'{output_dir}/{case_id}.csv',ntree_limit=ntree_limit)
     end=time.time()
     print('Predict is finished in {} s'.format(end-start))
 

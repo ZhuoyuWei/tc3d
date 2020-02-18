@@ -8,4 +8,4 @@ MODEL_FILE='/tmp/model.bin'
 
 #pip install xgboost
 
-python /code/model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT}
+python /code/model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} 0

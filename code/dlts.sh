@@ -52,5 +52,5 @@ MODEL_FILE=$PRED_OUT_MODEL/model.bin
 
 cd $EXP_ROOT_DIR/code
 python model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
-python model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} >> $OUTPUT_DIR/log
+python model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} 0 >> $OUTPUT_DIR/log
 python score.py score-all  ${PRED_OUT} ${PRED_ANS} >> $OUTPUT_DIR/log
