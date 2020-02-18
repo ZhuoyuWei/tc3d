@@ -194,8 +194,10 @@ class train_thread(threading.Thread):
 @click.argument('tree_method')
 @click.argument('n_jobs')
 @click.argument('sample_rate')
+@click.argument('booster')
+@click.argument('objective')
 def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree_method,n_jobs,
-          sample_rate):
+          sample_rate,booster,objective):
 
     n_estimators=int(n_estimators)
     max_depth=int(max_depth)
@@ -241,7 +243,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               #n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0,
-                                    predictor='gpu_predictor')
+                              predictor='gpu_predictor',
+                              booster=booster,
+                              objective=objective)
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
         fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
@@ -258,7 +262,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               #n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1,
-                                    predictor='gpu_predictor')
+                              predictor='gpu_predictor',
+                              booster=booster,
+                              objective=objective)
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
         fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
@@ -287,7 +293,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               #n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=0,
-                                    predictor='gpu_predictor')
+                              predictor='gpu_predictor',
+                              booster=booster,
+                              objective=objective)
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
@@ -306,7 +314,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               #n_jobs=model_config['n_jobs'],
                               random_state=42,
                               tree_method=model_config['tree_method'],gpu_id=1,
-                                    predictor='gpu_predictor')
+                              predictor='gpu_predictor',
+                              booster=booster,
+                              objective=objective)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
         fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))

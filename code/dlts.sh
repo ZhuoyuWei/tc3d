@@ -7,6 +7,8 @@ MaxDepth=$3
 TreeMethod=$4
 n_job=$5
 sample_rate=$6
+booster=$7
+objective=$8
 
 WDATA_DIR=/data/zhuoyu/tc3d/wdata
 OUTPUT_DIR=$WDATA_DIR/$EXP_ID
@@ -51,6 +53,6 @@ mkdir $PRED_OUT_MODEL
 MODEL_FILE=$PRED_OUT_MODEL/model.bin
 
 cd $EXP_ROOT_DIR/code
-python model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
+python model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} ${booster} ${objective} >> $OUTPUT_DIR/log
 python model.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} 0 >> $OUTPUT_DIR/log
 python score.py score-all  ${PRED_OUT} ${PRED_ANS} >> $OUTPUT_DIR/log
