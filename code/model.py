@@ -402,14 +402,22 @@ def predict_all(model_file, input_dir, output_dir):
             joblib.load(model_file + '.y.2'),
             joblib.load(model_file + '.z.2'),
             joblib.load(model_file + '.s.2')]
+
     for i in range(3):
         models[i][0].set_params(tree_method='gpu_hist')
+        models[i][0].set_params(predictor='gpu_predictor')
         models[i][0].set_params(gpu_id=0)
+
         models[i][1].set_params(tree_method='gpu_hist')
+        models[i][1].set_params(predictor='gpu_predictor')
         models[i][1].set_params(gpu_id=1)
+
         models[i][2].set_params(tree_method='gpu_hist')
+        models[i][2].set_params(predictor='gpu_predictor')
         models[i][2].set_params(gpu_id=0)
+
         models[i][3].set_params(tree_method='gpu_hist')
+        models[i][3].set_params(predictor='gpu_predictor')
         models[i][3].set_params(gpu_id=1)
 
 
