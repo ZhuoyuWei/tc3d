@@ -455,6 +455,12 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
         models[i][3]=models[i][3].set_params(predictor='gpu_predictor')
         models[i][3]=models[i][3].set_params(gpu_id=1)
 
+        print('model {}-{} parameters: {}'.format(i,0,models[i][0].get_params()))
+        print('model {}-{} parameters: {}'.format(i, 1, models[i][1].get_params()))
+        print('model {}-{} parameters: {}'.format(i, 2, models[i][2].get_params()))
+        print('model {}-{} parameters: {}'.format(i, 3, models[i][3].get_params()))
+
+
 
     #model = joblib.load(model_file)
     start=time.time()
