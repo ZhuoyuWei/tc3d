@@ -51,7 +51,34 @@ def elements_2_nodes(elements,nodes,element_set=None):
 
     return counts
 
+def elements_2_nodes_mid(elements,nodes,element_set=None):
+    node2count={}
+    for i,ele in enumerate(elements):
+        if element_set is None:
+            if int(ele['idx']) < 3:
+                node2count[ele['node_id']] = 1
+            else:
+                node2count[ele['node_id']] = 3
+        else:
+            count=node2count.get(ele['node_id'],0)
+            if ele['element_id'] in element_set:
+                if int(ele['idx']) < 3:
+                    node2count[ele['node_id']] = 2
+                else:
+                    node2count[ele['node_id']] = 4
+            elif count!=2:
+                if int(ele['idx']) < 3:
+                    node2count[ele['node_id']] = 1
+                else:
+                    node2count[ele['node_id']] = 3
 
+    counts=[0]*len(nodes)
+    #for node in nodes:
+    for i,node in enumerate(nodes):
+        if node['node_id'] in node2count:
+            counts[i]=node2count.get(node['node_id'],0)
+
+    return counts
 
 
 
@@ -64,7 +91,7 @@ def read_input_df(fname):
     spos=read_SPOS(input_obj['surf_plate'])
 
     push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'],spos)
-    surf_counts=elements_2_nodes(input_obj['surf_elements'],input_obj['nodes'],spos)
+    surf_counts=elements_2_nodes_mid(input_obj['surf_elements'],input_obj['nodes'],spos)
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
 
