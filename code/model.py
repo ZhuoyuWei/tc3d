@@ -402,7 +402,8 @@ def _predict(models, input_file, output_file,ntree_limit=0):
                               dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
                               dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
     ])
-    #pred_df=post_procssing(pred_df,input_obj)
+
+    pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
 
     pred_df.to_csv(output_file, index=False)
