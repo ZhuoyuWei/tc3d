@@ -236,7 +236,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
         #lm_x = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        lm_x = xgboost.XGBRFRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
@@ -252,7 +252,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_y = LinearRegression()
         #lm_y = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        lm_y = xgboost.XGBRFRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
@@ -280,7 +280,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_z = LinearRegression()
         #lm_z = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        lm_z = xgboost.XGBRFRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,
@@ -298,7 +298,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         #lm_s = LinearRegression()
         #lm_s = MLPRegressor(hidden_layer_sizes=(50,20), max_iter=2)
-        lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
+        lm_s = xgboost.XGBRFRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
                               random_state=42,

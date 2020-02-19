@@ -4,7 +4,6 @@
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/code/train.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,30 +47,30 @@
           <entry key="dummy" value="13" />
           <entry key="py" value="8985" />
           <entry key="sh" value="662" />
-          <entry key="txt" value="1034" />
+          <entry key="txt" value="1038" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1826" />
+          <entry key="PLAIN_TEXT" value="1830" />
           <entry key="Python" value="8985" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
           <entry key="git.branch.checkout.revision" value="1" />
-          <entry key="git.branch.create.new" value="5" />
+          <entry key="git.branch.create.new" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="405" column="5" selection-start-line="405" selection-start-column="5" selection-end-line="405" selection-end-column="5" />
+            <state relative-caret-position="441">
+              <caret line="300" column="37" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="37" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -97,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/train.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -156,7 +155,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="eta" />
+        <entry key="$PROJECT_DIR$" value="submit" />
       </map>
     </option>
   </component>
@@ -185,8 +184,8 @@
         <option value="$PROJECT_DIR$/code/dlts_test_ntree.py" />
         <option value="$PROJECT_DIR$/code/dlts_test_ntree.sh" />
         <option value="$PROJECT_DIR$/code/pred.sh" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/train.sh" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
@@ -305,13 +304,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00044" summary="add nodes counts|fix">
-      <created>1581606751516</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1581606751516</updated>
     </task>
     <task id="LOCAL-00045" summary="add nodes counts|fix 2">
       <created>1581606971609</created>
@@ -649,7 +641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582072264784</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="0.45">
+      <created>1582074760396</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1582074760396</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -678,7 +677,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add n_job | release boost | add sample training data 2" />
     <MESSAGE value="remove delete" />
     <MESSAGE value="remove delete|fix bug" />
     <MESSAGE value="submission_13" />
@@ -703,7 +701,8 @@
     <MESSAGE value="submission 28" />
     <MESSAGE value="debug model's parameters" />
     <MESSAGE value="add post" />
-    <option name="LAST_COMMIT_MESSAGE" value="add post" />
+    <MESSAGE value="0.45" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.45" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -808,16 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="405" column="5" selection-start-line="405" selection-start-column="5" selection-end-line="405" selection-end-column="5" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/pred.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -829,6 +818,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="300" column="37" selection-start-line="300" selection-start-column="37" selection-end-line="300" selection-end-column="37" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
