@@ -204,7 +204,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     all_dfs = []
     start=time.time()
-    random.seed(42)
+    #random.seed(42)
     for fname in glob.glob(f'{input_dir}/*.json'):
         #if sample_rate < 1:
         #    rand_v=random.random()
@@ -221,7 +221,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     print('reading training data cost {} s'.format(end-start))
     all_df = pd.concat(all_dfs, ignore_index=True)
 
-    random_states=[42,2020,377]
+    random_states=[42,999,7717]
     for MM in range(3):
 
         if sample_rate < 1:
@@ -403,7 +403,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
                               dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
     ])
 
-    pred_df=post_procssing(pred_df,input_obj)
+    #pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
 
     pred_df.to_csv(output_file, index=False)
