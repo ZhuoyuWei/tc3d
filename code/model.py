@@ -90,9 +90,9 @@ def neareast_nodes(elements,nodes):
     for i,element in enumerate(elements):
         if not element['element_id'] in push_id2triplets:
             push_id2triplets[element['element_id']]=[0,0,0]
-        push_id2triplets[element['element_id']][0]+=id2node[element['node_id']]['x']
-        push_id2triplets[element['element_id']][1]+=id2node[element['node_id']]['y']
-        push_id2triplets[element['element_id']][2]+=id2node[element['node_id']]['z']
+        push_id2triplets[element['element_id']][0]+=float(id2node[element['node_id']]['x'])
+        push_id2triplets[element['element_id']][1]+=float(id2node[element['node_id']]['y'])
+        push_id2triplets[element['element_id']][2]+=float(id2node[element['node_id']]['z'])
 
     values=[]
     for ele in push_id2triplets:
@@ -109,7 +109,7 @@ def neareast_nodes(elements,nodes):
 
 
     for i, node in enumerate(nodes):
-        query_xyz=np.array([node['x'],node['y'],node['z']])
+        query_xyz=np.array([float(node['x']),float(node['y']),float(node['z'])])
         nearest=tree.query(query_xyz)
         xs[i] = nearest[0]
         ys[i] = nearest[1]
