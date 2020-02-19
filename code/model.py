@@ -9,11 +9,12 @@ import pandas as pd
 import time
 import threading
 import xgboost
+import numpy as np
 import random
 
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
-
+from scipy import spatial
 
 @click.group()
 def cli():
@@ -80,6 +81,44 @@ def elements_2_nodes_mid(elements,nodes,element_set=None):
 
     return counts
 
+def neareast_nodes(elements,nodes):
+    id2node={}
+    for node in nodes:
+        id2node[node['node_id']]=node
+
+    push_id2triplets={}
+    for i,element in enumerate(elements):
+        if not element['element_id'] in push_id2triplets:
+            push_id2triplets[element['element_id']]=[0,0,0]
+        push_id2triplets[element['element_id']][0]+=id2node[element['node_id']]['x']
+        push_id2triplets[element['element_id']][1]+=id2node[element['node_id']]['y']
+        push_id2triplets[element['element_id']][2]+=id2node[element['node_id']]['z']
+
+    values=[]
+    for ele in push_id2triplets:
+        push_id2triplets[ele][0]/=3
+        push_id2triplets[ele][1]/=3
+        push_id2triplets[ele][2]/=3
+        values.append(push_id2triplets[ele])
+
+    tree =spatial.KDTree(values)
+
+    xs = [0] * len(nodes)
+    ys = [0] * len(nodes)
+    zs = [0] * len(nodes)
+
+
+    for i, node in enumerate(nodes):
+        query_xyz=np.array([node['x'],node['y'],node['z']])
+        nearest=tree.query(query_xyz)
+        xs[i] = nearest[0]
+        ys[i] = nearest[1]
+        zs[i] = nearest[2]
+
+    return xs,ys,zs
+
+
+
 
 
 def read_input_df(fname):
@@ -94,6 +133,7 @@ def read_input_df(fname):
     surf_counts=elements_2_nodes_mid(input_obj['surf_elements'],input_obj['nodes'],spos)
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
+    xs,ys,zs=neareast_nodes(input_obj['push_elements'],input_obj['nodes'])
 
     '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
@@ -128,7 +168,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness),input_obj
+                     thickness=thickness,xs=xs,ys=ys,zs=zs),input_obj
 
 class fit_thread(threading.Thread):
 
@@ -161,10 +201,10 @@ class predict_thread(threading.Thread):
         start = time.time()
         if self.ntree_limit == 0:
             self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']])
+                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']])
         else:
             self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']],
+                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']],
                                    ntree_limit=self.ntree_limit)
         end = time.time()
         print('predict model end {}'.format(end - start))
@@ -231,7 +271,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']
+                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
