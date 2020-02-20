@@ -107,15 +107,14 @@ def neareast_nodes(elements,nodes):
     ys = [0] * len(nodes)
     zs = [0] * len(nodes)
 
-
+    query_xyzs=[]
     for i, node in enumerate(nodes):
-        query_xyz=np.array([float(node['x']),float(node['y']),float(node['z'])])
-        nearest=tree.query(query_xyz)
-        xs[i] = nearest[0]
-        ys[i] = nearest[1]
-        zs[i] = nearest[2]
+        query_xyzs.append([float(node['x']),float(node['y']),float(node['z'])])
+    #query_xyzs=np.array()
+    nearest,points=tree.query(query_xyzs)
 
-    return xs,ys,zs
+
+    return nearest
 
 
 
@@ -133,7 +132,7 @@ def read_input_df(fname):
     surf_counts=elements_2_nodes_mid(input_obj['surf_elements'],input_obj['nodes'],spos)
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
-    xs,ys,zs=neareast_nodes(input_obj['push_elements'],input_obj['nodes'])
+    push_dist=neareast_nodes(input_obj['push_elements'],input_obj['nodes'])
 
     '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
@@ -164,11 +163,16 @@ def read_input_df(fname):
     #for
 
     #during training, can remove fix nodes
-
+    '''
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,xs=xs,ys=ys,zs=zs),input_obj
+    '''
+    return df.assign(dx=dx, dy=dy, dz=dz,
+                     pcounts=push_counts, scounts=surf_counts,
+                     nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
+                     thickness=thickness,push_dist=push_dist),input_obj
 
 class fit_thread(threading.Thread):
 
@@ -201,10 +205,10 @@ class predict_thread(threading.Thread):
         start = time.time()
         if self.ntree_limit == 0:
             self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']])
+                                   'pcounts','scounts','nf_counts','no_counts','push_dist']])
         else:
             self._return=self.lm.predict(self.train_df[['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']],
+                                   'pcounts','scounts','nf_counts','no_counts','push_dist']],
                                    ntree_limit=self.ntree_limit)
         end = time.time()
         print('predict model end {}'.format(end - start))
@@ -271,7 +275,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','xs','ys','zs']
+                                   'pcounts','scounts','nf_counts','no_counts','push_dist']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
