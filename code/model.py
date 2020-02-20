@@ -11,6 +11,7 @@ import threading
 import xgboost
 import numpy as np
 import random
+import sys
 
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
@@ -82,10 +83,14 @@ def elements_2_nodes_mid(elements,nodes,element_set=None):
     return counts
 
 def neareast_nodes(elements,nodes):
+    start=time.time()
     id2node={}
     for node in nodes:
         id2node[node['node_id']]=node
+    end=time.time()
+    sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
 
+    start=time.time()
     push_id2triplets={}
     for i,element in enumerate(elements):
         if not element['element_id'] in push_id2triplets:
@@ -94,6 +99,7 @@ def neareast_nodes(elements,nodes):
         push_id2triplets[element['element_id']][1]+=float(id2node[element['node_id']]['y'])
         push_id2triplets[element['element_id']][2]+=float(id2node[element['node_id']]['z'])
 
+
     values=[]
     for ele in push_id2triplets:
         push_id2triplets[ele][0]/=3
@@ -101,18 +107,28 @@ def neareast_nodes(elements,nodes):
         push_id2triplets[ele][2]/=3
         values.append(push_id2triplets[ele])
 
+    end=time.time()
+    sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
+
+
+    start=time.time()
     tree =spatial.KDTree(values)
+    end=time.time()
+    sys.stderr.write('[IN] build kdtree {} \n'.format(end-start))
 
     xs = [0] * len(nodes)
     ys = [0] * len(nodes)
     zs = [0] * len(nodes)
 
+    start=time.time()
     query_xyzs=[]
     for i, node in enumerate(nodes):
         query_xyzs.append([float(node['x']),float(node['y']),float(node['z'])])
     #query_xyzs=np.array()
     nearest,points=tree.query(query_xyzs)
 
+    end=time.time()
+    sys.stderr.write('[IN] query kdtree {} \n'.format(end-start))
 
     return nearest
 
@@ -128,11 +144,30 @@ def read_input_df(fname):
 
     spos=read_SPOS(input_obj['surf_plate'])
 
+    start=time.time()
     push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'],spos)
+    end=time.time()
+    sys.stderr.write('push element nodes {}\n'.format(end-start))
+
+    start=time.time()
     surf_counts=elements_2_nodes_mid(input_obj['surf_elements'],input_obj['nodes'],spos)
+    end=time.time()
+    sys.stderr.write('surf element nodes {}\n'.format(end-start))
+
+    start=time.time()
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
+    end=time.time()
+    sys.stderr.write('nset_fix nodes {}\n'.format(end-start))
+
+    start=time.time()
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
+    end = time.time()
+    sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
+
+    start=time.time()
     push_dist=neareast_nodes(input_obj['push_elements'],input_obj['nodes'])
+    end = time.time()
+    sys.stderr.write('push_dist {}\n'.format(end - start))
 
     '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
