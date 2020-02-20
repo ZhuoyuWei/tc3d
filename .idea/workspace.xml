@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/code/dlts_nn.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/model_nn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/dense_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/dense_regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,29 +33,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="44" />
-          <entry key="sh" value="42" />
+          <entry key="py" value="47" />
+          <entry key="sh" value="45" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="52" />
-          <entry key="Python" value="44" />
+          <entry key="PLAIN_TEXT" value="55" />
+          <entry key="Python" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="10898" />
+          <entry key="py" value="11416" />
           <entry key="sh" value="662" />
-          <entry key="txt" value="1143" />
+          <entry key="txt" value="1151" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1935" />
-          <entry key="Python" value="10898" />
+          <entry key="PLAIN_TEXT" value="1943" />
+          <entry key="Python" value="11416" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -68,14 +69,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-344">
-              <caret line="489" column="12" selection-start-line="489" selection-start-column="12" selection-end-line="489" selection-end-column="12" />
+            <state relative-caret-position="181">
+              <caret line="418" column="63" lean-forward="true" selection-start-line="418" selection-start-column="54" selection-end-line="418" selection-end-column="64" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/train.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" column="90" selection-start-line="10" selection-start-column="90" selection-end-line="10" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/pred.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" column="75" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -104,13 +123,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="420">
+              <caret line="38" column="23" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="33" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1582200228810" expanded="true" signature="800:801" ph="..." />
-                <marker date="1582200228810" expanded="true" signature="826:831" ph="..." />
+                <marker date="1582206496916" expanded="true" signature="839:840" ph="..." />
+                <marker date="1582206496916" expanded="true" signature="865:870" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/model_nn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-852">
+              <caret line="300" selection-start-line="300" selection-end-line="300" />
+              <folding>
+                <element signature="e#23#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/dlts_nn.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/dlts.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="33" column="5" lean-forward="true" selection-end-line="56" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/score.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="73" column="17" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -137,9 +195,9 @@
       <find>set_p</find>
       <find>xgb</find>
       <find>PRED_OUT</find>
-      <find>train</find>
       <find>post_procssing</find>
       <find>predict_thread</find>
+      <find>train</find>
       <find>train(</find>
     </findStrings>
   </component>
@@ -177,8 +235,10 @@
         <option value="$PROJECT_DIR$/code/train.sh" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
-        <option value="$PROJECT_DIR$/code/dense_regression.py" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/dense_regression.py" />
+        <option value="$PROJECT_DIR$/code/model_nn.py" />
+        <option value="$PROJECT_DIR$/code/dlts_nn.sh.py" />
       </list>
     </option>
   </component>
@@ -296,20 +356,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00058" summary="dlts try 7">
-      <created>1581652819752</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1581652819752</updated>
-    </task>
-    <task id="LOCAL-00059" summary="dlts try 8">
-      <created>1581653985625</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1581653985625</updated>
     </task>
     <task id="LOCAL-00060" summary="test gpu docker">
       <created>1581657876767</created>
@@ -640,7 +686,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582188833027</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="add ,'sposcount'">
+      <created>1582204761400</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1582204761401</updated>
+    </task>
+    <task id="LOCAL-00108" summary="add ,'sposcount'|fix">
+      <created>1582205242791</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1582205242791</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -669,8 +729,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="xgb_model for continue learning|fix bug all_train" />
-    <MESSAGE value="3 models for ave" />
     <MESSAGE value="3 models for ave|fix" />
     <MESSAGE value="submission_25|best for now" />
     <MESSAGE value="add spos feature" />
@@ -694,7 +752,9 @@
     <MESSAGE value="remove several features|fix bug 2" />
     <MESSAGE value="remove all xyz" />
     <MESSAGE value="norm xyz" />
-    <option name="LAST_COMMIT_MESSAGE" value="norm xyz" />
+    <MESSAGE value="add ,'sposcount'" />
+    <MESSAGE value="add ,'sposcount'|fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ,'sposcount'|fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -705,13 +765,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tt.py" />
-    <entry file="file://$PROJECT_DIR$/code/score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2247">
-          <caret line="110" column="46" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dev/predict_1.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -778,27 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/train.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="90" selection-start-line="10" selection-start-column="90" selection-end-line="10" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/pred.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="75" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="54" column="127" selection-start-line="54" selection-start-column="127" selection-end-line="54" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/tt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -816,25 +848,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="73" column="17" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="420">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="33" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1582200228810" expanded="true" signature="800:801" ph="..." />
-            <marker date="1582200228810" expanded="true" signature="826:831" ph="..." />
+            <marker date="1582206496916" expanded="true" signature="839:840" ph="..." />
+            <marker date="1582206496916" expanded="true" signature="865:870" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model_nn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-852">
+          <caret line="300" selection-start-line="300" selection-end-line="300" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="33" column="5" lean-forward="true" selection-end-line="56" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_nn.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-344">
-          <caret line="489" column="12" selection-start-line="489" selection-start-column="12" selection-end-line="489" selection-end-column="12" />
+        <state relative-caret-position="181">
+          <caret line="418" column="63" lean-forward="true" selection-start-line="418" selection-start-column="54" selection-end-line="418" selection-end-column="64" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/train.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="90" selection-start-line="10" selection-start-column="90" selection-end-line="10" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/pred.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="75" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
         </state>
       </provider>
     </entry>
