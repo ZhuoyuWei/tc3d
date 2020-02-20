@@ -27,12 +27,10 @@ def extract_case_id(fname):
     case_id, _ = os.path.splitext(fname)
     return case_id
 
-def read_SPOS(spos,nodes):
+def read_SPOS(spos):
     element_set=set()
     for sp in spos:
         element_set.add(int(sp['element_id']))
-
-
 
     return element_set
 
