@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/code/dense_regression.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/dense_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/dense_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,15 +16,15 @@
     <session id="-1525906652">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
-          <entry key="project.open.time.0" value="3" />
+          <entry key="project.closed" value="23" />
+          <entry key="project.open.time.0" value="4" />
           <entry key="project.open.time.1" value="12" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -31,29 +32,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="43" />
+          <entry key="py" value="44" />
           <entry key="sh" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="52" />
-          <entry key="Python" value="43" />
+          <entry key="Python" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="10147" />
+          <entry key="py" value="10898" />
           <entry key="sh" value="662" />
-          <entry key="txt" value="1116" />
+          <entry key="txt" value="1143" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1908" />
-          <entry key="Python" value="10147" />
+          <entry key="PLAIN_TEXT" value="1935" />
+          <entry key="Python" value="10898" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -67,14 +68,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="475" column="61" selection-start-line="475" selection-start-column="61" selection-end-line="475" selection-end-column="61" />
+            <state relative-caret-position="-344">
+              <caret line="489" column="12" selection-start-line="489" selection-start-column="12" selection-end-line="489" selection-end-column="12" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1582185339000" expanded="true" signature="2274:3779" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/tt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="11" column="5" selection-start-line="11" selection-end-line="11" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,20 +95,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
+            <state relative-caret-position="819">
               <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+            <state relative-caret-position="714">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1582187725793" expanded="true" signature="60:65" ph="..." />
+                <marker date="1582200228810" expanded="true" signature="800:801" ph="..." />
+                <marker date="1582200228810" expanded="true" signature="826:831" ph="..." />
               </folding>
             </state>
           </provider>
@@ -164,15 +177,15 @@
         <option value="$PROJECT_DIR$/code/train.sh" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/dense_regression.py" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1117" />
-    <option name="width" value="1148" />
-    <option name="height" value="1454" />
+    <option name="x" value="1116" />
+    <option name="width" value="1149" />
+    <option name="height" value="1455" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -182,7 +195,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,6 +211,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,20 +296,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00056" summary="dlts try 5">
-      <created>1581647634803</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1581647634803</updated>
-    </task>
-    <task id="LOCAL-00057" summary="dlts try 6">
-      <created>1581649773445</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1581649773445</updated>
     </task>
     <task id="LOCAL-00058" summary="dlts try 7">
       <created>1581652819752</created>
@@ -627,12 +626,25 @@
       <option name="project" value="LOCAL" />
       <updated>1582185344920</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="remove all xyz">
+      <created>1582187897120</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1582187897120</updated>
+    </task>
+    <task id="LOCAL-00106" summary="norm xyz">
+      <created>1582188833027</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1582188833027</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -657,8 +669,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="two and ave|fix &amp; only infer" />
-    <MESSAGE value="xgb_model for continue learning" />
     <MESSAGE value="xgb_model for continue learning|fix bug all_train" />
     <MESSAGE value="3 models for ave" />
     <MESSAGE value="3 models for ave|fix" />
@@ -682,7 +692,9 @@
     <MESSAGE value="remove several features" />
     <MESSAGE value="remove several features|fix bug" />
     <MESSAGE value="remove several features|fix bug 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove several features|fix bug 2" />
+    <MESSAGE value="remove all xyz" />
+    <MESSAGE value="norm xyz" />
+    <option name="LAST_COMMIT_MESSAGE" value="norm xyz" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -780,16 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/tt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="40" lean-forward="true" selection-end-line="21" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="637">
@@ -797,31 +799,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
+    <entry file="file://$PROJECT_DIR$/code/tt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="475" column="61" selection-start-line="475" selection-start-column="61" selection-end-line="475" selection-end-column="61" />
+        <state relative-caret-position="210">
+          <caret line="11" column="5" selection-start-line="11" selection-end-line="11" selection-end-column="15" />
           <folding>
-            <element signature="e#23#35#0" expanded="true" />
-            <marker date="1582185339000" expanded="true" signature="2274:3779" ph="..." />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
+        <state relative-caret-position="819">
           <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        <state relative-caret-position="714">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1582187725793" expanded="true" signature="60:65" ph="..." />
+            <marker date="1582200228810" expanded="true" signature="800:801" ph="..." />
+            <marker date="1582200228810" expanded="true" signature="826:831" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-344">
+          <caret line="489" column="12" selection-start-line="489" selection-start-column="12" selection-end-line="489" selection-end-column="12" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

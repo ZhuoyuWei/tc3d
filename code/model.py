@@ -27,11 +27,42 @@ def extract_case_id(fname):
     case_id, _ = os.path.splitext(fname)
     return case_id
 
-def read_SPOS(spos):
+def read_SPOS(spos,nodes):
     element_set=set()
     for sp in spos:
-        element_set.add(sp['element_id'])
+        element_set.add(int(sp['element_id']))
+
+
+
     return element_set
+
+def elements_2(elements,nodes,spos=None):
+    node2count={}
+    node2spos={}
+    for i,ele in enumerate(elements):
+        node2count[int(ele['node_id'])] = int(ele['idx'])
+        if spos and int(ele['element_id']) in spos:
+            node2spos[int(ele['node_id'])]=1
+
+
+
+
+    counts=[0]*len(nodes)
+    #for node in nodes:
+    for i,node in enumerate(nodes):
+        if int(node['node_id']) in node2count:
+            counts[i]=node2count.get(int(node['node_id']),0)
+
+    if spos:
+        counts2=[0]*len(nodes)
+        #for node in nodes:
+        for i,node in enumerate(nodes):
+            counts2[i]=node2spos.get(int(node['node_id']),0)
+    else:
+        counts2=None
+
+    return counts,counts2
+
 
 def elements_2_nodes(elements,nodes,element_set=None):
     node2count={}
@@ -145,12 +176,12 @@ def read_input_df(fname):
     spos=read_SPOS(input_obj['surf_plate'])
 
     start=time.time()
-    push_counts=elements_2_nodes(input_obj['push_elements'],input_obj['nodes'],spos)
+    push_counts,nouse=elements_2(input_obj['push_elements'],input_obj['nodes'],None)
     end=time.time()
     sys.stderr.write('push element nodes {}\n'.format(end-start))
 
     start=time.time()
-    surf_counts=elements_2_nodes_mid(input_obj['surf_elements'],input_obj['nodes'],spos)
+    surf_counts,sposcount=elements_2(input_obj['surf_elements'],input_obj['nodes'],spos)
     end=time.time()
     sys.stderr.write('surf element nodes {}\n'.format(end-start))
 
@@ -192,11 +223,11 @@ def read_input_df(fname):
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
 
-    df_max = df.max()
+    #df_max = df.max()
 
-    df['x']/=df_max['x']
-    df['y']/=df_max['y']
-    df['z']/=df_max['z']
+    #df['x']/=df_max['x']
+    #df['y']/=df_max['y']
+    #df['z']/=df_max['z']
 
     #push_element
     #push_elments=[]
@@ -212,7 +243,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness),input_obj
+                     thickness=thickness,sposcount=sposcount),input_obj
 
 class fit_thread(threading.Thread):
 
@@ -314,7 +345,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts']
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -457,7 +488,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x', 'y','z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
-     'pcounts', 'scounts', 'nf_counts', 'no_counts']
+     'pcounts', 'scounts', 'nf_counts', 'no_counts','sposcount']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
