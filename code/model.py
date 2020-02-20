@@ -192,6 +192,11 @@ def read_input_df(fname):
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
 
+    df_max = df.max()
+
+    df['x']/=df_max['x']
+    df['y']/=df_max['y']
+    df['z']/=df_max['z']
 
     #push_element
     #push_elments=[]
@@ -309,7 +314,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','push_dist']
+                                   'pcounts','scounts','nf_counts','no_counts']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -321,8 +326,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=0)
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
-        fitting_threads.append(fit_thread(lm_x,train_df,['x','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'],'dx_out'))
+        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
         end = time.time()
         print('train {} model {}'.format('dx_out', end - start))
         #joblib.dump(lm_x, model_file + '.x')
@@ -338,8 +342,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
-        fitting_threads.append(fit_thread(lm_y, train_df,['y','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'], 'dy_out'))
+        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
         end = time.time()
         print('train {} model {}'.format('dy_out', end - start))
         #joblib.dump(lm_y, model_file + '.y')
@@ -368,8 +371,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
-        fitting_threads.append(fit_thread(lm_z, train_df, ['z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'], 'dz_out'))
+        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
         end = time.time()
         print('train {} model {}'.format('dz_out', end - start))
         #joblib.dump(lm_z, model_file + '.z')
@@ -386,8 +388,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
-        fitting_threads.append(fit_thread(lm_s, train_df, ['dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'],'max_stress'))
+        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
         end = time.time()
         print('train {} model {}'.format('ds_out', end - start))
 
@@ -455,6 +456,8 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
+    feature_in_list=['x', 'y','z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
+     'pcounts', 'scounts', 'nf_counts', 'no_counts']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
@@ -462,19 +465,15 @@ def _predict(models, input_file, output_file,ntree_limit=0):
         #models[MM][1].set_params(tree_method='gpu_hist')
         #models[MM][1].set_params(gpu_id=1)
         thread_0=predict_thread(lm=models[MM][0],train_df=input_df,
-                                feature_in_list=['x','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'],
+                                feature_in_list=feature_in_list,
                                 ntree_limit=ntree_limit)
         thread_1=predict_thread(lm=models[MM][1],train_df=input_df,
-                                feature_in_list=['y','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts'],ntree_limit=ntree_limit)
+                                feature_in_list=feature_in_list,ntree_limit=ntree_limit)
         thread_2=predict_thread(lm=models[MM][2],train_df=input_df,
-                                feature_in_list=['z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
-                                                 'pcounts', 'scounts', 'nf_counts', 'no_counts'],
+                                feature_in_list=feature_in_list,
                                 ntree_limit=ntree_limit)
         thread_3=predict_thread(lm=models[MM][3],
-                                feature_in_list=['dx_in', 'dy_in', 'dz_in', 'thickness',
-                                                 'pcounts', 'scounts', 'nf_counts', 'no_counts'],
+                                feature_in_list=feature_in_list,
                                 train_df=input_df,ntree_limit=ntree_limit)
         predictThreads+=[thread_0,thread_1,thread_2,thread_3]
 

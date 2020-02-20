@@ -1,22 +1,25 @@
-from scipy.spatial import KDTree
-import  numpy as np
-import time
+import pandas as pd
+import numpy as np
 
-data= np.random.rand(10510,3)
-sample= np.random.rand(4350,3)
+a=np.random.rand(10)
+b=np.random.rand(10)
 
-point=[[0,0,0],[1,1,1]]
-print(point)
-start=time.time()
-kdtree=KDTree(data)
-end=time.time()
-print('build tree {}'.format(end-start))
+df=pd.DataFrame({'aaa':a,'bbb':b})
 
-start=time.time()
-neast=kdtree.query(sample)
-end=time.time()
-print('searching {}'.format(end-start))
+print(df)
 
 
-neast=kdtree.query(point,k=5)
-print(neast)
+df_max=df.max()
+print(df_max)
+
+amax=df_max['aaa']
+bmax=df_max['bbb']
+
+
+print(amax)
+print(bmax)
+
+df['aaa']/=amax
+df['bbb']/=bmax
+
+print(df)
