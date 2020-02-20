@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/code/dense_regression.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,29 +31,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="42" />
-          <entry key="sh" value="41" />
+          <entry key="py" value="43" />
+          <entry key="sh" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="51" />
-          <entry key="Python" value="42" />
+          <entry key="PLAIN_TEXT" value="52" />
+          <entry key="Python" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="10069" />
+          <entry key="py" value="10147" />
           <entry key="sh" value="662" />
-          <entry key="txt" value="1114" />
+          <entry key="txt" value="1116" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1906" />
-          <entry key="Python" value="10069" />
+          <entry key="PLAIN_TEXT" value="1908" />
+          <entry key="Python" value="10147" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -67,15 +67,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3237">
-              <caret line="464" column="8" selection-start-line="464" selection-start-column="8" selection-end-line="464" selection-end-column="8" />
+            <state relative-caret-position="542">
+              <caret line="475" column="61" selection-start-line="475" selection-start-column="61" selection-end-line="475" selection-end-column="61" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <element signature="e#9722#14659#0" />
-                <marker date="1582185205158" expanded="true" signature="2274:3779" ph="..." />
+                <marker date="1582185339000" expanded="true" signature="2274:3779" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+                <marker date="1582187725793" expanded="true" signature="60:65" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,13 +121,13 @@
       <find>model_c</find>
       <find>PRED_OUT_MODEL</find>
       <find>pip</find>
-      <find>train(</find>
       <find>set_p</find>
       <find>xgb</find>
-      <find>predict_thread</find>
       <find>PRED_OUT</find>
       <find>train</find>
       <find>post_procssing</find>
+      <find>predict_thread</find>
+      <find>train(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,6 +165,7 @@
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/tt.py" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/dense_regression.py" />
       </list>
     </option>
   </component>
@@ -172,12 +194,6 @@
               <item name="tc3d" type="b2602c69:ProjectViewProjectNode" />
               <item name="tc3d" type="462c0819:PsiDirectoryNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tc3d" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tc3d" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="pre" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -267,13 +283,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00055" summary="dlts try 4">
-      <created>1581646961146</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1581646961146</updated>
     </task>
     <task id="LOCAL-00056" summary="dlts try 5">
       <created>1581647634803</created>
@@ -611,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582181078140</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="remove several features|fix bug 2">
+      <created>1582185344920</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1582185344920</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -641,7 +657,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="two and ave" />
     <MESSAGE value="two and ave|fix &amp; only infer" />
     <MESSAGE value="xgb_model for continue learning" />
     <MESSAGE value="xgb_model for continue learning|fix bug all_train" />
@@ -666,7 +681,8 @@
     <MESSAGE value="kdtree|4" />
     <MESSAGE value="remove several features" />
     <MESSAGE value="remove several features|fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove several features|fix bug" />
+    <MESSAGE value="remove several features|fix bug 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove several features|fix bug 2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -743,13 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts_test_ntree.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
@@ -790,12 +799,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3237">
-          <caret line="464" column="8" selection-start-line="464" selection-start-column="8" selection-end-line="464" selection-end-column="8" />
+        <state relative-caret-position="542">
+          <caret line="475" column="61" selection-start-line="475" selection-start-column="61" selection-end-line="475" selection-end-column="61" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <element signature="e#9722#14659#0" />
-            <marker date="1582185205158" expanded="true" signature="2274:3779" ph="..." />
+            <marker date="1582185339000" expanded="true" signature="2274:3779" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dense_regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+            <marker date="1582187725793" expanded="true" signature="60:65" ph="..." />
           </folding>
         </state>
       </provider>
