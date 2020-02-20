@@ -461,10 +461,21 @@ def _predict(models, input_file, output_file,ntree_limit=0):
         #models[MM][0].set_params(gpu_id=0)
         #models[MM][1].set_params(tree_method='gpu_hist')
         #models[MM][1].set_params(gpu_id=1)
-        thread_0=predict_thread(lm=models[MM][0],train_df=input_df,ntree_limit=ntree_limit)
-        thread_1=predict_thread(lm=models[MM][1],train_df=input_df,ntree_limit=ntree_limit)
-        thread_2=predict_thread(lm=models[MM][2],train_df=input_df,ntree_limit=ntree_limit)
-        thread_3=predict_thread(lm=models[MM][3],train_df=input_df,ntree_limit=ntree_limit)
+        thread_0=predict_thread(lm=models[MM][0],train_df=input_df,
+                                feature_in_list=['x','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts'],
+                                ntree_limit=ntree_limit)
+        thread_1=predict_thread(lm=models[MM][1],train_df=input_df,
+                                feature_in_list=['y','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                   'pcounts','scounts','nf_counts','no_counts'],ntree_limit=ntree_limit)
+        thread_2=predict_thread(lm=models[MM][2],train_df=input_df,
+                                feature_in_list=['z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
+                                                 'pcounts', 'scounts', 'nf_counts', 'no_counts'],
+                                ntree_limit=ntree_limit)
+        thread_3=predict_thread(lm=models[MM][3],
+                                feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                                                 'pcounts', 'scounts', 'nf_counts', 'no_counts'],
+                                train_df=input_df,ntree_limit=ntree_limit)
         predictThreads+=[thread_0,thread_1,thread_2,thread_3]
 
 
