@@ -207,7 +207,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,push_dist=push_dist),input_obj
+                     thickness=thickness),input_obj
 
 class fit_thread(threading.Thread):
 
