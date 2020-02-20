@@ -4,7 +4,6 @@
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/tt.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/tt.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,15 +45,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="9721" />
+          <entry key="py" value="10033" />
           <entry key="sh" value="662" />
-          <entry key="txt" value="1080" />
+          <entry key="txt" value="1082" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1872" />
-          <entry key="Python" value="9721" />
+          <entry key="PLAIN_TEXT" value="1874" />
+          <entry key="Python" value="10033" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -71,11 +70,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="214" lean-forward="true" selection-start-line="214" selection-end-line="214" />
+            <state relative-caret-position="391">
+              <caret line="236" column="44" selection-start-line="236" selection-start-column="44" selection-end-line="236" selection-end-column="44" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1582164177057" expanded="true" signature="2241:3324" ph="..." />
+                <marker date="1582177618135" expanded="true" signature="2274:3779" ph="..." />
               </folding>
             </state>
           </provider>
@@ -343,20 +342,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00051" summary="test docker|3">
-      <created>1581642656678</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1581642656678</updated>
-    </task>
-    <task id="LOCAL-00052" summary="dlts try">
-      <created>1581645473383</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1581645473384</updated>
     </task>
     <task id="LOCAL-00053" summary="dlts try 2">
       <created>1581645583892</created>
@@ -687,7 +672,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582128091920</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="kdtree|3">
+      <created>1582164226093</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1582164226094</updated>
+    </task>
+    <task id="LOCAL-00101" summary="kdtree|4">
+      <created>1582175323849</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1582175323849</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -717,8 +716,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="file level random" />
-    <MESSAGE value="file level random is not good" />
     <MESSAGE value="inference gpu hist" />
     <MESSAGE value="multi 2 gpu" />
     <MESSAGE value="two and ave" />
@@ -742,7 +739,9 @@
     <MESSAGE value="kdtree" />
     <MESSAGE value="kdtree|1" />
     <MESSAGE value="kdtree|2" />
-    <option name="LAST_COMMIT_MESSAGE" value="kdtree|2" />
+    <MESSAGE value="kdtree|3" />
+    <MESSAGE value="kdtree|4" />
+    <option name="LAST_COMMIT_MESSAGE" value="kdtree|4" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -866,11 +865,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="214" lean-forward="true" selection-start-line="214" selection-end-line="214" />
+        <state relative-caret-position="391">
+          <caret line="236" column="44" selection-start-line="236" selection-start-column="44" selection-end-line="236" selection-end-column="44" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1582164177057" expanded="true" signature="2241:3324" ph="..." />
+            <marker date="1582177618135" expanded="true" signature="2274:3779" ph="..." />
           </folding>
         </state>
       </provider>
