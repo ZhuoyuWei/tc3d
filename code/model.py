@@ -275,6 +275,8 @@ def read_input_df(fname):
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
 
+    id=df['node_id']/100000
+
     #df_max = df.max()
 
     #df['x']/=df_max['x']
@@ -295,7 +297,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,sposcount=sposcount,
+                     thickness=thickness,sposcount=sposcount,id=id,
                      move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z']),input_obj
 
 
@@ -407,7 +409,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','sposcount',
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount','id'
                                    'move_x', 'move_y', 'move_z']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
@@ -559,7 +561,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                    'pcounts','scounts','nf_counts','no_counts','sposcount',
+                    'pcounts','scounts','nf_counts','no_counts','sposcount','id'
                     'move_x', 'move_y', 'move_z']
     for MM in range(len(models)):
 
