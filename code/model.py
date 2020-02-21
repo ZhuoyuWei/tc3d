@@ -326,7 +326,7 @@ def read_input_df(fname):
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
 
-    id=df['node_id']/100000
+    id=df['node_id']
 
     #df_max = df.max()
 
