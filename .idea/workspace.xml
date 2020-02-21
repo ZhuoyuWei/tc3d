@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="" />
+    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,15 +44,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="12992" />
+          <entry key="py" value="12999" />
           <entry key="sh" value="665" />
-          <entry key="txt" value="1379" />
+          <entry key="txt" value="1386" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2174" />
-          <entry key="Python" value="12992" />
+          <entry key="PLAIN_TEXT" value="2181" />
+          <entry key="Python" value="12999" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -67,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4644">
-              <caret line="607" column="33" lean-forward="true" selection-start-line="607" selection-start-column="33" selection-end-line="607" selection-end-column="33" />
+            <state relative-caret-position="234">
+              <caret line="328" column="27" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -329,20 +331,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00080" summary="xgb_model for continue learning">
-      <created>1581898709787</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1581898709787</updated>
-    </task>
-    <task id="LOCAL-00081" summary="xgb_model for continue learning|fix bug all_train">
-      <created>1581905405642</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1581905405642</updated>
     </task>
     <task id="LOCAL-00082" summary="3 models for ave">
       <created>1581915555316</created>
@@ -673,11 +661,26 @@
       <option name="project" value="LOCAL" />
       <updated>1582283716428</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="all feature">
+      <created>1582283904889</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1582283904890</updated>
+    </task>
+    <task id="LOCAL-00130" summary="all feature/100000">
+      <created>1582284236401</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1582284236401</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <frame x="-7" y="-7" width="1519" height="977" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -702,7 +705,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove several features|fix bug" />
     <MESSAGE value="remove several features|fix bug 2" />
     <MESSAGE value="remove all xyz" />
     <MESSAGE value="norm xyz" />
@@ -727,7 +729,8 @@
     <MESSAGE value="torch neareast w/o move_xyz" />
     <MESSAGE value="torch neareast w/o move_xyz and ori id" />
     <MESSAGE value="all feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="all feature" />
+    <MESSAGE value="all feature/100000" />
+    <option name="LAST_COMMIT_MESSAGE" value="all feature/100000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -848,8 +851,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4644">
-          <caret line="607" column="33" lean-forward="true" selection-start-line="607" selection-start-column="33" selection-end-line="607" selection-end-column="33" />
+        <state relative-caret-position="234">
+          <caret line="328" column="27" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
