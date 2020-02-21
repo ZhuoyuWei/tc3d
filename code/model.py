@@ -247,13 +247,13 @@ def read_input_df(fname):
     #sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
 
 
-
+    '''
     start=time.time()
     neareast_5=nearest_k(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
     end = time.time()
     sys.stderr.write('push_dist query tree {}\n'.format(end - start))
 
-    '''
+    
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
     print('nodes push_elements: {}'.format(len(push_counts)))
     print('nodes surf_elements: {}'.format(len(surf_counts)))
@@ -291,16 +291,14 @@ def read_input_df(fname):
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,xs=xs,ys=ys,zs=zs),input_obj
-    
-    return df.assign(dx=dx, dy=dy, dz=dz,
-                     pcounts=push_counts, scounts=surf_counts,
-                     nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,sposcount=sposcount),input_obj
     '''
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,sposcount=sposcount,neareast_5=neareast_5),input_obj
+                     thickness=thickness,sposcount=sposcount,
+                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z']),input_obj
+
+
 
 class fit_thread(threading.Thread):
 
@@ -409,7 +407,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','sposcount','neareast_5']
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount',
+                                   'move_x', 'move_y', 'move_z']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -559,8 +558,9 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
-    feature_in_list=['x', 'y','z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
-     'pcounts', 'scounts', 'nf_counts', 'no_counts','sposcount','neareast_5']
+    feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                    'pcounts','scounts','nf_counts','no_counts','sposcount',
+                    'move_x', 'move_y', 'move_z']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
