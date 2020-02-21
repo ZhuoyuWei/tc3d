@@ -4,7 +4,6 @@
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/code/train.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tt3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tt3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,29 +32,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="52" />
+          <entry key="py" value="53" />
           <entry key="sh" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="52" />
+          <entry key="Python" value="53" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="12848" />
+          <entry key="py" value="12895" />
           <entry key="sh" value="665" />
-          <entry key="txt" value="1323" />
+          <entry key="txt" value="1342" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2118" />
-          <entry key="Python" value="12848" />
+          <entry key="PLAIN_TEXT" value="2137" />
+          <entry key="Python" value="12895" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -72,13 +71,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="615" column="61" selection-start-line="615" selection-start-column="61" selection-end-line="615" selection-end-column="61" />
+            <state relative-caret-position="630">
+              <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <element signature="e#4559#6062#0" />
-                <element signature="e#6110#7613#0" />
-                <marker date="1582271341262" expanded="true" signature="4554:7761" ph="..." />
+                <marker date="1582273058304" expanded="true" signature="4567:7774" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/tt2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tt3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="19" column="17" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="29" />
+            <state relative-caret-position="294">
+              <caret line="14" lean-forward="true" selection-end-line="31" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -144,6 +153,7 @@
       <find>nearest_k</find>
       <find>neareast_5</find>
       <find>read</find>
+      <find>to_n</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -310,20 +320,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00073" summary="submission_16: gpu_id=0">
-      <created>1581769720310</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1581769720310</updated>
-    </task>
-    <task id="LOCAL-00074" summary="file level random">
-      <created>1581813476192</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1581813476194</updated>
     </task>
     <task id="LOCAL-00075" summary="file level random is not good">
       <created>1581815524458</created>
@@ -654,7 +650,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582269153436</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="torch neareast">
+      <created>1582271377437</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1582271377437</updated>
+    </task>
+    <task id="LOCAL-00123" summary="torch neareast|fix">
+      <created>1582272329721</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1582272329721</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -684,8 +694,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="kdtree" />
-    <MESSAGE value="kdtree|1" />
     <MESSAGE value="kdtree|2" />
     <MESSAGE value="kdtree|3" />
     <MESSAGE value="kdtree|4" />
@@ -709,7 +717,9 @@
     <MESSAGE value="debug more info" />
     <MESSAGE value="+id" />
     <MESSAGE value="+id|fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="+id|fix" />
+    <MESSAGE value="torch neareast" />
+    <MESSAGE value="torch neareast|fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="torch neareast|fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -839,16 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/tt2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
@@ -863,16 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tt3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -880,15 +870,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/tt2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tt3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" lean-forward="true" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="615" column="61" selection-start-line="615" selection-start-column="61" selection-end-line="615" selection-end-column="61" />
+        <state relative-caret-position="630">
+          <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <element signature="e#4559#6062#0" />
-            <element signature="e#6110#7613#0" />
-            <marker date="1582271341262" expanded="true" signature="4554:7761" ph="..." />
+            <marker date="1582273058304" expanded="true" signature="4567:7774" ph="..." />
           </folding>
         </state>
       </provider>
