@@ -217,14 +217,14 @@ def nearest_k(node_df,nodes,elements,k):
 def nearest_gpu(node_df,nodes,elements,k):
     start = time.time()
     nodes_df=node_df.to_numpy(dtype=float)
-    sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
+    #sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
     #tree = spatial.KDTree(nodes_df)
 
     nodes_gpu=torch.Tensor(nodes_df)
     end = time.time()
-    print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
+    #print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
 
-    sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
+    #sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
 
 
     start=time.time()
@@ -232,7 +232,7 @@ def nearest_gpu(node_df,nodes,elements,k):
     for node in nodes:
         id2node[node['node_id']]=node
     end=time.time()
-    sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
+    #sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
 
     start=time.time()
     push_id2triplets={}
@@ -252,17 +252,17 @@ def nearest_gpu(node_df,nodes,elements,k):
         values.append(push_id2triplets[ele])
 
     values_gpu=torch.Tensor(values)
-    print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
+    #print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
 
     end=time.time()
-    sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
+    #sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
 
     start=time.time()
 
     dist=torch.matmul(nodes_gpu,values_gpu.transpose(0,1))
     dist_min=dist.min(dim=-1)[0].numpy()
 
-    sys.stderr.write('[IN] query tree {} \n'.format(end-start))
+    #sys.stderr.write('[IN] query tree {} \n'.format(end-start))
 
     return dist_min
 
@@ -354,23 +354,21 @@ def read_input_df(fname):
 
 class fit_thread(threading.Thread):
 
-    def __init__(self,lm,train_df,featurelist,target,xgb_model=None):
+    def __init__(self,lm,train_df,featurelist,target):
         threading.Thread.__init__(self)
         self.lm=lm
         self.train_df=train_df
         self.target=target
         self.featurelist=featurelist
-        self.xgb_model=xgb_model
+
 
     def run(self):
         print('train {} starts'.format(self.target))
         start = time.time()
-        if self.xgb_model is None:
-            self.lm.fit(self.train_df[self.featurelist],
+
+        self.lm.fit(self.train_df[self.featurelist],
                       self.train_df[self.target])
-        else:
-            self.lm.fit(self.train_df[self.featurelist],
-                      self.train_df[self.target],xgb_model=self.xgb_model)
+
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
 
@@ -449,7 +447,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     random_states=[42,999,7717]
 
-    xgb_models=[None,None,None,None]
+    #xgb_models=[None,None,None,None]
     for MM in range(3):
 
         if sample_rate < 1:
@@ -471,8 +469,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=0)
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
-        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out',
-                                          xgb_model=xgb_models[0]))
+        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
         end = time.time()
         print('train {} model {}'.format('dx_out', end - start))
         #joblib.dump(lm_x, model_file + '.x')
@@ -488,8 +485,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
-        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out',
-                                          xgb_model=xgb_models[1]))
+        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
         end = time.time()
         print('train {} model {}'.format('dy_out', end - start))
         #joblib.dump(lm_y, model_file + '.y')
@@ -504,8 +500,6 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_x, model_file + '.x.'+str(MM))
         joblib.dump(lm_y, model_file + '.y.'+str(MM))
-        xgb_models[0]=lm_x.get_booster()
-        xgb_models[1]=lm_y.get_booster()
         lm_x=None
         lm_y=None
         fitting_threads=[]
@@ -520,8 +514,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
-        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out',
-                                          xgb_model=xgb_models[2]))
+        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
         end = time.time()
         print('train {} model {}'.format('dz_out', end - start))
         #joblib.dump(lm_z, model_file + '.z')
@@ -538,8 +531,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
-        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress',
-                                          xgb_model=xgb_models[3]))
+        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
         end = time.time()
         print('train {} model {}'.format('ds_out', end - start))
 
@@ -552,14 +544,10 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_z, model_file + '.z.'+str(MM))
         joblib.dump(lm_s, model_file + '.s.'+str(MM))
-        xgb_models[2]=lm_z.get_booster()
-        xgb_models[3]=lm_s.get_booster()
-        #lm_s.get_booster().set_attr(scikit_learn=None)
         lm_z=None
         lm_s=None
         fitting_threads=[]
 
-        xgb_models = [None, None, None, None]
 
 
 
