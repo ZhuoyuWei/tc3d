@@ -53,15 +53,44 @@ def elements_2(elements,nodes,spos=None):
         if int(node['node_id']) in node2count:
             counts[i]=node2count.get(int(node['node_id']),0)
 
-    if spos:
+    if spos is not None:
+        count_spos=0
         counts2=[0]*len(nodes)
         #for node in nodes:
         for i,node in enumerate(nodes):
+            if int(node['node_id']) in node2spos:
+                count_spos+=1
             counts2[i]=node2spos.get(int(node['node_id']),0)
+        print('spos elements hitting {}'.format(count_spos))
     else:
         counts2=None
 
     return counts,counts2
+
+
+def elements_3(elements, nodes):
+    node2count = {}
+
+    for i, ele in enumerate(elements):
+        node2count[int(ele['node_id'])] = int(ele['idx'])
+
+    counts = [0] * len(nodes)
+    # for node in nodes:
+    x=0
+    y=0
+    z=0
+    for i, node in enumerate(nodes):
+        if int(node['node_id']) in node2count:
+            counts[i] = node2count.get(int(node['node_id']), 0)
+            x+=float(node['x'])
+            y+=float(node['y'])
+            z+=float(node['z'])
+
+    x/=len(node2count)
+    y/=len(node2count)
+    z/=len(node2count)
+
+    return counts,[x,y,z]
 
 
 def elements_2_nodes(elements,nodes,element_set=None):
@@ -279,7 +308,7 @@ def read_input_df(fname):
     spos=read_SPOS(input_obj['surf_plate'])
 
     start=time.time()
-    push_counts,nouse=elements_2(input_obj['push_elements'],input_obj['nodes'],None)
+    push_counts,push_xyz=elements_3(input_obj['push_elements'],input_obj['nodes'])
     end=time.time()
     #sys.stderr.write('push element nodes {}\n'.format(end-start))
 
@@ -349,7 +378,8 @@ def read_input_df(fname):
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,sposcount=sposcount,id=id,
-                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z']),input_obj
+                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z'],
+                     push_x=push_xyz[0],push_y=push_xyz[1],push_z=push_xyz[2]),input_obj
 
 
 
@@ -459,7 +489,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                                    'move_x','move_y','move_z']
+                                    'move_x','move_y','move_z','push_x','push_y','push_z']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -601,7 +631,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                     'move_x', 'move_y', 'move_z']
+                     'move_x', 'move_y', 'move_z','push_x','push_y','push_z']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
