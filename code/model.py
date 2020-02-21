@@ -246,7 +246,7 @@ def read_input_df(fname):
 
 
     start=time.time()
-    neareast_5=nearest_k(df['x','y','z'],input_obj['nodes'],input_obj['push_elements'],5)
+    neareast_5=nearest_k(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
     end = time.time()
     sys.stderr.write('push_dist query tree {}\n'.format(end - start))
 
