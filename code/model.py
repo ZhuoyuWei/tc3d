@@ -603,7 +603,18 @@ def _predict(models, input_file, output_file,ntree_limit=0):
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
                      'move_x', 'move_y', 'move_z']
 
+    for MM in range(len(models)):
 
+        thread_0 = predict_thread(lm=models[MM][0], train_df=input_df,
+                                  feature_in_list=feature_in_list,
+                                  ntree_limit=ntree_limit)
+        thread_1 = predict_thread(lm=models[MM][1], train_df=input_df,
+                                  feature_in_list=feature_in_list, ntree_limit=ntree_limit)
+        thread_2 = predict_thread(lm=models[MM][2], train_df=input_df,
+                                  feature_in_list=feature_in_list,
+                                  ntree_limit=ntree_limit)
+
+        predictThreads += [thread_0, thread_1, thread_2]
 
 
 
