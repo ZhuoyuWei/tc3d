@@ -218,9 +218,10 @@ def nearest_gpu(node_df,nodes,elements,k):
     start = time.time()
     nodes_df=node_df.to_numpy(dtype=float)
     sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
-    tree = spatial.KDTree(nodes_df)
-    end = time.time()
+    #tree = spatial.KDTree(nodes_df)
+
     nodes_gpu=torch.Tensor(nodes_df)
+    end = time.time()
     print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
 
     sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))

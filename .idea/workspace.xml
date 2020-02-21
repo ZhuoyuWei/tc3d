@@ -4,7 +4,6 @@
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tt3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tt3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,29 +31,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="53" />
+          <entry key="py" value="54" />
           <entry key="sh" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="53" />
+          <entry key="Python" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="12895" />
+          <entry key="py" value="12905" />
           <entry key="sh" value="665" />
-          <entry key="txt" value="1342" />
+          <entry key="txt" value="1357" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2137" />
-          <entry key="Python" value="12895" />
+          <entry key="PLAIN_TEXT" value="2152" />
+          <entry key="Python" value="12905" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -71,11 +70,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+            <state relative-caret-position="213">
+              <caret line="223" column="4" selection-start-line="223" selection-start-column="4" selection-end-line="223" selection-end-column="4" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1582273058304" expanded="true" signature="4567:7774" ph="..." />
+                <element signature="e#4559#6062#0" />
+                <marker date="1582274627058" expanded="true" signature="4567:7776" ph="..." />
               </folding>
             </state>
           </provider>
@@ -123,6 +123,18 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/model_nn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="300" selection-start-line="300" selection-end-line="300" />
+              <folding>
+                <element signature="e#23#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -154,6 +166,7 @@
       <find>neareast_5</find>
       <find>read</find>
       <find>to_n</find>
+      <find>build kd</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -320,20 +333,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00075" summary="file level random is not good">
-      <created>1581815524458</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1581815524460</updated>
-    </task>
-    <task id="LOCAL-00076" summary="inference gpu hist">
-      <created>1581839334389</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1581839334389</updated>
     </task>
     <task id="LOCAL-00077" summary="multi 2 gpu">
       <created>1581841922257</created>
@@ -664,7 +663,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582272329721</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="torch neareast|fix 2">
+      <created>1582273067450</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1582273067451</updated>
+    </task>
+    <task id="LOCAL-00125" summary="torch neareast w/o move_xyz">
+      <created>1582274100676</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1582274100676</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -694,8 +707,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="kdtree|2" />
-    <MESSAGE value="kdtree|3" />
     <MESSAGE value="kdtree|4" />
     <MESSAGE value="remove several features" />
     <MESSAGE value="remove several features|fix bug" />
@@ -719,7 +730,9 @@
     <MESSAGE value="+id|fix" />
     <MESSAGE value="torch neareast" />
     <MESSAGE value="torch neareast|fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="torch neareast|fix" />
+    <MESSAGE value="torch neareast|fix 2" />
+    <MESSAGE value="torch neareast w/o move_xyz" />
+    <option name="LAST_COMMIT_MESSAGE" value="torch neareast w/o move_xyz" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -808,16 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model_nn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5943">
-          <caret line="300" selection-start-line="300" selection-end-line="300" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/dlts_nn.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="924">
@@ -890,13 +893,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
+    <entry file="file://$PROJECT_DIR$/code/model_nn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+        <state relative-caret-position="777">
+          <caret line="300" selection-start-line="300" selection-end-line="300" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <marker date="1582273058304" expanded="true" signature="4567:7774" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="223" column="4" selection-start-line="223" selection-start-column="4" selection-end-line="223" selection-end-column="4" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+            <element signature="e#4559#6062#0" />
+            <marker date="1582274627058" expanded="true" signature="4567:7776" ph="..." />
           </folding>
         </state>
       </provider>
