@@ -9,6 +9,7 @@ import pandas as pd
 import time
 import threading
 import xgboost
+import torch
 import numpy as np
 import random
 import sys
@@ -219,7 +220,7 @@ def nearest_gpu(node_df,nodes,elements,k):
     sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
     tree = spatial.KDTree(nodes_df)
     end = time.time()
-    nodes_gpu=torch.Tensor(nodes_df,device='cude:0')
+    nodes_gpu=torch.Tensor(nodes_df)
     print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
 
     sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
@@ -249,7 +250,7 @@ def nearest_gpu(node_df,nodes,elements,k):
         push_id2triplets[ele][2]/=3
         values.append(push_id2triplets[ele])
 
-    values_gpu=torch.Tensor(values,device='cude:0')
+    values_gpu=torch.Tensor(values)
     print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
 
     end=time.time()
@@ -257,12 +258,12 @@ def nearest_gpu(node_df,nodes,elements,k):
 
     start=time.time()
 
-    dist=torch.matmul(nodes_gpu,values_gpu)
-    dist_min=dist.m
+    dist=torch.matmul(nodes_gpu,values_gpu.transpose(0,1))
+    dist_min=dist.min(dim=-1).to_numpy()
 
     sys.stderr.write('[IN] query tree {} \n'.format(end-start))
 
-    return counts
+    return dist_min
 
 
 def read_input_df(fname):
@@ -297,13 +298,13 @@ def read_input_df(fname):
     #sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
 
 
-    '''
+
     start=time.time()
-    neareast_5=nearest_k(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
+    neareast_5=nearest_gpu(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
     end = time.time()
     sys.stderr.write('push_dist query tree {}\n'.format(end - start))
 
-    
+    '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
     print('nodes push_elements: {}'.format(len(push_counts)))
     print('nodes surf_elements: {}'.format(len(surf_counts)))
@@ -348,7 +349,8 @@ def read_input_df(fname):
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,sposcount=sposcount,id=id,
-                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z']),input_obj
+                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z'],
+                     neareast_5=neareast_5),input_obj
 
 
 
@@ -460,7 +462,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                                   'move_x', 'move_y', 'move_z']
+                                   'move_x', 'move_y', 'move_z','neareast_5']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -612,7 +614,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                    'move_x', 'move_y', 'move_z']
+                    'move_x', 'move_y', 'move_z','neareast_5']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
