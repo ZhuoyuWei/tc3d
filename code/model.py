@@ -349,6 +349,7 @@ def read_input_df(fname):
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,sposcount=sposcount,id=id,
+                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z'],
                      neareast_5=neareast_5),input_obj
 
 
@@ -459,6 +460,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
+                                    'move_x','move_y','move_z',
                                    'neareast_5']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
@@ -601,6 +603,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
+                     'move_x', 'move_y', 'move_z',
                      'neareast_5']
     for MM in range(len(models)):
 
