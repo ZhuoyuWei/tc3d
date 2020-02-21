@@ -415,15 +415,16 @@ class train_thread(threading.Thread):
 
 class read_train_thread(threading.Thread):
 
-    def __init__(self,fdata):
+    def __init__(self,fdata,ground_truth_dir):
         threading.Thread.__init__(self)
         self.fdata=fdata
+        self.ground_truth_dir=ground_truth_dir
         self._return=None
 
     def run(self):
 
         case_id = extract_case_id(self.fdata)
-        fres = f'{ground_truth_dir}/{case_id}.csv'
+        fres = f'{self.ground_truth_dir}/{case_id}.csv'
         input_df,input_obj = read_input_df(self.fdata)
 
         output_df = pd.read_csv(fres)
@@ -435,6 +436,22 @@ class read_train_thread(threading.Thread):
         threading.Thread.join(self, *args)
         return self._return
 
+class read_predict_thread(threading.Thread):
+
+    def __init__(self,fdata):
+        threading.Thread.__init__(self)
+        self.fdata=fdata
+        self._return=None
+
+    def run(self):
+
+        input_df,input_obj = read_input_df(self.fdata)
+
+        self._return=input_df
+
+    def join(self, *args):
+        threading.Thread.join(self, *args)
+        return self._return
 @cli.command()
 @click.argument('input-dir')
 @click.argument('ground-truth-dir')
@@ -459,7 +476,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     for fname in glob.glob(f'{input_dir}/*.json'):
         readlists.append(fname)
         all_dfs.append(None)
-        read_threads.append(read_train_thread(fname))
+        read_threads.append(read_train_thread(fname,ground_truth_dir))
 
     for i in range(len(read_threads)):
         read_threads[i].start()
@@ -735,11 +752,33 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
 
     #model = joblib.load(model_file)
     start=time.time()
+    input_dfs=[]
+    read_predict_threads=[]
+    write_predicts=[]
+    input_files=[]
     for input_file in glob.glob(f'{input_dir}/*.json'):
+        input_files.append(input_file)
+        read_predict_threads.append(read_predict_thread(input_file))
         case_id = extract_case_id(input_file)
-        _predict(models,input_file, f'{output_dir}/{case_id}.csv',ntree_limit=ntree_limit)
+        write_predicts.append(f'{output_dir}/{case_id}.csv')
+        input_dfs.append(None)
+
+    for i in range(len(read_predict_threads)):
+        read_predict_threads[i].start()
+
+    for i in range(len(read_predict_threads)):
+        input_dfs[i]=read_predict_threads[i].join()
+
     end=time.time()
-    print('Predict is finished in {} s'.format(end-start))
+    tend=end-start
+    print('Predict read in {} s'.format(end-start))
+
+    start = time.time()
+    for i, input_df in enumerate(input_dfs):
+        _predict(models, input_df, write_predicts[i], ntree_limit=ntree_limit)
+    end=time.time()
+
+    print('Predict is finished in {} s and total {}'.format(end-start,end-start+tend))
 
 
 if __name__ == '__main__':

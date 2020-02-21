@@ -45,15 +45,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="13106" />
+          <entry key="py" value="13291" />
           <entry key="sh" value="665" />
-          <entry key="txt" value="1376" />
+          <entry key="txt" value="1400" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2171" />
-          <entry key="Python" value="13106" />
+          <entry key="PLAIN_TEXT" value="2195" />
+          <entry key="Python" value="13291" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -70,8 +70,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="466" column="41" lean-forward="true" selection-start-line="466" selection-start-column="41" selection-end-line="466" selection-end-column="41" />
+            <state relative-caret-position="457">
+              <caret line="766" column="39" lean-forward="true" selection-start-line="766" selection-start-column="39" selection-end-line="766" selection-end-column="39" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -166,6 +166,7 @@
       <find>to_n</find>
       <find>build kd</find>
       <find>read_train_thread</find>
+      <find>nearest_gpu(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -332,20 +333,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00079" summary="two and ave|fix &amp; only infer">
-      <created>1581850327374</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1581850327374</updated>
-    </task>
-    <task id="LOCAL-00080" summary="xgb_model for continue learning">
-      <created>1581898709787</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1581898709787</updated>
     </task>
     <task id="LOCAL-00081" summary="xgb_model for continue learning|fix bug all_train">
       <created>1581905405642</created>
@@ -676,7 +663,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582275718315</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="mulit training reading">
+      <created>1582277703969</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1582277703969</updated>
+    </task>
+    <task id="LOCAL-00129" summary="mulit training reading|+neareast_5">
+      <created>1582277899995</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1582277899995</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -706,8 +707,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove several features|fix bug" />
-    <MESSAGE value="remove several features|fix bug 2" />
     <MESSAGE value="remove all xyz" />
     <MESSAGE value="norm xyz" />
     <MESSAGE value="add ,'sposcount'" />
@@ -731,7 +730,9 @@
     <MESSAGE value="torch neareast w/o move_xyz" />
     <MESSAGE value="torch neareast w/o move_xyz|fix" />
     <MESSAGE value="id w/o movexyz" />
-    <option name="LAST_COMMIT_MESSAGE" value="id w/o movexyz" />
+    <MESSAGE value="mulit training reading" />
+    <MESSAGE value="mulit training reading|+neareast_5" />
+    <option name="LAST_COMMIT_MESSAGE" value="mulit training reading|+neareast_5" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -858,16 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="466" column="41" lean-forward="true" selection-start-line="466" selection-start-column="41" selection-end-line="466" selection-end-column="41" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/tt2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -875,13 +866,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/train.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -906,6 +890,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5943">
           <caret line="300" selection-start-line="300" selection-end-line="300" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/train.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="766" column="39" lean-forward="true" selection-start-line="766" selection-start-column="39" selection-end-line="766" selection-end-column="39" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
