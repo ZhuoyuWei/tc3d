@@ -411,6 +411,29 @@ class train_thread(threading.Thread):
         if sample_rate < 1:
             train_df = train_df.sample(frac=sample_rate, random_state=42)
 '''
+
+class read_train_thread(threading.Thread):
+
+    def __init__(self,fdata):
+        threading.Thread.__init__(self)
+        self.fdata=fdata
+        self._return=None
+
+    def run(self):
+
+        case_id = extract_case_id(self.fdata)
+        fres = f'{ground_truth_dir}/{case_id}.csv'
+        input_df,input_obj = read_input_df(self.fdata)
+
+        output_df = pd.read_csv(fres)
+        merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
+
+        self._return=merged_df
+
+    def join(self, *args):
+        threading.Thread.join(self, *args)
+        return self._return
+
 @cli.command()
 @click.argument('input-dir')
 @click.argument('ground-truth-dir')
@@ -430,19 +453,11 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
     all_dfs = []
     start=time.time()
-    #random.seed(42)
+    readlists=[]
     for fname in glob.glob(f'{input_dir}/*.json'):
-        #if sample_rate < 1:
-        #    rand_v=random.random()
-        #    if rand_v > sample_rate:
-        #        continue
-        input_df,input_obj = read_input_df(fname)
-        case_id = extract_case_id(fname)
-        output_df = pd.read_csv(f'{ground_truth_dir}/{case_id}.csv')
-        merged_df = input_df.merge(output_df, on='node_id', suffixes=['_in', '_out'])
-        #if sample_rate < 1:
-        #    merged_df=merged_df.sample(frac=sample_rate, random_state=42)
-        all_dfs.append(merged_df)
+        readlists.append(fname)
+        all_dfs.append(None)
+
     end=time.time()
     print('reading training data cost {} s'.format(end-start))
     all_df = pd.concat(all_dfs, ignore_index=True)
