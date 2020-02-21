@@ -217,14 +217,14 @@ def nearest_k(node_df,nodes,elements,k):
 def nearest_gpu(node_df,nodes,elements,k):
     start = time.time()
     nodes_df=node_df.to_numpy(dtype=float)
-    sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
+    #sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
     #tree = spatial.KDTree(nodes_df)
 
     nodes_gpu=torch.Tensor(nodes_df)
     end = time.time()
-    print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
+    #print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
 
-    sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
+    #sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
 
 
     start=time.time()
@@ -232,7 +232,7 @@ def nearest_gpu(node_df,nodes,elements,k):
     for node in nodes:
         id2node[node['node_id']]=node
     end=time.time()
-    sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
+    #sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
 
     start=time.time()
     push_id2triplets={}
@@ -252,17 +252,17 @@ def nearest_gpu(node_df,nodes,elements,k):
         values.append(push_id2triplets[ele])
 
     values_gpu=torch.Tensor(values)
-    print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
+    #print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
 
     end=time.time()
-    sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
+    #sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
 
     start=time.time()
 
     dist=torch.matmul(nodes_gpu,values_gpu.transpose(0,1))
     dist_min=dist.min(dim=-1)[0].numpy()
 
-    sys.stderr.write('[IN] query tree {} \n'.format(end-start))
+    #sys.stderr.write('[IN] query tree {} \n'.format(end-start))
 
     return dist_min
 
@@ -298,13 +298,13 @@ def read_input_df(fname):
     end = time.time()
     #sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
 
-    '''
+
     start=time.time()
     neareast_5=nearest_gpu(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
     end = time.time()
-    sys.stderr.write('push_dist query tree {}\n'.format(end - start))
+    #sys.stderr.write('push_dist query tree {}\n'.format(end - start))
 
-    
+    '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
     print('nodes push_elements: {}'.format(len(push_counts)))
     print('nodes surf_elements: {}'.format(len(surf_counts)))
@@ -326,7 +326,8 @@ def read_input_df(fname):
     dy = df['y'] - move_node['y']
     dz = df['z'] - move_node['z']
 
-    id=df['node_id']/100000
+    #id=df['node_id']/100000
+    id = df['node_id']
 
     #df_max = df.max()
 
@@ -348,7 +349,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,sposcount=sposcount,id=id),input_obj
+                     thickness=thickness,sposcount=sposcount,id=id,neareast_5=neareast_5),input_obj
 
 
 
@@ -482,7 +483,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','sposcount','id']
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount','id','neareast_5']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -633,7 +634,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                    'pcounts','scounts','nf_counts','no_counts','sposcount','id']
+                    'pcounts','scounts','nf_counts','no_counts','sposcount','id','neareast_5']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
