@@ -213,6 +213,56 @@ def nearest_k(node_df,nodes,elements,k):
     return counts
 
 
+def nearest_gpu(node_df,nodes,elements,k):
+    start = time.time()
+    nodes_df=node_df.to_numpy(dtype=float)
+    sys.stderr.write('DEBUG nodes df shape {}\n'.format(node_df.shape))
+    tree = spatial.KDTree(nodes_df)
+    end = time.time()
+    nodes_gpu=torch.Tensor(nodes_df,device='cude:0')
+    print('pytorch nodes_gpu shape: {}'.format(nodes_gpu.size()))
+
+    sys.stderr.write('[IN] build kdtree {} \n'.format(end - start))
+
+
+    start=time.time()
+    id2node={}
+    for node in nodes:
+        id2node[node['node_id']]=node
+    end=time.time()
+    sys.stderr.write('[IN] build node dict {} \n'.format(end-start))
+
+    start=time.time()
+    push_id2triplets={}
+    for i,element in enumerate(elements):
+        if not element['element_id'] in push_id2triplets:
+            push_id2triplets[element['element_id']]=[0,0,0]
+        push_id2triplets[element['element_id']][0]+=float(id2node[element['node_id']]['x'])
+        push_id2triplets[element['element_id']][1]+=float(id2node[element['node_id']]['y'])
+        push_id2triplets[element['element_id']][2]+=float(id2node[element['node_id']]['z'])
+
+
+    values=[]
+    for ele in push_id2triplets:
+        push_id2triplets[ele][0]/=3
+        push_id2triplets[ele][1]/=3
+        push_id2triplets[ele][2]/=3
+        values.append(push_id2triplets[ele])
+
+    values_gpu=torch.Tensor(values,device='cude:0')
+    print('pytorch values_gpu shape: {}'.format(values_gpu.size()))
+
+    end=time.time()
+    sys.stderr.write('[IN] build element dict {} \n'.format(end-start))
+
+    start=time.time()
+
+    dist=torch.matmul(nodes_gpu,values_gpu)
+    dist_min=dist.m
+
+    sys.stderr.write('[IN] query tree {} \n'.format(end-start))
+
+    return counts
 
 
 def read_input_df(fname):
@@ -409,7 +459,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','sposcount','id'
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount','id',
                                    'move_x', 'move_y', 'move_z']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
@@ -561,7 +611,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                    'pcounts','scounts','nf_counts','no_counts','sposcount','id'
+                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
                     'move_x', 'move_y', 'move_z']
     for MM in range(len(models)):
 
