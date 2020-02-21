@@ -81,9 +81,14 @@ with open(sys.argv[1]) as f:
                                        y=item['y'],
                                        z=item['z'])
     print('####Nodes: id##########')
-    node_ids=sorted(id2nodes.items(),key=lambda x:x[1].id)
+    node_ids=sorted(id2nodes.items(),key=lambda x:int(x[1].id))
     for i in range(5):
         print(node_ids[i][1])
+
+    with open(sys.argv[2],'w') as fout:
+        for node in node_ids:
+            fout.write('{}\n'.format(node[1]))
+
 
 
     print('####Nodes: x##########')

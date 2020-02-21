@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/pre/read_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/pre/read_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,29 +31,29 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="48" />
+          <entry key="py" value="49" />
           <entry key="sh" value="45" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="55" />
-          <entry key="Python" value="48" />
+          <entry key="Python" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="12120" />
+          <entry key="py" value="12255" />
           <entry key="sh" value="664" />
-          <entry key="txt" value="1290" />
+          <entry key="txt" value="1299" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2084" />
-          <entry key="Python" value="12120" />
+          <entry key="PLAIN_TEXT" value="2093" />
+          <entry key="Python" value="12255" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -67,16 +67,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+            <state relative-caret-position="331">
+              <caret line="255" column="4" lean-forward="true" selection-start-line="255" selection-start-column="4" selection-end-line="255" selection-end-column="4" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
                 <element signature="e#2965#4481#0" />
-                <marker date="1582263145116" expanded="true" signature="4554:6067" ph="..." />
+                <marker date="1582265006948" expanded="true" signature="4554:6067" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -110,15 +119,6 @@
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="819">
-              <caret line="39" column="8" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -204,6 +204,7 @@
       <find>train(</find>
       <find>fit_thread(</find>
       <find>nearest_k</find>
+      <find>neareast_5</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,7 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/code/pre/read_json.py" />
         <option value="$PROJECT_DIR$/code/dev/cv.py" />
         <option value="$PROJECT_DIR$/code/dev/train.sh.py" />
         <option value="$PROJECT_DIR$/code/dev/cv5.sh" />
@@ -245,6 +245,7 @@
         <option value="$PROJECT_DIR$/code/tt2.py" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/pre/read_json.py" />
       </list>
     </option>
   </component>
@@ -273,6 +274,12 @@
               <item name="tc3d" type="b2602c69:ProjectViewProjectNode" />
               <item name="tc3d" type="462c0819:PsiDirectoryNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tc3d" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tc3d" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="pre" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -363,20 +370,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00068" summary="remove delete">
-      <created>1581688670114</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1581688670118</updated>
-    </task>
-    <task id="LOCAL-00069" summary="remove delete|fix bug">
-      <created>1581691577449</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1581691577449</updated>
     </task>
     <task id="LOCAL-00070" summary="submission_13">
       <created>1581696725236</created>
@@ -707,7 +700,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582262166240</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="sys.setrecursionlimit(100000)">
+      <created>1582263154804</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1582263154804</updated>
+    </task>
+    <task id="LOCAL-00118" summary="move_xyz">
+      <created>1582265014444</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1582265014444</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -737,8 +744,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add post" />
-    <MESSAGE value="0.45" />
     <MESSAGE value="random forest" />
     <MESSAGE value="random forest|fix 1" />
     <MESSAGE value="submission 30" />
@@ -762,7 +767,9 @@
     <MESSAGE value="xgb_model|debug 2" />
     <MESSAGE value="change xgboost lab" />
     <MESSAGE value="neareast_5 without xgb_model" />
-    <option name="LAST_COMMIT_MESSAGE" value="neareast_5 without xgb_model" />
+    <MESSAGE value="sys.setrecursionlimit(100000)" />
+    <MESSAGE value="move_xyz" />
+    <option name="LAST_COMMIT_MESSAGE" value="move_xyz" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -815,13 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1281">
-          <caret line="62" column="14" selection-start-line="61" selection-end-line="65" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -925,13 +925,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        <state relative-caret-position="331">
+          <caret line="255" column="4" lean-forward="true" selection-start-line="255" selection-start-column="4" selection-end-line="255" selection-end-column="4" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
             <element signature="e#2965#4481#0" />
-            <marker date="1582263145116" expanded="true" signature="4554:6067" ph="..." />
+            <marker date="1582265006948" expanded="true" signature="4554:6067" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
         </state>
       </provider>
     </entry>
