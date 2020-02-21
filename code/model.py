@@ -259,7 +259,7 @@ def nearest_gpu(node_df,nodes,elements,k):
     start=time.time()
 
     dist=torch.matmul(nodes_gpu,values_gpu.transpose(0,1))
-    dist_min=dist.min(dim=-1).to_numpy()
+    dist_min=dist.min(dim=-1).data.numpy()
 
     sys.stderr.write('[IN] query tree {} \n'.format(end-start))
 
