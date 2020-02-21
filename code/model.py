@@ -228,30 +228,30 @@ def read_input_df(fname):
     start=time.time()
     push_counts,nouse=elements_2(input_obj['push_elements'],input_obj['nodes'],None)
     end=time.time()
-    sys.stderr.write('push element nodes {}\n'.format(end-start))
+    #sys.stderr.write('push element nodes {}\n'.format(end-start))
 
     start=time.time()
     surf_counts,sposcount=elements_2(input_obj['surf_elements'],input_obj['nodes'],spos)
     end=time.time()
-    sys.stderr.write('surf element nodes {}\n'.format(end-start))
+    #sys.stderr.write('surf element nodes {}\n'.format(end-start))
 
     start=time.time()
     nset_fix_counts=elements_2_nodes(input_obj['nset_fix'],input_obj['nodes'])
     end=time.time()
-    sys.stderr.write('nset_fix nodes {}\n'.format(end-start))
+    #sys.stderr.write('nset_fix nodes {}\n'.format(end-start))
 
     start=time.time()
     nset_osibou_counts=elements_2_nodes(input_obj['nset_osibou'],input_obj['nodes'])
     end = time.time()
-    sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
+    #sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
 
 
-
+    '''
     start=time.time()
     neareast_5=nearest_k(df[['x','y','z']],input_obj['nodes'],input_obj['push_elements'],5)
     end = time.time()
     sys.stderr.write('push_dist query tree {}\n'.format(end - start))
-
+    '''
     '''
     print('nodes origin: {}'.format(len(input_obj['nodes'])))
     print('nodes push_elements: {}'.format(len(push_counts)))
@@ -294,7 +294,7 @@ def read_input_df(fname):
     return df.assign(dx=dx, dy=dy, dz=dz,
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
-                     thickness=thickness,sposcount=sposcount,neareast_5=neareast_5),input_obj
+                     thickness=thickness,sposcount=sposcount),input_obj
 
 class fit_thread(threading.Thread):
 
@@ -403,7 +403,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
-                                   'pcounts','scounts','nf_counts','no_counts','sposcount','neareast_5']
+                                   'pcounts','scounts','nf_counts','no_counts','sposcount']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -411,7 +411,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         lm_x = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
-                              random_state=42,
+                              random_state=random_states[MM],
                               tree_method=model_config['tree_method'],gpu_id=0)
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
@@ -428,7 +428,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         lm_y = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
-                              random_state=42,
+                              random_state=random_states[MM],
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
@@ -448,8 +448,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_x, model_file + '.x.'+str(MM))
         joblib.dump(lm_y, model_file + '.y.'+str(MM))
-        xgb_models[0]=model_file + '.x.'+str(MM)
-        xgb_models[1]=model_file + '.y.'+str(MM)
+        xgb_models[0]=lm_x.get_booster()
+        xgb_models[1]=lm_y.get_booster()
         lm_x=None
         lm_y=None
         fitting_threads=[]
@@ -459,7 +459,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         lm_z = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
-                              random_state=42,
+                              random_state=random_states[MM],
                               tree_method=model_config['tree_method'],gpu_id=0)
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
@@ -478,7 +478,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         lm_s = xgboost.XGBRegressor(n_estimators=model_config['n_estimators'],
                               max_depth=model_config['max_depth'],
                               n_jobs=model_config['n_jobs'],
-                              random_state=42,
+                              random_state=random_states[MM],
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
@@ -496,8 +496,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_z, model_file + '.z.'+str(MM))
         joblib.dump(lm_s, model_file + '.s.'+str(MM))
-        xgb_models[2]=model_file + '.z.'+str(MM)
-        xgb_models[3]=model_file + '.s.'+str(MM)
+        xgb_models[2]=lm_z.get_booster()
+        xgb_models[3]=lm_s.get_booster()
         #lm_s.get_booster().set_attr(scikit_learn=None)
         lm_z=None
         lm_s=None
@@ -554,7 +554,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x', 'y','z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
-     'pcounts', 'scounts', 'nf_counts', 'no_counts','sposcount','neareast_5']
+     'pcounts', 'scounts', 'nf_counts', 'no_counts','sposcount']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
