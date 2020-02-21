@@ -12,6 +12,7 @@ import xgboost
 import numpy as np
 import random
 import sys
+sys.setrecursionlimit(100000)
 
 from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
