@@ -164,7 +164,9 @@ def neareast_nodes(elements,nodes):
 
 def nearest_k(node_df,nodes,elements,k):
     start = time.time()
-    tree = spatial.KDTree(node_df.to_numpy(dtype=float))
+    nodes_df=node_df.to_numpy(dtype=float)
+    print('DEBUG nodes df shape {}'.format(node_df.shape))
+    tree = spatial.KDTree()
     end = time.time()
     print('[IN] build kdtree {} \n'.format(end - start))
 
