@@ -245,18 +245,23 @@ def read_input_df(fname):
 
 class fit_thread(threading.Thread):
 
-    def __init__(self,lm,train_df,featurelist,target):
+    def __init__(self,lm,train_df,featurelist,target,xgb_model=None):
         threading.Thread.__init__(self)
         self.lm=lm
         self.train_df=train_df
         self.target=target
         self.featurelist=featurelist
+        self.xgb_model=xgb_model
 
     def run(self):
         print('train {} starts'.format(self.target))
         start = time.time()
-        self.lm.fit(self.train_df[self.featurelist],
+        if self.xgb_model is None:
+            self.lm.fit(self.train_df[self.featurelist],
                       self.train_df[self.target])
+        else:
+            self.lm.fit(self.train_df[self.featurelist],
+                      self.train_df[self.target],xgb_model=self.xgb_model)
         end = time.time()
         print('train {} model {}'.format(self.target,end - start))
 
@@ -334,6 +339,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     all_df = pd.concat(all_dfs, ignore_index=True)
 
     random_states=[42,999,7717]
+
+    xgb_models=[None,None,None,None]
     for MM in range(3):
 
         if sample_rate < 1:
@@ -355,7 +362,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=0)
         start = time.time()
         #lm_x.fit(train_df[feature_in_list],train_df['dx_out'])
-        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out'))
+        fitting_threads.append(fit_thread(lm_x,train_df,feature_in_list,'dx_out',
+                                          xgb_model=xgb_models[0]))
         end = time.time()
         print('train {} model {}'.format('dx_out', end - start))
         #joblib.dump(lm_x, model_file + '.x')
@@ -371,7 +379,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_y.fit(train_df[feature_in_list],train_df['dy_out'])
-        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out'))
+        fitting_threads.append(fit_thread(lm_y, train_df,feature_in_list, 'dy_out',
+                                          xgb_model=xgb_models[1]))
         end = time.time()
         print('train {} model {}'.format('dy_out', end - start))
         #joblib.dump(lm_y, model_file + '.y')
@@ -386,6 +395,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_x, model_file + '.x.'+str(MM))
         joblib.dump(lm_y, model_file + '.y.'+str(MM))
+        xgb_models[0]=model_file + '.x.'+str(MM)
+        xgb_models[1]=model_file + '.y.'+str(MM)
         lm_x=None
         lm_y=None
         fitting_threads=[]
@@ -400,7 +411,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         #fitting_threads.append(fit_thread(lm_z, train_df, 'dz_out'))
         start = time.time()
         #lm_z.fit(train_df[feature_in_list],train_df['dz_out'])
-        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out'))
+        fitting_threads.append(fit_thread(lm_z, train_df, feature_in_list, 'dz_out',
+                                          xgb_model=xgb_models[2]))
         end = time.time()
         print('train {} model {}'.format('dz_out', end - start))
         #joblib.dump(lm_z, model_file + '.z')
@@ -417,7 +429,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
-        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
+        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress',
+                                          xgb_model=xgb_models[3]))
         end = time.time()
         print('train {} model {}'.format('ds_out', end - start))
 
@@ -430,6 +443,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
 
         joblib.dump(lm_z, model_file + '.z.'+str(MM))
         joblib.dump(lm_s, model_file + '.s.'+str(MM))
+        xgb_models[2]=model_file + '.z.'+str(MM)
+        xgb_models[3]=model_file + '.s.'+str(MM)
         #lm_s.get_booster().set_attr(scikit_learn=None)
         lm_z=None
         lm_s=None
@@ -515,6 +530,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     for i in range(len(predictThreads)):
         dz_preds[i]=predictThreads[i].join()
 
+    predictThreads=[]
 
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
