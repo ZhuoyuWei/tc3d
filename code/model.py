@@ -454,9 +454,17 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     all_dfs = []
     start=time.time()
     readlists=[]
+    read_threads=[]
     for fname in glob.glob(f'{input_dir}/*.json'):
         readlists.append(fname)
         all_dfs.append(None)
+        read_threads.append(read_train_thread(fname))
+
+    for i in range(len(read_threads)):
+        read_threads[i].start()
+
+    for i in range(len(read_threads)):
+        all_dfs[i]=read_threads[i].join()
 
     end=time.time()
     print('reading training data cost {} s'.format(end-start))
