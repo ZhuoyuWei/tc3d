@@ -533,7 +533,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                               tree_method=model_config['tree_method'],gpu_id=1)
         start = time.time()
         #lm_s.fit(train_df[feature_in_list],train_df['max_stress'])
-        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list,'max_stress'))
+        fitting_threads.append(fit_thread(lm_s, train_df, feature_in_list+['dx_out','dy_out','dz_out'],'max_stress'))
         end = time.time()
         print('train {} model {}'.format('ds_out', end - start))
 
@@ -597,29 +597,12 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     input_df.rename(columns={'dx':'dx_in'}, inplace=True)
     input_df.rename(columns={'dy':'dy_in'}, inplace=True)
     input_df.rename(columns={'dz':'dz_in'}, inplace=True)
-    dz_preds=[None,None,None,None,None,None,None,None,None,None,None,None]
+    dz_preds=[None,None,None,None,None,None,None,None,None]
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
                      'move_x', 'move_y', 'move_z']
-    for MM in range(len(models)):
 
-        #models[MM][0].set_params(tree_method='gpu_hist')
-        #models[MM][0].set_params(gpu_id=0)
-        #models[MM][1].set_params(tree_method='gpu_hist')
-        #models[MM][1].set_params(gpu_id=1)
-        thread_0=predict_thread(lm=models[MM][0],train_df=input_df,
-                                feature_in_list=feature_in_list,
-                                ntree_limit=ntree_limit)
-        thread_1=predict_thread(lm=models[MM][1],train_df=input_df,
-                                feature_in_list=feature_in_list,ntree_limit=ntree_limit)
-        thread_2=predict_thread(lm=models[MM][2],train_df=input_df,
-                                feature_in_list=feature_in_list,
-                                ntree_limit=ntree_limit)
-        thread_3=predict_thread(lm=models[MM][3],
-                                feature_in_list=feature_in_list,
-                                train_df=input_df,ntree_limit=ntree_limit)
-        predictThreads+=[thread_0,thread_1,thread_2,thread_3]
 
 
 
@@ -631,13 +614,44 @@ def _predict(models, input_file, output_file,ntree_limit=0):
         dz_preds[i]=predictThreads[i].join()
 
     predictThreads=[]
+    dz_preds2=[None,None,None]
+
+
+    s_df_1=input_df.copy()
+    s_df_1=s_df_1.assign(dx_out=dz_preds[0], dy_out=dz_preds[1], dz_out=dz_preds[2])
+    thread_3=predict_thread(lm=models[0][3],
+                                feature_in_list=feature_in_list+['dx_out','dy_out','dz_out'],
+                                train_df=s_df_1,ntree_limit=ntree_limit)
+    predictThreads.append(thread_3)
+
+    s_df_1=input_df.copy()
+    s_df_1=s_df_1.assign(dx_out=dz_preds[3], dy_out=dz_preds[4], dz_out=dz_preds[5])
+    thread_3=predict_thread(lm=models[1][3],
+                                feature_in_list=feature_in_list+['dx_out','dy_out','dz_out'],
+                                train_df=s_df_1,ntree_limit=ntree_limit)
+    predictThreads.append(thread_3)
+
+    s_df_1=input_df
+    s_df_1=s_df_1.assign(dx_out=dz_preds[6], dy_out=dz_preds[7], dz_out=dz_preds[8])
+    thread_3=predict_thread(lm=models[2][3],
+                                feature_in_list=feature_in_list+['dx_out','dy_out','dz_out'],
+                                train_df=s_df_1,ntree_limit=ntree_limit)
+    predictThreads.append(thread_3)
+
+    for i in range(len(predictThreads)):
+        predictThreads[i].start()
+
+    for i in range(len(predictThreads)):
+        dz_preds2[i]=predictThreads[i].join()
+
+
 
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
         for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_df['node_id'],
-                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3],
-                              dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
-                              dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
+                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds2[0],
+                              dz_preds[3], dz_preds[4], dz_preds[5], dz_preds2[1],
+                              dz_preds[6], dz_preds[7], dz_preds[8], dz_preds2[2])
     ])
 
     #pred_df=post_procssing(pred_df,input_obj)
