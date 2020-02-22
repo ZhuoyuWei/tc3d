@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/pre/read_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/pre/read_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,15 +15,15 @@
     <session id="-1525906652">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="24" />
-          <entry key="project.open.time.0" value="4" />
+          <entry key="project.closed" value="25" />
+          <entry key="project.open.time.0" value="5" />
           <entry key="project.open.time.1" value="13" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="26" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -31,21 +31,21 @@
           <entry key="Dockerfile" value="5" />
           <entry key="Dockerfile_bak" value="4" />
           <entry key="Dockerfile_origin" value="1" />
-          <entry key="py" value="65" />
+          <entry key="py" value="66" />
           <entry key="sh" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="58" />
-          <entry key="Python" value="65" />
+          <entry key="Python" value="66" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="13255" />
+          <entry key="py" value="13473" />
           <entry key="sh" value="666" />
           <entry key="txt" value="1386" />
         </counts>
@@ -53,7 +53,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="2182" />
-          <entry key="Python" value="13255" />
+          <entry key="Python" value="13473" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -67,17 +67,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1654">
+            <state relative-caret-position="3549">
               <caret line="633" column="76" selection-start-line="633" selection-start-column="76" selection-end-line="633" selection-end-column="76" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <element signature="e#3008#4524#0" />
-                <element signature="e#4572#6075#0" />
-                <element signature="e#6125#7780#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="609">
+              <caret line="124" column="59" selection-start-line="124" selection-start-column="59" selection-end-line="124" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -153,10 +159,10 @@
         <option value="$PROJECT_DIR$/code/dlts_nn.sh.py" />
         <option value="$PROJECT_DIR$/code/tt2.py" />
         <option value="$PROJECT_DIR$/code/dlts.sh" />
-        <option value="$PROJECT_DIR$/code/pre/read_json.py" />
         <option value="$PROJECT_DIR$/tt3.py" />
         <option value="$PROJECT_DIR$/code/train.sh" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/pre/read_json.py" />
       </list>
     </option>
   </component>
@@ -174,6 +180,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,7 +203,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,13 +287,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00082" summary="3 models for ave">
-      <created>1581915555316</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1581915555316</updated>
     </task>
     <task id="LOCAL-00083" summary="3 models for ave|fix">
       <created>1581917020098</created>
@@ -625,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582284236401</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="'push_x','push_y','push_z'">
+      <created>1582301852101</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1582301852101</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -654,7 +660,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove several features|fix bug 2" />
     <MESSAGE value="remove all xyz" />
     <MESSAGE value="norm xyz" />
     <MESSAGE value="add ,'sposcount'" />
@@ -679,7 +684,8 @@
     <MESSAGE value="torch neareast w/o move_xyz and ori id" />
     <MESSAGE value="all feature" />
     <MESSAGE value="all feature/100000" />
-    <option name="LAST_COMMIT_MESSAGE" value="all feature/100000" />
+    <MESSAGE value="'push_x','push_y','push_z'" />
+    <option name="LAST_COMMIT_MESSAGE" value="'push_x','push_y','push_z'" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -802,9 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,16 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" selection-end-line="31" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1869">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
@@ -829,9 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="425" column="19" lean-forward="true" selection-start-line="422" selection-end-line="438" selection-end-column="66" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -844,14 +834,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1654">
+        <state relative-caret-position="3549">
           <caret line="633" column="76" selection-start-line="633" selection-start-column="76" selection-end-line="633" selection-end-column="76" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
-            <element signature="e#3008#4524#0" />
-            <element signature="e#4572#6075#0" />
-            <element signature="e#6125#7780#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="124" column="59" selection-start-line="124" selection-start-column="59" selection-end-line="124" selection-end-column="59" />
         </state>
       </provider>
     </entry>

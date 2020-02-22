@@ -107,12 +107,23 @@ with open(sys.argv[1]) as f:
         print(node_ids[i][1])
 
 
+    node2push={}
     #indexing_element
     push_elements={}
+    node2push_count=set()
     for i,item in enumerate(jobj['push_elements']):
         if not item['element_id'] in push_elements:
             push_elements[item['element_id']]=Element(id=item['element_id'],size=3)
         push_elements[item['element_id']].node_ids[int(item['idx'])-1]=item['node_id']
+        if not int(item['node_id']) in node2push:
+            node2push[int(item['node_id'])]=0
+        node2push[int(item['node_id'])] += 1
+        if node2push[int(item['node_id'])] >1:
+            node2push_count.add(int(item['node_id']))
+
+    #node2push_count=0
+    print('node2push count = {}'.format(len(node2push_count)))
+
 
     push_elements=list(sorted(push_elements.items(),key=lambda x:x[1].id))
     push_elements[0][1].id2nodes=id2nodes
