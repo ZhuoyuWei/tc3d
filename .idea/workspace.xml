@@ -45,50 +45,55 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="13510" />
+          <entry key="py" value="13814" />
           <entry key="sh" value="666" />
-          <entry key="txt" value="1394" />
+          <entry key="txt" value="1413" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2190" />
-          <entry key="Python" value="13510" />
+          <entry key="PLAIN_TEXT" value="2209" />
+          <entry key="Python" value="13814" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
           <entry key="git.branch.checkout.local" value="1" />
           <entry key="git.branch.checkout.revision" value="1" />
-          <entry key="git.branch.create.new" value="6" />
+          <entry key="git.branch.create.new" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+            <state relative-caret-position="286">
+              <caret line="651" column="21" selection-start-line="651" selection-start-column="21" selection-end-line="651" selection-end-column="21" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
+                <element signature="e#430#521#0" />
+                <element signature="e#548#656#0" />
                 <element signature="e#704#1531#0" />
                 <element signature="e#2167#2732#0" />
                 <element signature="e#2797#3714#0" />
                 <element signature="e#3756#5272#0" />
                 <element signature="e#5320#6823#0" />
                 <element signature="e#6873#8528#0" />
+                <element signature="e#11532#12036#0" />
+                <element signature="e#12083#12873#0" />
+                <element signature="e#12875#13242#1" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1678">
+            <state relative-caret-position="2056">
               <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
             </state>
           </provider>
@@ -133,7 +138,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="stress" />
+        <entry key="$PROJECT_DIR$" value="submit" />
       </map>
     </option>
   </component>
@@ -293,13 +298,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00087" summary="diff res dir and diff log">
-      <created>1581999145342</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1581999145342</updated>
     </task>
     <task id="LOCAL-00088" summary="submission 26">
       <created>1582004766407</created>
@@ -637,12 +635,18 @@
       <option name="project" value="LOCAL" />
       <updated>1582336146879</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="lightway, ele_id">
+      <created>1582337535646</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1582337535646</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -667,7 +671,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ,'sposcount'|fix" />
     <MESSAGE value="submission 32" />
     <MESSAGE value="xgb_model for training" />
     <MESSAGE value="kdtree for nearest 5" />
@@ -692,7 +695,8 @@
     <MESSAGE value="debug" />
     <MESSAGE value="debug 2" />
     <MESSAGE value="debug 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug 3" />
+    <MESSAGE value="lightway, ele_id" />
+    <option name="LAST_COMMIT_MESSAGE" value="lightway, ele_id" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -839,26 +843,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2056">
+          <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+        <state relative-caret-position="286">
+          <caret line="651" column="21" selection-start-line="651" selection-start-column="21" selection-end-line="651" selection-end-column="21" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
+            <element signature="e#430#521#0" />
+            <element signature="e#548#656#0" />
             <element signature="e#704#1531#0" />
             <element signature="e#2167#2732#0" />
             <element signature="e#2797#3714#0" />
             <element signature="e#3756#5272#0" />
             <element signature="e#5320#6823#0" />
             <element signature="e#6873#8528#0" />
+            <element signature="e#11532#12036#0" />
+            <element signature="e#12083#12873#0" />
+            <element signature="e#12875#13242#1" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1678">
-          <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
         </state>
       </provider>
     </entry>

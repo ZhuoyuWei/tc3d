@@ -84,6 +84,27 @@ def elements_4(elements, nodes):
 
     return counts
 
+
+def elements_5(elements, nodes):
+    node2count = {}
+
+    for i, ele in enumerate(elements):
+        if not int(ele['node_id']) in node2count:
+            node2count[int(ele['node_id'])] = [0,0,0,0,0,0]
+
+        node2count[int(ele['node_id'])][int(ele['idx'])-1]=int(ele['element_id'])
+
+    counts = [[0] * len(nodes) for i in range(6)]
+
+    for i, node in enumerate(nodes):
+        if int(node['node_id']) in node2count:
+            ids=node2count.get(int(node['node_id']))
+            for j in range(len(ids)):
+                counts[i][j]=ids[j]
+
+
+    return counts
+
 def elements_2_nodes(elements,nodes,element_set=None):
     node2count={}
     for i,ele in enumerate(elements):
@@ -318,7 +339,7 @@ def read_input_df(fname):
     end = time.time()
     #sys.stderr.write('nset_osibou nodes {}\n'.format(end - start))
 
-    ele_id=elements_4(input_obj['push_elements']+input_obj['surf_elements'],input_obj['nodes'])
+    ele_ids=elements_5(input_obj['push_elements']+input_obj['surf_elements'],input_obj['nodes'])
 
     '''
     start=time.time()
@@ -372,7 +393,9 @@ def read_input_df(fname):
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,sposcount=sposcount,id=id,
                      move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z'],
-                     ele_id=ele_id),input_obj
+                     ele_id_0=ele_ids[0],ele_id_1=ele_ids[1],ele_id_2=ele_ids[2],
+                     ele_id_3=ele_ids[3], ele_id_4=ele_ids[4], ele_id_5=ele_ids[5],
+                     ),input_obj
 
 
 
@@ -482,7 +505,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                                    'move_x','move_y','move_z','ele_id']
+                                    'move_x','move_y','move_z',
+                                    'ele_id_0','ele_id_1','ele_id_2','ele_id_3','ele_id_4','ele_id_5']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -624,7 +648,8 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                     'move_x', 'move_y', 'move_z','ele_id']
+                     'move_x', 'move_y', 'move_z',
+                     'ele_id_0','ele_id_1','ele_id_2','ele_id_3','ele_id_4','ele_id_5']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
