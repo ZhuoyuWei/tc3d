@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="offline infer">
-      <change afterPath="$PROJECT_DIR$/code/pre/collect_skip.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
+    <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/pre/collect_skip.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/pre/collect_skip.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,15 +45,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="14415" />
+          <entry key="py" value="14429" />
           <entry key="sh" value="667" />
-          <entry key="txt" value="1482" />
+          <entry key="txt" value="1503" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2279" />
-          <entry key="Python" value="14415" />
+          <entry key="PLAIN_TEXT" value="2300" />
+          <entry key="Python" value="14429" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -84,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/pre/collect_skip.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="84">
+              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -368,20 +368,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00095" summary="random forest|fix 1">
-      <created>1582079521668</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1582079521668</updated>
-    </task>
-    <task id="LOCAL-00096" summary="submission 30">
-      <created>1582084557859</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1582084557860</updated>
     </task>
     <task id="LOCAL-00097" summary="kdtree">
       <created>1582126320216</created>
@@ -712,7 +698,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582371143591</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="collect skip ids">
+      <created>1582376215273</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1582376215276</updated>
+    </task>
+    <task id="LOCAL-00145" summary="collect skip ids|fix">
+      <created>1582376735580</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1582376735580</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -742,8 +742,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="neareast_5 without xgb_model" />
-    <MESSAGE value="sys.setrecursionlimit(100000)" />
     <MESSAGE value="move_xyz" />
     <MESSAGE value="debug more info" />
     <MESSAGE value="+id" />
@@ -767,7 +765,9 @@
     <MESSAGE value="predict multi|update|only predict" />
     <MESSAGE value="predict multi|update|only predict|fix" />
     <MESSAGE value="offline infer" />
-    <option name="LAST_COMMIT_MESSAGE" value="offline infer" />
+    <MESSAGE value="collect skip ids" />
+    <MESSAGE value="collect skip ids|fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="collect skip ids|fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -972,8 +972,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/pre/collect_skip.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        <state relative-caret-position="84">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

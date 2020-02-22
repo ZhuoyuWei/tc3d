@@ -2,7 +2,7 @@ import os
 import sys
 
 input_dir=sys.argv[1]
-files=os.listdir()
+files=os.listdir(input_dir)
 
 buffer=[]
 for file in files:
