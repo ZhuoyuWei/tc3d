@@ -476,6 +476,9 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     all_dfs = []
     start=time.time()
     #random.seed(42)
+
+    skip_case_ids=set()
+
     for fname in glob.glob(f'{input_dir}/*.json'):
         #if sample_rate < 1:
         #    rand_v=random.random()
@@ -770,7 +773,8 @@ def predict_one(model_file, input_file, output_file):
 def predict_all(model_file, input_dir, output_dir,ntree_limit):
     ntree_limit=int(ntree_limit)
     models=[[[],[],[]],[[],[],[]]]
-    #model_file='/code/pretrain/model.bin'
+    #model_file='/code/model.bin'
+    model_local_file='/code/model.bin'
     models[0][0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
@@ -779,10 +783,10 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
             joblib.load(model_file + '.y.1'),
             joblib.load(model_file + '.z.1'),
             joblib.load(model_file + '.s.1')]
-    models[0][2]=[joblib.load(model_file+'.x.2'),
-            joblib.load(model_file + '.y.2'),
-            joblib.load(model_file + '.z.2'),
-            joblib.load(model_file + '.s.2')]
+    models[0][2]=[joblib.load(model_local_file+'.x.2'),
+            joblib.load(model_local_file + '.y.2'),
+            joblib.load(model_local_file + '.z.2'),
+            joblib.load(model_local_file + '.s.2')]
     models[1][0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
@@ -791,10 +795,10 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
             joblib.load(model_file + '.y.1'),
             joblib.load(model_file + '.z.1'),
             joblib.load(model_file + '.s.1')]
-    models[1][2]=[joblib.load(model_file+'.x.2'),
-            joblib.load(model_file + '.y.2'),
-            joblib.load(model_file + '.z.2'),
-            joblib.load(model_file + '.s.2')]
+    models[1][2]=[joblib.load(model_local_file+'.x.2'),
+            joblib.load(model_local_file + '.y.2'),
+            joblib.load(model_local_file + '.z.2'),
+            joblib.load(model_local_file + '.s.2')]
 
 
     for j in range(len(models)):
