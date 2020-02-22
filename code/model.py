@@ -100,7 +100,7 @@ def elements_5(elements, nodes):
         if int(node['node_id']) in node2count:
             ids=node2count.get(int(node['node_id']))
             for j in range(len(ids)):
-                counts[j][i]=ids[j]
+                counts[j][i]=ids[j]/100000
 
 
     return counts
@@ -693,7 +693,6 @@ def _predict(models, input_file, output_file,ntree_limit=0):
 
     pred_df.to_csv(output_file, index=False)
 
-
 def _predict_2(models, input_files, output_files,ntree_limit=0):
     dz_preds = [[None, None, None, None, None, None, None, None, None, None, None, None],
                 [None, None, None, None, None, None, None, None, None, None, None, None]]
@@ -702,7 +701,7 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
     feature_in_list = ['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
                        'pcounts', 'scounts', 'nf_counts', 'no_counts', 'sposcount', 'id',
                        'move_x', 'move_y', 'move_z',
-                       'ele_id_0', 'ele_id_1', 'ele_id_2', 'ele_id_3', 'ele_id_4', 'ele_id_5']
+                     'ele_id_0','ele_id_1','ele_id_2','ele_id_3','ele_id_4','ele_id_5']
     for i in range(len(input_files)):
         input_df,input_obj = read_input_df(input_files[i])
         input_df.rename(columns={'dx':'dx_in'}, inplace=True)
@@ -733,10 +732,10 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
         predictThreads[i].start()
 
     for i in range(len(predictThreads)):
-        if i >12:
+        if i < 12:
             dz_preds[0][i]=predictThreads[i].join()
         else:
-            dz_preds[0][i] = predictThreads[i].join()
+            dz_preds[1][i-12] = predictThreads[i].join()
 
     predictThreads=[]
     for i in range(len(output_files)):
@@ -749,7 +748,6 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
 
 
         pred_df.to_csv(output_files[i], index=False)
-
 
 @cli.command()
 @click.argument('model-file')
@@ -815,7 +813,7 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
         case_id = extract_case_id(input_file)
         output_file=f'{output_dir}/{case_id}.csv'
         input_files.append(input_file)
-        output_files.append(output_files)
+        output_files.append(output_file)
         if len(input_files) == 2:
             _predict_2(models,input_files, output_files,ntree_limit=ntree_limit)
             input_files=[]
