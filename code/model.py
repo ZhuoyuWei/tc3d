@@ -785,7 +785,7 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
         case_id = extract_case_id(input_file)
         output_file=f'{output_dir}/{case_id}.csv'
         input_files.append(input_file)
-        output_files.append(output_files)
+        output_files.append(output_file)
         if len(input_files) == 2:
             _predict_2(models,input_files, output_files,ntree_limit=ntree_limit)
             input_files=[]
