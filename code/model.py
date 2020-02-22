@@ -698,9 +698,10 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
                 [None, None, None, None, None, None, None, None, None, None, None, None]]
     input_dfs=[]
     predictThreads = []
-    feature_in_list = ['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
-                       'pcounts', 'scounts', 'nf_counts', 'no_counts', 'sposcount', 'id',
-                       'move_x', 'move_y', 'move_z','ele_id']
+    feature_in_list = ['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
+                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
+                     'move_x', 'move_y', 'move_z',
+                     'ele_id_0','ele_id_1','ele_id_2','ele_id_3','ele_id_4','ele_id_5']
     for i in range(len(input_files)):
         input_df,input_obj = read_input_df(input_files[i])
         input_df.rename(columns={'dx':'dx_in'}, inplace=True)
