@@ -700,8 +700,7 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
     predictThreads = []
     feature_in_list = ['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
                        'pcounts', 'scounts', 'nf_counts', 'no_counts', 'sposcount', 'id',
-                       'move_x', 'move_y', 'move_z',
-                     'ele_id_0','ele_id_1','ele_id_2','ele_id_3','ele_id_4','ele_id_5']
+                       'move_x', 'move_y', 'move_z','ele_id']
     for i in range(len(input_files)):
         input_df,input_obj = read_input_df(input_files[i])
         input_df.rename(columns={'dx':'dx_in'}, inplace=True)
@@ -710,17 +709,17 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
         input_dfs.append(input_df)
 
 
-        for MM in range(len(models)):
+        for MM in range(len(models[i])):
 
-            thread_0=predict_thread(lm=models[MM][0],train_df=input_df,
+            thread_0=predict_thread(lm=models[i][MM][0],train_df=input_df,
                                 feature_in_list=feature_in_list,
                                 ntree_limit=ntree_limit)
-            thread_1=predict_thread(lm=models[MM][1],train_df=input_df,
+            thread_1=predict_thread(lm=models[i][MM][1],train_df=input_df,
                                 feature_in_list=feature_in_list,ntree_limit=ntree_limit)
-            thread_2=predict_thread(lm=models[MM][2],train_df=input_df,
+            thread_2=predict_thread(lm=models[i][MM][2],train_df=input_df,
                                 feature_in_list=feature_in_list,
                                 ntree_limit=ntree_limit)
-            thread_3=predict_thread(lm=models[MM][3],
+            thread_3=predict_thread(lm=models[i][MM][3],
                                 feature_in_list=feature_in_list,
                                 train_df=input_df,ntree_limit=ntree_limit)
             predictThreads+=[thread_0,thread_1,thread_2,thread_3]
@@ -749,6 +748,8 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
 
         pred_df.to_csv(output_files[i], index=False)
 
+
+
 @cli.command()
 @click.argument('model-file')
 @click.argument('input-file')
@@ -767,42 +768,57 @@ def predict_one(model_file, input_file, output_file):
 @click.argument('ntree_limit')
 def predict_all(model_file, input_dir, output_dir,ntree_limit):
     ntree_limit=int(ntree_limit)
-    models=[[],[],[]]
-    models[0]=[joblib.load(model_file+'.x.0'),
+    models=[[[],[],[]],[[],[],[]]]
+    models[0][0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
             joblib.load(model_file + '.s.0')]
-    models[1]=[joblib.load(model_file+'.x.1'),
+    models[0][1]=[joblib.load(model_file+'.x.1'),
             joblib.load(model_file + '.y.1'),
             joblib.load(model_file + '.z.1'),
             joblib.load(model_file + '.s.1')]
-    models[2]=[joblib.load(model_file+'.x.2'),
+    models[0][2]=[joblib.load(model_file+'.x.2'),
+            joblib.load(model_file + '.y.2'),
+            joblib.load(model_file + '.z.2'),
+            joblib.load(model_file + '.s.2')]
+    models[1][0]=[joblib.load(model_file+'.x.0'),
+            joblib.load(model_file + '.y.0'),
+            joblib.load(model_file + '.z.0'),
+            joblib.load(model_file + '.s.0')]
+    models[1][1]=[joblib.load(model_file+'.x.1'),
+            joblib.load(model_file + '.y.1'),
+            joblib.load(model_file + '.z.1'),
+            joblib.load(model_file + '.s.1')]
+    models[1][2]=[joblib.load(model_file+'.x.2'),
             joblib.load(model_file + '.y.2'),
             joblib.load(model_file + '.z.2'),
             joblib.load(model_file + '.s.2')]
 
-    for i in range(3):
-        models[i][0]=models[i][0].set_params(tree_method='gpu_hist')
-        models[i][0]=models[i][0].set_params(predictor='gpu_predictor')
-        models[i][0]=models[i][0].set_params(gpu_id=0)
 
-        models[i][1]=models[i][1].set_params(tree_method='gpu_hist')
-        models[i][1]=models[i][1].set_params(predictor='gpu_predictor')
-        models[i][1]=models[i][1].set_params(gpu_id=1)
+    for j in range(len(models)):
+        for i in range(3):
+            models[j][i][0] = models[j][i][0].set_params(tree_method='gpu_hist')
+            models[j][i][0] = models[j][i][0].set_params(predictor='gpu_predictor')
+            models[j][i][0] = models[j][i][0].set_params(gpu_id=0)
 
-        models[i][2]=models[i][2].set_params(tree_method='gpu_hist')
-        models[i][2]=models[i][2].set_params(predictor='gpu_predictor')
-        models[i][2]=models[i][2].set_params(gpu_id=0)
+            models[j][i][1] = models[j][i][1].set_params(tree_method='gpu_hist')
+            models[j][i][1] = models[j][i][1].set_params(predictor='gpu_predictor')
+            models[j][i][1] = models[j][i][1].set_params(gpu_id=1)
 
-        models[i][3]=models[i][3].set_params(tree_method='gpu_hist')
-        models[i][3]=models[i][3].set_params(predictor='gpu_predictor')
-        models[i][3]=models[i][3].set_params(gpu_id=1)
+            models[j][i][2] = models[j][i][2].set_params(tree_method='gpu_hist')
+            models[j][i][2] = models[j][i][2].set_params(predictor='gpu_predictor')
+            models[j][i][2] = models[j][i][2].set_params(gpu_id=0)
 
-        print('model {}-{} parameters: {}'.format(i,0,models[i][0].get_params()))
-        print('model {}-{} parameters: {}'.format(i, 1, models[i][1].get_params()))
-        print('model {}-{} parameters: {}'.format(i, 2, models[i][2].get_params()))
-        print('model {}-{} parameters: {}'.format(i, 3, models[i][3].get_params()))
+            models[j][i][3] = models[j][i][3].set_params(tree_method='gpu_hist')
+            models[j][i][3] = models[j][i][3].set_params(predictor='gpu_predictor')
+            models[j][i][3] = models[j][i][3].set_params(gpu_id=1)
 
+            '''
+            print('model {}-{} parameters: {}'.format(i,0,models[i][0].get_params()))
+            print('model {}-{} parameters: {}'.format(i, 1, models[i][1].get_params()))
+            print('model {}-{} parameters: {}'.format(i, 2, models[i][2].get_params()))
+            print('model {}-{} parameters: {}'.format(i, 3, models[i][3].get_params()))
+            '''
 
 
     #model = joblib.load(model_file)
@@ -819,7 +835,7 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
             input_files=[]
             output_files=[]
     if len(input_files) == 1:
-        _predict(models,input_files[0], output_files[1],ntree_limit=ntree_limit)
+        _predict(models[0],input_files[0], output_files[1],ntree_limit=ntree_limit)
     end=time.time()
     print('Predict is finished in {} s'.format(end-start))
 
