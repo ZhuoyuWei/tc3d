@@ -709,7 +709,7 @@ def _predict_2(models, input_files, output_files,ntree_limit=0):
         if i < 12:
             dz_preds[0][i]=predictThreads[i].join()
         else:
-            dz_preds[1][i] = predictThreads[i].join()
+            dz_preds[1][i-12] = predictThreads[i].join()
 
     predictThreads=[]
     for i in range(len(output_files)):
