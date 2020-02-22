@@ -25,7 +25,7 @@ sudo chmod 777 /zhuoyu_exp
 
 sudo pip install pip --upgrade
 sudo pip install pandas click joblib sklearn
-sudo pip install --pre xgboost
+sudo pip install --pre https://s3-us-west-2.amazonaws.com/xgboost-nightly-builds/xgboost-1.0.0_SNAPSHOT%2Bda6e74f7bb7727ae60b37b1dc6f86ef98d350887-py2.py3-none-manylinux1_x86_64.whl
 
 EXP_ROOT_DIR=/zhuoyu_exp/work
 mkdir $EXP_ROOT_DIR
