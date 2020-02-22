@@ -13,7 +13,8 @@ RUN pip install scipy
 RUN pip install -U scikit-learn
 RUN pip install seaborn
 RUN pip install matplotlib
-RUN pip install --pre xgboost
+RUN pip install --pre https://s3-us-west-2.amazonaws.com/xgboost-nightly-builds/xgboost-1.0.0_SNAPSHOT%2Bda6e74f7bb7727ae60b37b1dc6f86ef98d350887-py2.py3-none-manylinux1_x86_64.whl
+
 
 
 
