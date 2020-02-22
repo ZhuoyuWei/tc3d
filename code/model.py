@@ -73,13 +73,14 @@ def elements_4(elements, nodes):
     node2count = {}
 
     for i, ele in enumerate(elements):
-        node2count[int(ele['node_id'])] = int(ele['element_id'])
+        node2count[int(ele['node_id'])] = int(ele['element_id'])/100000
 
     counts = [0] * len(nodes)
 
     for i, node in enumerate(nodes):
         if int(node['node_id']) in node2count:
             counts[i] = node2count.get(int(node['node_id']), 0)
+
 
 
     return counts
