@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/pre/read_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/pre/read_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,15 +16,15 @@
     <session id="-1525906652">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="25" />
+          <entry key="project.closed" value="26" />
           <entry key="project.open.time.0" value="5" />
-          <entry key="project.open.time.1" value="13" />
+          <entry key="project.open.time.1" value="14" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="27" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -45,15 +46,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="13473" />
+          <entry key="py" value="13506" />
           <entry key="sh" value="666" />
-          <entry key="txt" value="1386" />
+          <entry key="txt" value="1393" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2182" />
-          <entry key="Python" value="13473" />
+          <entry key="PLAIN_TEXT" value="2189" />
+          <entry key="Python" value="13506" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -70,10 +71,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3549">
-              <caret line="633" column="76" selection-start-line="633" selection-start-column="76" selection-end-line="633" selection-end-column="76" />
+            <state relative-caret-position="114">
+              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
+                <element signature="e#704#1531#0" />
+                <element signature="e#1571#2105#0" />
+                <element signature="e#2167#2732#0" />
+                <element signature="e#2797#3714#0" />
               </folding>
             </state>
           </provider>
@@ -82,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="124" column="59" selection-start-line="124" selection-start-column="59" selection-end-line="124" selection-end-column="59" />
+            <state relative-caret-position="670">
+              <caret line="148" column="20" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -180,7 +185,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,6 +207,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,20 +292,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00083" summary="3 models for ave|fix">
-      <created>1581917020098</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1581917020098</updated>
-    </task>
-    <task id="LOCAL-00084" summary="submission_25|best for now">
-      <created>1581983923100</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1581983923100</updated>
     </task>
     <task id="LOCAL-00085" summary="add spos feature">
       <created>1581986617408</created>
@@ -631,11 +622,26 @@
       <option name="project" value="LOCAL" />
       <updated>1582301852101</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="debug">
+      <created>1582331390453</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1582331390455</updated>
+    </task>
+    <task id="LOCAL-00133" summary="debug 2">
+      <created>1582331580737</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1582331580737</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -660,8 +666,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove all xyz" />
-    <MESSAGE value="norm xyz" />
     <MESSAGE value="add ,'sposcount'" />
     <MESSAGE value="add ,'sposcount'|fix" />
     <MESSAGE value="submission 32" />
@@ -685,7 +689,9 @@
     <MESSAGE value="all feature" />
     <MESSAGE value="all feature/100000" />
     <MESSAGE value="'push_x','push_y','push_z'" />
-    <option name="LAST_COMMIT_MESSAGE" value="'push_x','push_y','push_z'" />
+    <MESSAGE value="debug" />
+    <MESSAGE value="debug 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug 2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -834,18 +840,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3549">
-          <caret line="633" column="76" selection-start-line="633" selection-start-column="76" selection-end-line="633" selection-end-column="76" />
+        <state relative-caret-position="114">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
+            <element signature="e#704#1531#0" />
+            <element signature="e#1571#2105#0" />
+            <element signature="e#2167#2732#0" />
+            <element signature="e#2797#3714#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="124" column="59" selection-start-line="124" selection-start-column="59" selection-end-line="124" selection-end-column="59" />
+        <state relative-caret-position="670">
+          <caret line="148" column="20" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="20" />
         </state>
       </provider>
     </entry>

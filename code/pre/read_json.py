@@ -133,12 +133,20 @@ with open(sys.argv[1]) as f:
     for i in range(5):
         print(push_elements[i][1])
 
+    node2push={}
+    node2push_count = set()
     #indexing_element
     surf_elements={}
     for i,item in enumerate(jobj['surf_elements']):
         if not item['element_id'] in surf_elements:
             surf_elements[item['element_id']]=Element(id=item['element_id'],size=6)
         surf_elements[item['element_id']].node_ids[int(item['idx'])-1]=item['node_id']
+        if not int(item['node_id']) in node2push:
+            node2push[int(item['node_id'])]=0
+        node2push[int(item['node_id'])] += 1
+        if node2push[int(item['node_id'])] >1:
+            node2push_count.add(int(item['node_id']))
+    print('node2surf count = {}'.format(len(node2push_count)))
 
     surf_elements=list(sorted(surf_elements.items(),key=lambda x:x[1].id))
     surf_elements[0][1].id2nodes=id2nodes

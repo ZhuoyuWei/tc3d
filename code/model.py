@@ -61,7 +61,7 @@ def elements_2(elements,nodes,spos=None):
             if int(node['node_id']) in node2spos:
                 count_spos+=1
             counts2[i]=node2spos.get(int(node['node_id']),0)
-        print('spos elements hitting {}'.format(count_spos))
+        #print('spos elements hitting {}'.format(count_spos))
     else:
         counts2=None
 
@@ -378,8 +378,7 @@ def read_input_df(fname):
                      pcounts=push_counts, scounts=surf_counts,
                      nf_counts=nset_fix_counts, no_counts=nset_osibou_counts,
                      thickness=thickness,sposcount=sposcount,id=id,
-                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z'],
-                     push_x=push_xyz[0],push_y=push_xyz[1],push_z=push_xyz[2]),input_obj
+                     move_x=move_node['x'],move_y=move_node['y'],move_z=move_node['z']),input_obj
 
 
 
@@ -489,7 +488,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
         fitting_threads=[]
         feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                                    'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                                    'move_x','move_y','move_z','push_x','push_y','push_z']
+                                    'move_x','move_y','move_z']
         model_config={'n_estimators':n_estimators,'max_depth':max_depth,
                     'n_jobs': n_jobs, 'tree_method':tree_method}
         #lm_x = LinearRegression()
@@ -631,7 +630,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
     predictThreads = []
     feature_in_list=['x','y','z','dx_in', 'dy_in', 'dz_in', 'thickness',
                     'pcounts','scounts','nf_counts','no_counts','sposcount','id',
-                     'move_x', 'move_y', 'move_z','push_x','push_y','push_z']
+                     'move_x', 'move_y', 'move_z']
     for MM in range(len(models)):
 
         #models[MM][0].set_params(tree_method='gpu_hist')
