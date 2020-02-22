@@ -769,6 +769,7 @@ def predict_one(model_file, input_file, output_file):
 def predict_all(model_file, input_dir, output_dir,ntree_limit):
     ntree_limit=int(ntree_limit)
     models=[[[],[],[]],[[],[],[]]]
+    model_file='/code/pretrain/model.bin'
     models[0][0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
