@@ -891,10 +891,19 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
             joblib.load(model_file + '.y.2'),
             joblib.load(model_file + '.z.2'),
             joblib.load(model_file + '.s.2')]
+    models[1][0]=[joblib.load(model_file+'.x.0'),
+            joblib.load(model_file + '.y.0'),
+            joblib.load(model_file + '.z.0'),
+            joblib.load(model_file + '.s.0')]
+    models[1][1]=[joblib.load(model_file+'.x.1'),
+            joblib.load(model_file + '.y.1'),
+            joblib.load(model_file + '.z.1'),
+            joblib.load(model_file + '.s.1')]
+    models[1][2]=[joblib.load(model_file+'.x.2'),
+            joblib.load(model_file + '.y.2'),
+            joblib.load(model_file + '.z.2'),
+            joblib.load(model_file + '.s.2')]
 
-    for i in range(len(models[0])):
-        for j in range(len(models[0][i])):
-            models[1][i].append(models[0][i][j].copy())
 
     for j in range(len(models)):
         for i in range(3):
