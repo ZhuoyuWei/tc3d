@@ -85,9 +85,10 @@ with open(sys.argv[1]) as f:
     for i in range(5):
         print(node_ids[i][1])
 
-    with open(sys.argv[2],'w') as fout:
-        for node in node_ids:
-            fout.write('{}\n'.format(node[1]))
+    if len(sys.argv) > 2:
+        with open(sys.argv[2],'w') as fout:
+            for node in node_ids:
+                fout.write('{}\n'.format(node[1]))
 
 
 
