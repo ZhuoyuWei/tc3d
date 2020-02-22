@@ -100,7 +100,7 @@ def elements_5(elements, nodes):
         if int(node['node_id']) in node2count:
             ids=node2count.get(int(node['node_id']))
             for j in range(len(ids)):
-                counts[i][j]=ids[j]
+                counts[j][i]=ids[j]
 
 
     return counts
