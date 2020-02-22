@@ -119,7 +119,7 @@ with open(sys.argv[1]) as f:
         if not int(item['node_id']) in node2push:
             node2push[int(item['node_id'])]=0
         node2push[int(item['node_id'])] += 1
-        if node2push[int(item['node_id'])] >1:
+        if node2push[int(item['node_id'])] >0:
             node2push_count.add(int(item['node_id']))
 
     #node2push_count=0
@@ -144,7 +144,7 @@ with open(sys.argv[1]) as f:
         if not int(item['node_id']) in node2push:
             node2push[int(item['node_id'])]=0
         node2push[int(item['node_id'])] += 1
-        if node2push[int(item['node_id'])] >1:
+        if node2push[int(item['node_id'])] >0:
             node2push_count.add(int(item['node_id']))
     print('node2surf count = {}'.format(len(node2push_count)))
 
