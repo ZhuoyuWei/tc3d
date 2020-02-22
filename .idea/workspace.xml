@@ -4,7 +4,6 @@
     <list default="true" id="c40154c9-68aa-4782-bd6f-7d1a967af3cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/pre/read_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/pre/read_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,15 +45,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="13506" />
+          <entry key="py" value="13510" />
           <entry key="sh" value="666" />
-          <entry key="txt" value="1393" />
+          <entry key="txt" value="1394" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2189" />
-          <entry key="Python" value="13506" />
+          <entry key="PLAIN_TEXT" value="2190" />
+          <entry key="Python" value="13510" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -71,14 +70,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+            <state relative-caret-position="96">
+              <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
                 <element signature="e#704#1531#0" />
-                <element signature="e#1571#2105#0" />
                 <element signature="e#2167#2732#0" />
                 <element signature="e#2797#3714#0" />
+                <element signature="e#3756#5272#0" />
+                <element signature="e#5320#6823#0" />
+                <element signature="e#6873#8528#0" />
               </folding>
             </state>
           </provider>
@@ -87,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="148" column="20" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="20" />
+            <state relative-caret-position="1678">
+              <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -166,8 +167,8 @@
         <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/tt3.py" />
         <option value="$PROJECT_DIR$/code/train.sh" />
-        <option value="$PROJECT_DIR$/code/model.py" />
         <option value="$PROJECT_DIR$/code/pre/read_json.py" />
+        <option value="$PROJECT_DIR$/code/model.py" />
       </list>
     </option>
   </component>
@@ -292,20 +293,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00085" summary="add spos feature">
-      <created>1581986617408</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1581986617408</updated>
-    </task>
-    <task id="LOCAL-00086" summary="ntree_limit">
-      <created>1581998833612</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1581998833612</updated>
     </task>
     <task id="LOCAL-00087" summary="diff res dir and diff log">
       <created>1581999145342</created>
@@ -636,7 +623,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582331580737</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="debug 2">
+      <created>1582335910422</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1582335910423</updated>
+    </task>
+    <task id="LOCAL-00135" summary="debug 3">
+      <created>1582336146879</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1582336146879</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -666,7 +667,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ,'sposcount'" />
     <MESSAGE value="add ,'sposcount'|fix" />
     <MESSAGE value="submission 32" />
     <MESSAGE value="xgb_model for training" />
@@ -691,7 +691,8 @@
     <MESSAGE value="'push_x','push_y','push_z'" />
     <MESSAGE value="debug" />
     <MESSAGE value="debug 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug 2" />
+    <MESSAGE value="debug 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug 3" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -840,22 +841,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        <state relative-caret-position="96">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
             <element signature="e#704#1531#0" />
-            <element signature="e#1571#2105#0" />
             <element signature="e#2167#2732#0" />
             <element signature="e#2797#3714#0" />
+            <element signature="e#3756#5272#0" />
+            <element signature="e#5320#6823#0" />
+            <element signature="e#6873#8528#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/pre/read_json.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="148" column="20" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="20" />
+        <state relative-caret-position="1678">
+          <caret line="121" column="45" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
         </state>
       </provider>
     </entry>
