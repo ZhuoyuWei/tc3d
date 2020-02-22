@@ -668,6 +668,60 @@ def _predict(models, input_file, output_file,ntree_limit=0):
 
     pred_df.to_csv(output_file, index=False)
 
+def _predict_2(models, input_files, output_files,ntree_limit=0):
+    dz_preds = [[None, None, None, None, None, None, None, None, None, None, None, None],
+                [None, None, None, None, None, None, None, None, None, None, None, None]]
+    input_dfs=[]
+    predictThreads = []
+    feature_in_list = ['x', 'y', 'z', 'dx_in', 'dy_in', 'dz_in', 'thickness',
+                       'pcounts', 'scounts', 'nf_counts', 'no_counts', 'sposcount', 'id',
+                       'move_x', 'move_y', 'move_z','ele_id']
+    for i in range(len(input_files)):
+        input_df,input_obj = read_input_df(input_files[i])
+        input_df.rename(columns={'dx':'dx_in'}, inplace=True)
+        input_df.rename(columns={'dy':'dy_in'}, inplace=True)
+        input_df.rename(columns={'dz':'dz_in'}, inplace=True)
+        input_dfs.append(input_df)
+
+
+        for MM in range(len(models)):
+
+            thread_0=predict_thread(lm=models[MM][0],train_df=input_df,
+                                feature_in_list=feature_in_list,
+                                ntree_limit=ntree_limit)
+            thread_1=predict_thread(lm=models[MM][1],train_df=input_df,
+                                feature_in_list=feature_in_list,ntree_limit=ntree_limit)
+            thread_2=predict_thread(lm=models[MM][2],train_df=input_df,
+                                feature_in_list=feature_in_list,
+                                ntree_limit=ntree_limit)
+            thread_3=predict_thread(lm=models[MM][3],
+                                feature_in_list=feature_in_list,
+                                train_df=input_df,ntree_limit=ntree_limit)
+            predictThreads+=[thread_0,thread_1,thread_2,thread_3]
+
+
+
+
+    for i in range(len(predictThreads)):
+        predictThreads[i].start()
+
+    for i in range(len(predictThreads)):
+        if i < 12:
+            dz_preds[0][i]=predictThreads[i].join()
+        else:
+            dz_preds[1][i] = predictThreads[i].join()
+
+    predictThreads=[]
+    for i in range(len(output_files)):
+        pred_df = pd.DataFrame([
+            {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
+            for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_dfs[i]['node_id'],
+                              dz_preds[i][0],dz_preds[i][1],dz_preds[i][2],dz_preds[i][3],
+                              dz_preds[i][4], dz_preds[i][5], dz_preds[i][6], dz_preds[i][7],
+                              dz_preds[i][8], dz_preds[i][9], dz_preds[i][10], dz_preds[i][11])])
+
+
+        pred_df.to_csv(output_files[i], index=False)
 
 @cli.command()
 @click.argument('model-file')
@@ -725,9 +779,19 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
 
     #model = joblib.load(model_file)
     start=time.time()
+    input_files=[]
+    output_files=[]
     for input_file in glob.glob(f'{input_dir}/*.json'):
         case_id = extract_case_id(input_file)
-        _predict(models,input_file, f'{output_dir}/{case_id}.csv',ntree_limit=ntree_limit)
+        output_file=f'{output_dir}/{case_id}.csv'
+        input_files.append(input_file)
+        output_files.append(output_files)
+        if len(input_files) == 2:
+            _predict_2(models,input_files, output_files,ntree_limit=ntree_limit)
+            input_files=[]
+            output_files=[]
+    if len(input_files) == 1:
+        _predict(models,input_files[0], output_files[1],ntree_limit=ntree_limit)
     end=time.time()
     print('Predict is finished in {} s'.format(end-start))
 
