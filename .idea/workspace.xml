@@ -45,15 +45,15 @@
         <counts>
           <entry key="Dockerfile" value="117" />
           <entry key="dummy" value="13" />
-          <entry key="py" value="14661" />
-          <entry key="sh" value="671" />
-          <entry key="txt" value="1584" />
+          <entry key="py" value="14672" />
+          <entry key="sh" value="680" />
+          <entry key="txt" value="1599" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2385" />
-          <entry key="Python" value="14661" />
+          <entry key="PLAIN_TEXT" value="2409" />
+          <entry key="Python" value="14672" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -85,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/model_nn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="871" column="23" lean-forward="true" selection-start-line="871" selection-start-column="23" selection-end-line="871" selection-end-column="23" />
+            <state relative-caret-position="383">
+              <caret line="557" selection-start-line="557" selection-end-line="557" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
                 <element signature="e#430#521#0" />
@@ -143,8 +143,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts_train.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="658">
+              <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -152,7 +152,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
+            <state relative-caret-position="483">
               <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
             </state>
           </provider>
@@ -161,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/dlts.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-end-line="29" />
+            <state relative-caret-position="658">
+              <caret line="56" column="15" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -237,7 +237,6 @@
         <option value="$PROJECT_DIR$/code/dense_regression.py" />
         <option value="$PROJECT_DIR$/code/dlts_nn.sh.py" />
         <option value="$PROJECT_DIR$/code/tt2.py" />
-        <option value="$PROJECT_DIR$/code/dlts.sh" />
         <option value="$PROJECT_DIR$/tt3.py" />
         <option value="$PROJECT_DIR$/code/pre/read_json.py" />
         <option value="$PROJECT_DIR$/code/pre/collect_skip.py" />
@@ -245,6 +244,8 @@
         <option value="$PROJECT_DIR$/code/dlts_test.sh" />
         <option value="$PROJECT_DIR$/code/train.sh" />
         <option value="$PROJECT_DIR$/code/model.py" />
+        <option value="$PROJECT_DIR$/code/dlts.sh" />
+        <option value="$PROJECT_DIR$/code/dlts_train.sh" />
         <option value="$PROJECT_DIR$/code/model_nn.py" />
       </list>
     </option>
@@ -369,20 +370,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581256911490</updated>
-    </task>
-    <task id="LOCAL-00105" summary="remove all xyz">
-      <created>1582187897120</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1582187897120</updated>
-    </task>
-    <task id="LOCAL-00106" summary="norm xyz">
-      <created>1582188833027</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1582188833027</updated>
     </task>
     <task id="LOCAL-00107" summary="add ,'sposcount'">
       <created>1582204761400</created>
@@ -713,12 +700,25 @@
       <option name="project" value="LOCAL" />
       <updated>1582416142402</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="offline">
+      <created>1582423360526</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1582423360529</updated>
+    </task>
+    <task id="LOCAL-00155" summary="offline serve">
+      <created>1582423667754</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1582423667754</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966262" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -743,8 +743,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="torch neareast w/o move_xyz" />
-    <MESSAGE value="torch neareast w/o move_xyz and ori id" />
     <MESSAGE value="all feature" />
     <MESSAGE value="all feature/100000" />
     <MESSAGE value="'push_x','push_y','push_z'" />
@@ -768,7 +766,9 @@
     <MESSAGE value="submission 36" />
     <MESSAGE value="cpu predictor" />
     <MESSAGE value="submission 37" />
-    <option name="LAST_COMMIT_MESSAGE" value="submission 37" />
+    <MESSAGE value="offline" />
+    <MESSAGE value="offline serve" />
+    <option name="LAST_COMMIT_MESSAGE" value="offline serve" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/dev/cv5.sh">
@@ -910,27 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts_train.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -951,10 +930,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="56" column="15" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/dlts_train.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/model_nn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="871" column="23" lean-forward="true" selection-start-line="871" selection-start-column="23" selection-end-line="871" selection-end-column="23" />
+        <state relative-caret-position="383">
+          <caret line="557" selection-start-line="557" selection-end-line="557" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
             <element signature="e#430#521#0" />

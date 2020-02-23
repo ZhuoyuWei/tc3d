@@ -469,7 +469,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     all_dfs = []
     start = time.time()
     # random.seed(42)
-
+    '''
     example__skip = set(["00224", "00132", "00152", "00230", "00049", "00122", "00174", "00092", "00321",
                          "00296", "00303", "00138", "00248", "00066", "00335", "00189", "00336", "00370",
                          "00232", "00330", "00011", "00225", "00177", "00347", "00325", "00301", "00360",
@@ -513,8 +513,8 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
                          "00001", "00291", "00023", "00059", "00237", "00300", "00117", "00157", "00354",
                          "00113", "00261", "00302", "00078", "00182", "00211", "00156", "00379", "00322",
                          "00363", "00020", "00060", "00072", "00192", "00251"])
-
-    # example__skip = set()
+    '''
+    example__skip = set()
 
     for fname in glob.glob(f'{input_dir}/*.json'):
         # if sample_rate < 1:
@@ -539,7 +539,7 @@ def train(input_dir, ground_truth_dir, model_file, n_estimators, max_depth, tree
     random_states = [42, 999, 7717]
 
     # xgb_models=[None,None,None,None]
-    for MM in range(2):
+    for MM in range(3):
 
         if sample_rate < 1:
             train_df = all_df.sample(frac=sample_rate, random_state=random_states[MM])
