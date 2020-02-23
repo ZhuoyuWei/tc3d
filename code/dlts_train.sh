@@ -55,4 +55,4 @@ mkdir $PRED_OUT_MODEL
 MODEL_FILE=$PRED_OUT_MODEL/model.bin
 
 cd $EXP_ROOT_DIR/code
-python model.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
+python model_nn.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
