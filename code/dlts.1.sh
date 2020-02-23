@@ -53,6 +53,6 @@ mkdir $PRED_OUT_MODEL
 MODEL_FILE=$PRED_OUT_MODEL/model.bin
 
 cd $EXP_ROOT_DIR/code
-python model_1.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
-python model_1.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} 0 >> $OUTPUT_DIR/log
+python model.1.py train ${TRAIN_DATA} ${TRAIN_GT} ${MODEL_FILE} ${NEstimators} ${MaxDepth} ${TreeMethod} ${n_job} ${sample_rate} >> $OUTPUT_DIR/log
+python model.1.py predict-all ${MODEL_FILE} ${PRED_DATA} ${PRED_OUT} 0 >> $OUTPUT_DIR/log
 python score.py score-all  ${PRED_OUT} ${PRED_ANS} >> $OUTPUT_DIR/log
