@@ -716,25 +716,26 @@ def _predict(models, input_file, output_file, ntree_limit=0):
         dz_preds[i] = predictThreads[i].join()
 
     predictThreads = []
-    '''
+
     pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
-        for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_df['node_id'],
-                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3],
-                              dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
-                              dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
-    ])
-    '''
-    pred_df = pd.DataFrame([
-        {'node_id': i, 'dx': weighted_ave(x1, x2, x3), 'dy': weighted_ave(y1, y2, y3),
-         'dz': weighted_ave(z1, z2, z3), 'max_stress': weighted_ave(s1, s2, s3)}
+        {'node_id': i, 'dx': (x1 + x2 + x3) / 3, 'dy': (y1 + y2 + y3) / 3, 'dz': (z1 + z2 + z3) / 3,
+         'max_stress': (s1 + s2 + s3) / 3}
         for i, x1, y1, z1, s1, x2, y2, z2, s2, x3, y3, z3, s3 in zip(input_df['node_id'],
                                                                      dz_preds[0], dz_preds[1], dz_preds[2], dz_preds[3],
                                                                      dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
                                                                      dz_preds[8], dz_preds[9], dz_preds[10],
                                                                      dz_preds[11])
     ])
-
+    '''
+    pred_df = pd.DataFrame([
+        {'node_id': i, 'dx': weighted_ave(x1,x2,x3), 'dy':weighted_ave(y1,y2,y3),
+            'dz': weighted_ave(z1,z2,z3), 'max_stress': weighted_ave(s1,s2,s3)}
+        for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_df['node_id'],
+                              dz_preds[0],dz_preds[1],dz_preds[2],dz_preds[3],
+                              dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
+                              dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
+    ])
+'''
     # pred_df=post_procssing(pred_df,input_obj)
     # post_procssing_debug(pred_df,input_obj)
 
@@ -816,7 +817,7 @@ def predict_all(model_file, input_dir, output_dir, ntree_limit):
     ntree_limit = int(ntree_limit)
     models = [[[], [], []], [[], [], []]]
     # model_file='/code/model.bin'
-    model_local_file = '/code/model.bin'
+    model_local_file = model_file
     models[0][0] = [joblib.load(model_file + '.x.0'),
                     joblib.load(model_file + '.y.0'),
                     joblib.load(model_file + '.z.0'),
@@ -825,10 +826,10 @@ def predict_all(model_file, input_dir, output_dir, ntree_limit):
                     joblib.load(model_file + '.y.1'),
                     joblib.load(model_file + '.z.1'),
                     joblib.load(model_file + '.s.1')]
-    models[0][2] = [joblib.load(model_file + '.x.2'),
-                    joblib.load(model_file + '.y.2'),
-                    joblib.load(model_file + '.z.2'),
-                    joblib.load(model_file + '.s.2')]
+    models[0][2] = [joblib.load(model_local_file + '.x.2'),
+                    joblib.load(model_local_file + '.y.2'),
+                    joblib.load(model_local_file + '.z.2'),
+                    joblib.load(model_local_file + '.s.2')]
     models[1][0] = [joblib.load(model_file + '.x.0'),
                     joblib.load(model_file + '.y.0'),
                     joblib.load(model_file + '.z.0'),
@@ -837,27 +838,28 @@ def predict_all(model_file, input_dir, output_dir, ntree_limit):
                     joblib.load(model_file + '.y.1'),
                     joblib.load(model_file + '.z.1'),
                     joblib.load(model_file + '.s.1')]
-    models[1][2] = [joblib.load(model_file + '.x.2'),
-                    joblib.load(model_file + '.y.2'),
-                    joblib.load(model_file + '.z.2'),
-                    joblib.load(model_file + '.s.2')]
+    models[1][2] = [joblib.load(model_local_file + '.x.2'),
+                    joblib.load(model_local_file + '.y.2'),
+                    joblib.load(model_local_file + '.z.2'),
+                    joblib.load(model_local_file + '.s.2')]
 
     for j in range(len(models)):
         for i in range(3):
-            models[j][i][0] = models[j][i][0].set_params(tree_method='hist')
-            models[j][i][0] = models[j][i][0].set_params(predictor='cpu_predictor')
+            models[j][i][0] = models[j][i][0].set_params(tree_method='gpu_hist')
+            models[j][i][0] = models[j][i][0].set_params(predictor='gpu_predictor')
+            models[j][i][0] = models[j][i][0].set_params(gpu_id=0)
 
+            models[j][i][1] = models[j][i][1].set_params(tree_method='gpu_hist')
+            models[j][i][1] = models[j][i][1].set_params(predictor='gpu_predictor')
+            models[j][i][1] = models[j][i][1].set_params(gpu_id=1)
 
-            models[j][i][1] = models[j][i][1].set_params(tree_method='hist')
-            models[j][i][1] = models[j][i][1].set_params(predictor='cpu_predictor')
+            models[j][i][2] = models[j][i][2].set_params(tree_method='gpu_hist')
+            models[j][i][2] = models[j][i][2].set_params(predictor='gpu_predictor')
+            models[j][i][2] = models[j][i][2].set_params(gpu_id=0)
 
-            models[j][i][2] = models[j][i][2].set_params(tree_method='hist')
-            models[j][i][2] = models[j][i][2].set_params(predictor='cpu_predictor')
-
-
-            models[j][i][3] = models[j][i][3].set_params(tree_method='hist')
-            models[j][i][3] = models[j][i][3].set_params(predictor='cpu_predictor')
-
+            models[j][i][3] = models[j][i][3].set_params(tree_method='gpu_hist')
+            models[j][i][3] = models[j][i][3].set_params(predictor='gpu_predictor')
+            models[j][i][3] = models[j][i][3].set_params(gpu_id=1)
 
             '''
             print('model {}-{} parameters: {}'.format(i,0,models[i][0].get_params()))
