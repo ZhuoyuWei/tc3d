@@ -835,6 +835,7 @@ def predict_all(model_file, input_dir, output_dir,ntree_limit):
     models=[[[],[],[]],[[],[],[]]]
     #model_file='/code/model.bin'
     model_local_file='/code/model.bin'
+    model_file=model_local_file
     models[0][0]=[joblib.load(model_file+'.x.0'),
             joblib.load(model_file + '.y.0'),
             joblib.load(model_file + '.z.0'),
