@@ -732,7 +732,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
         dz_preds[i]=predictThreads[i].join()
 
     predictThreads=[]
-    '''
+
     pred_df = pd.DataFrame([
         {'node_id': i, 'dx': (x1+x2+x3)/3, 'dy': (y1+y2+y3)/3, 'dz': (z1+z2+z3)/3, 'max_stress': (s1+s2+s3)/3}
         for i, x1,y1,z1,s1,x2,y2,z2,s2,x3,y3,z3,s3 in zip(input_df['node_id'],
@@ -749,7 +749,7 @@ def _predict(models, input_file, output_file,ntree_limit=0):
                               dz_preds[4], dz_preds[5], dz_preds[6], dz_preds[7],
                               dz_preds[8], dz_preds[9], dz_preds[10], dz_preds[11])
     ])
-
+'''
     #pred_df=post_procssing(pred_df,input_obj)
     #post_procssing_debug(pred_df,input_obj)
 
